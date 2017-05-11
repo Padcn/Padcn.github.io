@@ -1,0 +1,710 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MyBatis," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="MyBatis配置以及单表关联下载jar包https://github.com/mybatis/mybatis-3/releases 核心配置文件：mybatis-*/src/test/java/org/apache/ibatis/submitted/complex_property/Configuration.xml MyBatis 向DAO层提供sqlsession对象SqlSession作用">
+<meta name="keywords" content="MyBatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis配置以及单表关联(Unfinished)">
+<meta property="og:url" content="http://yoursite.com/2017/05/11/MyBatisSingleTable.markdwon/index.html">
+<meta property="og:site_name" content="Pad">
+<meta property="og:description" content="MyBatis配置以及单表关联下载jar包https://github.com/mybatis/mybatis-3/releases 核心配置文件：mybatis-*/src/test/java/org/apache/ibatis/submitted/complex_property/Configuration.xml MyBatis 向DAO层提供sqlsession对象SqlSession作用">
+<meta property="og:updated_time" content="2017-05-11T14:09:06.786Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MyBatis配置以及单表关联(Unfinished)">
+<meta name="twitter:description" content="MyBatis配置以及单表关联下载jar包https://github.com/mybatis/mybatis-3/releases 核心配置文件：mybatis-*/src/test/java/org/apache/ibatis/submitted/complex_property/Configuration.xml MyBatis 向DAO层提供sqlsession对象SqlSession作用">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/11/MyBatisSingleTable.markdwon/"/>
+
+
+
+
+
+  <title>MyBatis配置以及单表关联(Unfinished) | Pad</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pad</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/MyBatisSingleTable.markdwon/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pad">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pad">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MyBatis配置以及单表关联(Unfinished)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-11T00:00:00+08:00">
+                2017-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="MyBatis配置以及单表关联"><a href="#MyBatis配置以及单表关联" class="headerlink" title="MyBatis配置以及单表关联"></a>MyBatis配置以及单表关联</h1><p>下载jar包<br><a href="https://github.com/mybatis/mybatis-3/releases" target="_blank" rel="external">https://github.com/mybatis/mybatis-3/releases</a></p>
+<p>核心配置文件：<br>mybatis-*/src/test/java/org/apache/ibatis/submitted/complex_property/Configuration.xml</p>
+<p>MyBatis 向DAO层提供sqlsession对象<br>SqlSession作用</p>
+<ol>
+<li>向SQL语句传入参数</li>
+<li>执行SQL语句</li>
+<li>获取执行SQL语句的结果</li>
+<li>事务的控制</li>
+</ol>
+<p>获取SqlSession<br>1.通过配置文件获取数据库连接相关信息<br>2.通过配置文件构建SqlSessionFactory<br>3.通过SqlSessionFactory打开数据库会话</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*获取SqlSession函数</span></div><div class="line"> *抛出IOException，在调用时try...catch 在finally中close()</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> SqlSession <span class="title">getSqlSession</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</div><div class="line">    Reader reader=Resources.getResourceAsReader(<span class="string">"com/imooc/confg/xxx.xml"</span>);</div><div class="line">    SqlSessionFactory sqlSessionFactory=<span class="keyword">new</span> SqlSessionFactoryBuilder().build(reader);</div><div class="line">    SqlSession sqlSession=sqlSessionFactory.openSession();</div><div class="line"></div><div class="line">    <span class="keyword">return</span> sqlSession;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="注解-接口方式实现CURD"><a href="#注解-接口方式实现CURD" class="headerlink" title="注解+接口方式实现CURD"></a>注解+接口方式实现CURD</h3><p>实体类@User.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">public class User &#123;</div><div class="line">	private int u_id;</div><div class="line">	private String u_name;</div><div class="line">	private int u_age;</div><div class="line">	</div><div class="line">	</div><div class="line">	public int getU_id() &#123;</div><div class="line">		return u_id;</div><div class="line">	&#125;</div><div class="line">	public void setU_id(int uId) &#123;</div><div class="line">		u_id = uId;</div><div class="line">	&#125;</div><div class="line">	public String getU_name() &#123;</div><div class="line">		return u_name;</div><div class="line">	&#125;</div><div class="line">	public void setU_name(String uName) &#123;</div><div class="line">		u_name = uName;</div><div class="line">	&#125;</div><div class="line">	public int getU_age() &#123;</div><div class="line">		return u_age;</div><div class="line">	&#125;</div><div class="line">	public void setU_age(int uAge) &#123;</div><div class="line">		u_age = uAge;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>接口 @IUserMapper.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">import java.util.List;</div><div class="line">import org.apache.ibatis.annotations.Delete;</div><div class="line">import org.apache.ibatis.annotations.Insert;</div><div class="line">import org.apache.ibatis.annotations.Select;</div><div class="line">import org.apache.ibatis.annotations.Update;</div><div class="line">import com.pad.entity.User;</div><div class="line"></div><div class="line">public interface IUserMapper &#123;</div><div class="line"></div><div class="line">	@Insert(&quot;insert into user(u_name,u_age) values(#&#123;u_name&#125;,#&#123;u_age&#125;)&quot;)</div><div class="line">	int addUser(User u);</div><div class="line">	</div><div class="line">	@Delete(&quot;delete from user where u_id=#&#123;u_id&#125;&quot;)</div><div class="line">	int deleteUser(User u);</div><div class="line">	</div><div class="line">	@Update(&quot;update user set u_name=#&#123;u_name&#125;,u_age=#&#123;u_age&#125; where u_id=#&#123;u_id&#125;&quot;)</div><div class="line">	int updateUser(User u);</div><div class="line">	</div><div class="line">	@Select(&quot;select u_id,u_name,u_age from user where u_id=#&#123;u_id&#125;&quot;)</div><div class="line">	User selectUser(int u_id);</div><div class="line">	</div><div class="line">	@Select(&quot;select u_id,u_name,u_age from user&quot;)</div><div class="line">	List&lt;User&gt; selectUsers();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>测试用例@TestMB.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line">import java.io.IOException;</div><div class="line">import java.io.Reader;</div><div class="line">import java.util.Date;</div><div class="line">import org.apache.ibatis.io.Resources;</div><div class="line">import org.apache.ibatis.session.SqlSession;</div><div class="line">import org.apache.ibatis.session.SqlSessionFactory;</div><div class="line">import org.apache.ibatis.session.SqlSessionFactoryBuilder;</div><div class="line">import org.junit.After;</div><div class="line">import org.junit.Before;</div><div class="line">import org.junit.Test;</div><div class="line">import com.pad.entity.Card;</div><div class="line">import com.pad.entity.User;</div><div class="line">import com.pad.mapping.IUserMapper;</div><div class="line"></div><div class="line">public class TestMB &#123;</div><div class="line">	private SqlSession session;</div><div class="line">	</div><div class="line">	@Before</div><div class="line">	public void init() throws IOException&#123;</div><div class="line">//		String res=&quot;mybatis.xml&quot;;</div><div class="line">//		InputStream is=TestMB.class.getClassLoader().getResourceAsStream(res);</div><div class="line">//		SqlSessionFactory sessionfactory=new SqlSessionFactoryBuilder().build(is);</div><div class="line">//		</div><div class="line">//		SqlSession session=sessionfactory.openSession();</div><div class="line">		</div><div class="line">		Reader reader=Resources.getResourceAsReader(&quot;conf.xml&quot;);</div><div class="line">		SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);</div><div class="line">		session=sqlSessionFactory.openSession();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	@After</div><div class="line">	public void destory()&#123;</div><div class="line">		session.commit();</div><div class="line">		session.close();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	</div><div class="line">	@Test</div><div class="line">	public void testAddU()&#123;</div><div class="line">		IUserMapper user=(IUserMapper)session.getMapper(IUserMapper.class);</div><div class="line">		User u=new User();</div><div class="line">		u.setU_name(&quot;xiaoming&quot;);</div><div class="line">		u.setU_age(18);</div><div class="line">		user.addUser(u);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	@Test</div><div class="line">	public void testDeleteU()&#123;</div><div class="line">		IUserMapper user=(IUserMapper)session.getMapper(IUserMapper.class);</div><div class="line">		User u=new User();</div><div class="line">		u.setU_id(1);</div><div class="line">		u.setU_name(&quot;xiaoming&quot;);</div><div class="line">		u.setU_age(18);</div><div class="line">		System.out.println(user.deleteUser(u));</div><div class="line">	&#125;</div><div class="line">	@Test</div><div class="line">	public void testUpdateU()&#123;</div><div class="line">		IUserMapper user=(IUserMapper)session.getMapper(IUserMapper.class);</div><div class="line">		User u=new User();</div><div class="line">		u.setU_id(2);</div><div class="line">		u.setU_name(&quot;烫烫烫&quot;);</div><div class="line">		u.setU_age(999);</div><div class="line">		System.out.println(user.updateUser(u));</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	@Test</div><div class="line">	public void testSelectU()&#123;</div><div class="line">		IUserMapper user=(IUserMapper)session.getMapper(IUserMapper.class);</div><div class="line">		System.out.println(user.selectUser(2));</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	@Test</div><div class="line">	public void testSelectUs()&#123;</div><div class="line">		IUserMapper user=(IUserMapper)session.getMapper(IUserMapper.class);</div><div class="line">		System.out.println(user.selectUsers());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>conf.xml引入映射<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">class</span>=<span class="string">"com.pad.mapping.IUserMapper"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="因为字段名和属性不相同导致查询不出结果问题"><a href="#因为字段名和属性不相同导致查询不出结果问题" class="headerlink" title="因为字段名和属性不相同导致查询不出结果问题"></a>因为字段名和属性不相同导致查询不出结果问题</h3><p>在一些情况下表中字段名和实体类中属性名不一致，如User表字段为u_id,u_name， User类属性为 uid,uname。在这种情况下直接使用select* 是查询不出结果的。有以下两种方式解决。</p>
+<h5 id="1-为查询字段取别名"><a href="#1-为查询字段取别名" class="headerlink" title="1. 为查询字段取别名"></a>1. 为查询字段取别名</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> u_id uid,u_name uname <span class="keyword">from</span> <span class="keyword">user</span>;</div></pre></td></tr></table></figure>
+<h5 id="2-为字段和属性建立映射"><a href="#2-为字段和属性建立映射" class="headerlink" title="2. 为字段和属性建立映射"></a>2. 为字段和属性建立映射</h5><p>建立之后就可以使用select <em>来查找(当然select </em> 性能上比较差，还是手写字段名把)<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"com.pad.entity.User"</span> <span class="attr">id</span>=<span class="string">"userResultMap"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"uid"</span> <span class="attr">column</span>=<span class="string">"u_id"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"uname"</span> <span class="attr">column</span>=<span class="string">"u_name"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MyBatis/" rel="tag"># MyBatis</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/11/MyBatisMutiTable/" rel="next" title="MyBatis关联和存储过程">
+                <i class="fa fa-chevron-left"></i> MyBatis关联和存储过程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Pad" />
+          <p class="site-author-name" itemprop="name">Pad</p>
+           
+              <p class="site-description motion-element" itemprop="description">funny tree funny fruit,funny tree under you and me.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MyBatis配置以及单表关联"><span class="nav-number">1.</span> <span class="nav-text">MyBatis配置以及单表关联</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注解-接口方式实现CURD"><span class="nav-number">1.0.1.</span> <span class="nav-text">注解+接口方式实现CURD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#因为字段名和属性不相同导致查询不出结果问题"><span class="nav-number">1.0.2.</span> <span class="nav-text">因为字段名和属性不相同导致查询不出结果问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-为查询字段取别名"><span class="nav-number">1.0.2.0.1.</span> <span class="nav-text">1. 为查询字段取别名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-为字段和属性建立映射"><span class="nav-number">1.0.2.0.2.</span> <span class="nav-text">2. 为字段和属性建立映射</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pad</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

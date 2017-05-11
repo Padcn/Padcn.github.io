@@ -1,0 +1,831 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Struts2," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Struts2学习笔记struts1是世界上第一个mvc框架，struts2不是一个全新的框架，因此稳定性、性能等各个方面都有很好的保证，同时吸收了struts1和webwork两者的优势。 环境要求  servlet api 2.4  jsp api 2.0 java 5  搭建步骤1.下载相关jar包    struts.apache.org/ 2.创建web项目    引入相关jar包 -">
+<meta name="keywords" content="Struts2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Struts2总结笔记">
+<meta property="og:url" content="http://yoursite.com/2017/05/04/2017-05-04-LearningStruts2/index.html">
+<meta property="og:site_name" content="Pad">
+<meta property="og:description" content="Struts2学习笔记struts1是世界上第一个mvc框架，struts2不是一个全新的框架，因此稳定性、性能等各个方面都有很好的保证，同时吸收了struts1和webwork两者的优势。 环境要求  servlet api 2.4  jsp api 2.0 java 5  搭建步骤1.下载相关jar包    struts.apache.org/ 2.创建web项目    引入相关jar包 -">
+<meta property="og:image" content="http://img.mukewang.com/58e9d56f00019fed12800718.jpg">
+<meta property="og:updated_time" content="2017-05-11T14:13:20.524Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Struts2总结笔记">
+<meta name="twitter:description" content="Struts2学习笔记struts1是世界上第一个mvc框架，struts2不是一个全新的框架，因此稳定性、性能等各个方面都有很好的保证，同时吸收了struts1和webwork两者的优势。 环境要求  servlet api 2.4  jsp api 2.0 java 5  搭建步骤1.下载相关jar包    struts.apache.org/ 2.创建web项目    引入相关jar包 -">
+<meta name="twitter:image" content="http://img.mukewang.com/58e9d56f00019fed12800718.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/04/2017-05-04-LearningStruts2/"/>
+
+
+
+
+
+  <title>Struts2总结笔记 | Pad</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pad</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/04/2017-05-04-LearningStruts2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pad">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pad">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Struts2总结笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-04T00:00:00+08:00">
+                2017-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Struts2学习笔记"><a href="#Struts2学习笔记" class="headerlink" title="Struts2学习笔记"></a>Struts2学习笔记</h1><p>struts1是世界上第一个mvc框架，struts2不是一个全新的框架，因此稳定性、性能等各个方面都有很好的保证，同时吸收了struts1和webwork两者的优势。</p>
+<p>环境要求</p>
+<ul>
+<li>servlet api 2.4 </li>
+<li>jsp api 2.0</li>
+<li>java 5</li>
+</ul>
+<h4 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h4><p>1.下载相关jar包<br>    struts.apache.org/</p>
+<p>2.创建web项目<br>    引入相关jar包</p>
+<pre><code>- commons-fileupload-xxx.jar
+
+- commons-io-xx.jar
+
+- commons-langxxx.jar
+
+- commons-logging-xxx.jar
+
+- freemarkes-xxx.jar    （模板引擎，基于模板生成输出的通用工具）
+
+- ognl-xxx.jar    （可以理解为一个el表达式）
+
+- struts2-core-xxx.jar
+
+- xwork-core-xx.jar (struts2有些类是关联xwork的)
+
+- javassist-xxx.jar (可以理解为解析java类文件的包)
+</code></pre><p>3.创建完善配置文件<br>    配置web.xml<br>    增加一个过滤器</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  </div><div class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span>  </div><div class="line"> <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span>  </div><div class="line"> <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span> </div><div class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span>    </div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span>  </div><div class="line"> <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>在src中创建struts.xml文件（在struts-2.5.10.1\src\apps\rest-showcase\src\main\resources中有示例）<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</div><div class="line"><span class="meta">&lt;!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"</span></div><div class="line">"http://struts.apache.org/dtds/struts-2.3.dtd"&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></div><div class="line">    	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"helloworld"</span> <span class="attr">class</span>=<span class="string">"com.xxx.xxx.类名"</span>&gt;</span></div><div class="line">        	<span class="tag">&lt;<span class="name">result</span> &gt;</span>/result.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">package</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>4.创建Action并测试启动</p>
+<p>创建class继承ActionSupport(也可以不继承，如果action标签中未指定class属性则默认使用ActionSupport类)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> com.opensymphony.xwork2.ActionSupport;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HellowrodAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span></span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">    	<span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">    		system.out.println(<span class="string">"执行"</span>);</div><div class="line">        	<span class="keyword">return</span> SUCESS;<span class="comment">//返回的string是视图的路径</span></div><div class="line">    	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>myeclipse可以直接右键项目-&gt;myeclipse-&gt;add Struts Cpibilities 添加</p>
+</blockquote>
+<h4 id="struts2的工作原理和执行流程"><a href="#struts2的工作原理和执行流程" class="headerlink" title="struts2的工作原理和执行流程"></a>struts2的工作原理和执行流程</h4><p><img src="http://img.mukewang.com/58e9d56f00019fed12800718.jpg" alt="struts2架构剖析" title="struts2架构剖析"></p>
+<p>首先HttpServletRequest请求经过一些过滤器（ActionContextCleanup、OtherFilters(SiteMesh,etc)、FilterDispatcher(struts2.1.3之后变为StrutsPrepareAndExcuteFiler)）,到达ActionMapper,如果ActionMapper决定请求是否需要请求一个action，则由struts的核心控制器（图中第三层）将控制权委派给ActionProxy,ActionProxy通过ConfigureManager加载核心控制文件Struts.xml进行配置找到需要调用的action，如果找到之后ActionProxy创建一个ActionInvocation实例（实例中包含拦截器，Action，Result）之后开始进行拦截器的执行，拦截器1，拦截器2，拦截器3…，之后执行Action，得到结果Result，获取相应视图Template（jsp，freemarker等），之后反序执行拦截器，最后HttpServletResponse响应客户端请求。</p>
+<p>struts.xml中包含内容：<br>1.全局熟悉<br>2.用户请求和响应Action之间的对应关系<br>3.Action可能用到的参数和返回结果<br>4.各种拦截器的配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--引用其他struts.xml--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">"struts-default.xml"</span>&gt;</span><span class="tag">&lt;/<span class="name">include</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>package提供了将多个Action组织为一个模块的方式</p>
+<pre><code>package的名字必须是唯一的package可以扩展,当package扩展自另一个package时,
+该package会在本身配置的基础上加入扩展的package的配置,父package必须在子package前配置
+name：package名称
+extends：继承的父package名称
+abstract：设置package的属性为抽象， 抽象的package不能定义action 值true：false
+namespace:定义package命名空间，该命名空间影响到url的地址，例如此命名空间为/testname访问的地址为http:xxx:8080/proname/test/xx.action
+</code></pre><p>定义拦截器<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">interceptors</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">interceptor</span> <span class="attr">name</span>=<span class="string">"timer"</span> <span class="attr">class</span>=<span class="string">"classpath1"</span>&gt;</span><span class="tag">&lt;/<span class="name">interceptor</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">interceptor</span> <span class="attr">name</span>=<span class="string">"logger"</span> <span class="attr">class</span>=<span class="string">"classpath2"</span>&gt;</span><span class="tag">&lt;/<span class="name">interceptor</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--拦截器栈--&gt;</span></div><div class="line">    	<span class="tag">&lt;<span class="name">interceptor-stack</span> <span class="attr">name</span>=<span class="string">"timer"</span> <span class="attr">class</span>=<span class="string">"classpath"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"timer"</span> &gt;</span><span class="tag">&lt;/<span class="name">interceptor-ref</span>&gt;</span></div><div class="line">        	<span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"logger"</span> &gt;</span><span class="tag">&lt;/<span class="name">interceptor-ref</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">interceptor-stack</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">interceptors</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">""</span>&gt;</span> </div><div class="line">	<span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"timer"</span>&gt;</span><span class="tag">&lt;/<span class="name">interceptor-ref</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span> <span class="attr">type</span>=<span class="string">"dispatcher"</span>&gt;</span>/talk.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--name：对应get/set--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"url"</span>&gt;</span>http://www.sina.com<span class="tag">&lt;/<span class="name">param</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>struts.properties</p>
+<p>放在struts.xml相同目录</p>
+<p>1.struts2框架的全局属性文件，自动加载。</p>
+<p>2.该文件包含很多key-value键值对。</p>
+<p>3.该文件完全可以配置在struts.xml中，使用constant元素。</p>
+<p>Action搜索顺序<br><a href="http://localhost:8080/struts2/path1/path2/path3/xxx.action" target="_blank" rel="external">http://localhost:8080/struts2/path1/path2/path3/xxx.action</a></p>
+<pre><code>第一步：判断package是否存在，如path1/path2/path3
+第二步： 存在：判断action是否存在，如果不存在则去默认的namespace的package里面寻找action  
+        不存在：检查上一级路径的package是否存在（直到默认namespace）重复第一步。
+第三步：如果没有则报错。
+</code></pre><h4 id="动态方法调用："><a href="#动态方法调用：" class="headerlink" title="动态方法调用："></a>动态方法调用：</h4><p>解决一个action对应多个请求，防止action过多。</p>
+<p>1.method属性</p>
+<p>在struts.xml中的action标签设置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"addAction"</span> <span class="attr">method</span>=<span class="string">"add"</span> <span class="attr">class</span>=<span class="string">"xxx.xx.xx"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">result</span>&gt;</span>xxx.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>2.感叹号方式(官方不推荐这种方法)<br>    对应方法返回对应 return “add”;<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"addAction"</span>  <span class="attr">class</span>=<span class="string">"xxx.xx.xx"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">result</span>&gt;</span>xxx1.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"add"</span>&gt;</span>xxx2.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"del"</span>&gt;</span>xxx3.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.enable.DynamicMethodInvocation"</span> <span class="attr">value</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">constant</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p> 访问方式：localhost:8080/xxx/helloworld!add.action</p>
+<p>3.通配符方式(官方推荐)<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"addAction_*"</span>  <span class="attr">method</span>=<span class="string">"&#123;1&#125;"</span> <span class="attr">class</span>=<span class="string">"xxx.xx.xx"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">result</span>&gt;</span>&#123;1&#125;.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"add"</span>&gt;</span>&#123;1&#125;.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"del"</span>&gt;</span>&#123;1&#125;.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<pre><code>访问方式：localhost:8080/xxx/helloworld_add.action
+</code></pre><p>更加简洁，可以一个项目中只配置一个action<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">      <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"*_*"</span>  <span class="attr">method</span>=<span class="string">"&#123;2&#125;"</span> <span class="attr">class</span>=<span class="string">"xxx.xx.&#123;1&#125;Action"</span>&gt;</span></div><div class="line">    	<span class="tag">&lt;<span class="name">result</span>&gt;</span>&#123;2&#125;.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span>   这里默认不写的话执行execute（）方法；</div><div class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"add"</span>&gt;</span>&#123;2&#125;.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"del"</span>&gt;</span>&#123;2&#125;.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line">```   </div><div class="line">指定多个配置文件</div><div class="line">```xml</div><div class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">"login1.xml"</span>&gt;</span><span class="tag">&lt;/<span class="name">include</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">"login2.xml"</span>&gt;</span><span class="tag">&lt;/<span class="name">include</span>&gt;</span></div><div class="line">        </div><div class="line">         <span class="comment">&lt;!--在每个配置文件中加入解决编码问题--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.i18n.encoding"</span> <span class="attr">value</span>=<span class="string">"UTF-8"</span>&gt;</span><span class="tag">&lt;/<span class="name">constant</span>&gt;</span></div><div class="line">```     </div><div class="line">        </div><div class="line">默认action</div><div class="line">```xml</div><div class="line">        <span class="tag">&lt;<span class="name">default-action-ref</span> <span class="attr">name</span>=<span class="string">"notfound"</span>&gt;</span><span class="tag">&lt;/<span class="name">default-action-ref</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"notfound"</span>&gt;</span></div><div class="line">        	<span class="tag">&lt;<span class="name">result</span>&gt;</span>404page.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure></p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"> 		<span class="comment">&lt;!--struts2后缀 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.action.extension"</span> <span class="attr">value</span>=<span class="string">"html"</span>&gt;</span><span class="tag">&lt;/<span class="name">constant</span>&gt;</span></div><div class="line"> ```   </div><div class="line">   &gt; 为空则去掉后缀，或者直接不设置这个属性</div><div class="line">   可配置地点：web.xml,struts.properties,struts.xml</div><div class="line">        </div><div class="line">        </div><div class="line">   </div><div class="line">   </div><div class="line">#### 接收参数</div><div class="line">    </div><div class="line">    </div><div class="line">        1.使用action的属性接收</div><div class="line">        	在action中定义private属性，和表单提交name对应，实现get/set方法。</div><div class="line">        2.使用DomainModel接收</div><div class="line">        	在action中定义private的实体类，实体类中实现get/set 方法，action中实现实体类的get和set方法，在表单中name为	对象名.属性名 </div><div class="line">        3.使用ModelDriven接收参数</div><div class="line">        实现ModelDriven<span class="tag">&lt;<span class="name">T</span>&gt;</span>接口</div><div class="line">        对象需要实例化，并且用getset方法， 表单中的name则是属性名。</div><div class="line">        </div><div class="line">        对于List类型from表单中的name为属性名【下标】</div><div class="line">        如果List中是对象类型则表单中未属性名[下标].属性名</div><div class="line">        </div><div class="line">        </div><div class="line"> 处理结果类型：</div><div class="line"> </div><div class="line">    省略name值则默认name值为success</div><div class="line">    result中带/表示绝对路径 项目起始 没有则为相对路径</div><div class="line"></div><div class="line">    com.opensymphony.xwork2.Action 类中</div><div class="line">     </div><div class="line">     SUCCESS	 正确执行，返回相应视图</div><div class="line">     </div><div class="line">     NONE	表示正确执行，并不反悔任何视图</div><div class="line">     </div><div class="line">     ERROR 表示Action执行失败，返回到错误处理视图</div><div class="line">     </div><div class="line">     LOGIN Action因为用户没有登录的原因没有正确执行，将返回该登录视图，要求用户登录。</div><div class="line">     </div><div class="line">     INPUT 唯一有特殊意义的，Action的执行，需要从前端界面获取参数，INPUT就是代表这个参数输入的界面，</div><div class="line">    在一般应用中，会对这些参数进行验证，如果验证没有通过，将自动返回到该视图。</div><div class="line">        </div><div class="line">  在result中name换成input，当在action中数据类型转换错误的情况下会自动触发。第二种在action的方法中</div><div class="line">      </div><div class="line">   实现validate</div><div class="line">```java</div><div class="line">       @Override</div><div class="line">       public void validate()&#123;</div><div class="line">        this.addFieldError("username","用户名不能为空");</div><div class="line">       &#125;</div></pre></td></tr></table></figure>
+<p> jsp页面中添加struts标签<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">       &lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot; %&gt;</div><div class="line">       &lt;input type=&quot;text&quot; name=&quot;username&quot;/&gt;&lt;s:fielderror name=&quot;username&quot;&gt;&lt;/s:fielderror&gt;</div><div class="line">```   </div><div class="line">      </div><div class="line">#### 处理结果类型</div><div class="line"></div><div class="line">全局result需要在包中定义。</div><div class="line">```xml</div><div class="line">      &lt;global-results&gt;</div><div class="line">      	&lt;result name=&quot;404page&quot;&gt;xxx.jsp&lt;/result&gt;</div><div class="line">      &lt;/global-results&gt;</div><div class="line">      </div><div class="line">      &lt;result name=&quot;add&quot;&gt;</div><div class="line">      	&lt;param name=&quot;location&quot;&gt;/$(#requst.path).jsp&lt;/param&gt;</div><div class="line">      &lt;/result&gt;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>这里为ognl表达式 表示从request中获取path属性值同requst.getAttribute(“path”).</p>
+</blockquote>
+<pre><code>  result的type属性
+  chain:将action和另一个action链接起来，
+  dispatcher
+  redirect    
+  redirectAction
+  stream  流
+  plainText
+
+freemarker
+</code></pre><p> 拦截器的执行过程是一个递归的过程<br> 从ActionProxy出来后先依次执行intercpt1，2，3执行Action之后得到result到template（jsp，freemarker…）又执行 3 ，2 ，1 intercpt，之后给HttpServletResponse,响应客户端。</p>
+<h4 id="自定义拦截器"><a href="#自定义拦截器" class="headerlink" title="自定义拦截器"></a>自定义拦截器</h4><pre><code>实现Interceptor接口
+void init()
+void destroy()
+String intercept(ActionInvocation ai)throws Exception;
+- 实现拦截功能
+- 利用ActionInvocation参数获取Action状态
+- 返回result字符串作为逻辑视图
+</code></pre><p>继承AbstractInterceptor类</p>
+<ul>
+<li>提供了init()和destroy()方法的空实现。</li>
+<li>只需要实现intercept方法即可</li>
+</ul>
+<p>实际开发中一般继承AbstractInterceptor类</p>
+<ol>
+<li><p>创建拦截器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TimerInterceptor</span> <span class="keyword">extends</span> <span class="title">AbstarctInterceptor</span></span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">intercept</span><span class="params">(ActionInvocation invocation)</span> throw Exception</span>&#123;</div><div class="line">    <span class="keyword">long</span> start=System.currentTimeMillis();</div><div class="line">    </div><div class="line">    <span class="comment">//执行下一个拦截器，如果已经是最后一个拦截器则执行目标action，返回结果视图</span></div><div class="line">    String result=invocation.invoke();</div><div class="line">    </div><div class="line">    <span class="keyword">long</span> end=System.currentTimeMillis();</div><div class="line">    System.out.println(end-start);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置注册拦截器<br> 在package标签中注册拦截器</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">interceptors</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">interceptor</span> <span class="attr">name</span>=<span class="string">"mytimer"</span> <span class="attr">class</span>=<span class="string">"xxx.xxx.xx.classname"</span>&gt;</span><span class="tag">&lt;/<span class="name">interceptor</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">interceptors</span>&gt;</span></div></pre></td></tr></table></figure>
+<p> 在相应action标签中引用拦截器</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"mytimer"</span>&gt;</span><span class="tag">&lt;/<span class="name">interceptor-ref</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>Struts2内建拦截器</p>
+<ul>
+<li>params拦截器<pre><code>负责将请求参数设置为Action属性
+</code></pre></li>
+<li>staticParams拦截器<pre><code>将配置文件中的action元素的子元素param参数设置为Action属性
+</code></pre></li>
+<li>servletConfig拦截器<pre><code>将源于ServletAPI的各种对象注入到Action，必须实现对应接口
+</code></pre></li>
+<li>fileUpload拦截器<pre><code>对文件上传提供支持，将文件和元数据设置对应的Action
+   实际上还是使用了Commons-FileUpload
+</code></pre></li>
+<li>exception拦截器<pre><code>捕获异常，并且将异常映射到用户自定义的错误页面
+</code></pre></li>
+<li><p>validation拦截器</p>
+<pre><code>调用验证框架进行数据验证。
+</code></pre><blockquote>
+<p>在struts2-corexx.jar中的struts-default.xml中能找到这些拦截器<br>  拦截器栈是拦截器的组合 defaultStack，<br>  default-interceptor-ref name=”defaultStack”默认调用了defaultStack</p>
+</blockquote>
+</li>
+</ul>
+<p>关于拦截器的注意点：   </p>
+<ul>
+<li>在struts-default.xml中定义了一个defaultStack拦截器栈，并指定了作为默认拦截器。</li>
+<li>只要在定义包的过程中继承struts-default包，那么defaultStack将是默认拦截器。</li>
+<li>当为包中的某个action显式指定了某个拦截器，则默认拦截器不会起作用。（类似继承的构造函数）</li>
+<li><p>拦截器栈中各个拦截器顺序很重要。</p>
+<blockquote>
+<p>如果要使用则在之前手动调用defaultStack栈,引用方式和interceptor一样。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="下面是4个开发模式常用配置的简介-摘自imooc"><a href="#下面是4个开发模式常用配置的简介-摘自imooc" class="headerlink" title="下面是4个开发模式常用配置的简介(摘自imooc)"></a>下面是4个开发模式常用配置的简介(摘自imooc)</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 开启使用开发模式，详细错误提示 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.devMode"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 指定每次请求到达，重新加载资源文件 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.i18n.reload"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 指定每次配置文件更改后，自动重新加载 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.configuration.xml.reload"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 指定XSLT Result使用样式表缓存 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.xslt.nocache"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Struts2/" rel="tag"># Struts2</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/01/maven/" rel="next" title="maven">
+                <i class="fa fa-chevron-left"></i> maven
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/05/2017-05-05-Struts2与Ajax交互/" rel="prev" title="Struts2与Ajax交互">
+                Struts2与Ajax交互 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Pad" />
+          <p class="site-author-name" itemprop="name">Pad</p>
+           
+              <p class="site-description motion-element" itemprop="description">funny tree funny fruit,funny tree under you and me.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Struts2学习笔记"><span class="nav-number">1.</span> <span class="nav-text">Struts2学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#搭建步骤"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">搭建步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#struts2的工作原理和执行流程"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">struts2的工作原理和执行流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态方法调用："><span class="nav-number">1.0.0.3.</span> <span class="nav-text">动态方法调用：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义拦截器"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">自定义拦截器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下面是4个开发模式常用配置的简介-摘自imooc"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">下面是4个开发模式常用配置的简介(摘自imooc)</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pad</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
