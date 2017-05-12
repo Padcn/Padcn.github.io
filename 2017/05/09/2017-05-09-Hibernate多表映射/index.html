@@ -97,7 +97,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/09/2017-05-09-Hibernate多表映射/index.html">
 <meta property="og:site_name" content="Pad">
 <meta property="og:description" content="Hibernate映射1-1，1-N，N-N一般由外键所在的实体类去维护 注解方式1-1映射@Person.java12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152package com.pad.entity;import javax.persistence">
-<meta property="og:updated_time" content="2017-05-11T14:05:01.521Z">
+<meta property="og:updated_time" content="2017-05-12T13:12:04.560Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hibernate映射">
 <meta name="twitter:description" content="Hibernate映射1-1，1-N，N-N一般由外键所在的实体类去维护 注解方式1-1映射@Person.java12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152package com.pad.entity;import javax.persistence">
@@ -341,12 +341,33 @@
 <p>inverse属性用于指定关联关系的维护，有利于优化性能。</p>
 <p>一对多 多方<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">many-to-one</span> <span class="attr">name</span>=<span class="string">"grade"</span> <span class="attr">class</span>=<span class="string">"com.imooc.entity.Grade"</span> <span class="attr">column</span>=<span class="string">"gid"</span>&gt;</span><span class="tag">&lt;/<span class="name">many-to-one</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <p>当cascade属性不为none时，Hibernate会自动持久化所关联对象。<br>cascade属性的设置会带来性能上的变动，需谨慎设置</p>
-<pre><code>属性值       | 含义和作用
-all             | 对所有操作进行级联操作
-save-update | 执行保存和更新操作时进行级联操作
-delete        | 执行删除操作时进行级联操作
-none        | 对所有操作不进行级联操作
-</code></pre><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--set中设置inverse属性为true则由多方维护关系--&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"students"</span> <span class="attr">table</span>=<span class="string">"student"</span> <span class="attr">inverse</span>=<span class="string">"true"</span> <span class="attr">cascade</span>=<span class="string">"save-update"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">"gid"</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">class</span>=<span class="string">"com.imooc.entity.Student"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">set</span>&gt;</span></div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>含义和作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all</td>
+<td>对所有操作进行级联操作</td>
+</tr>
+<tr>
+<td>save-update</td>
+<td>执行保存和更新操作时进行级联操作</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>执行删除操作时进行级联操作</td>
+</tr>
+<tr>
+<td>none</td>
+<td>对所有操作不进行级联操作</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--set中设置inverse属性为true则由多方维护关系--&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"students"</span> <span class="attr">table</span>=<span class="string">"student"</span> <span class="attr">inverse</span>=<span class="string">"true"</span> <span class="attr">cascade</span>=<span class="string">"save-update"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">"gid"</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">class</span>=<span class="string">"com.imooc.entity.Student"</span>/&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">set</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>设置之后班级的save会级联保存学生的信息，不需要手动save学生。</p>
 <p>如果学生对应班级没有，需要级联班级，可以在学生那边增加cascade属性 cascade=”all”，这样就能级联增加班级。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="实现单向一对多："><a href="#实现单向一对多：" class="headerlink" title="实现单向一对多："></a>实现单向一对多：</h4><pre><code>在one方的实体中添加保存many方的集合

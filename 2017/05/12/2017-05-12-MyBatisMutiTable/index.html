@@ -1,0 +1,715 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MyBatis," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="MyBatis关联表 参考 http://www.cnblogs.com/xdp-gacl/p/4264440.html  一对一MyBatis中在关联映射配置文件中使用association标签来解决一对一的关联查询 建表语句12345678910111213141516171819create table people(p_id int primary key auto_increment,p">
+<meta name="keywords" content="MyBatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis多表关联以及调用存储过程">
+<meta property="og:url" content="http://yoursite.com/2017/05/12/2017-05-12-MyBatisMutiTable/index.html">
+<meta property="og:site_name" content="Pad">
+<meta property="og:description" content="MyBatis关联表 参考 http://www.cnblogs.com/xdp-gacl/p/4264440.html  一对一MyBatis中在关联映射配置文件中使用association标签来解决一对一的关联查询 建表语句12345678910111213141516171819create table people(p_id int primary key auto_increment,p">
+<meta property="og:updated_time" content="2017-05-12T12:54:13.622Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MyBatis多表关联以及调用存储过程">
+<meta name="twitter:description" content="MyBatis关联表 参考 http://www.cnblogs.com/xdp-gacl/p/4264440.html  一对一MyBatis中在关联映射配置文件中使用association标签来解决一对一的关联查询 建表语句12345678910111213141516171819create table people(p_id int primary key auto_increment,p">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/12/2017-05-12-MyBatisMutiTable/"/>
+
+
+
+
+
+  <title>MyBatis多表关联以及调用存储过程 | Pad</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pad</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/12/2017-05-12-MyBatisMutiTable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pad">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pad">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MyBatis多表关联以及调用存储过程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-12T00:00:00+08:00">
+                2017-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="MyBatis关联表"><a href="#MyBatis关联表" class="headerlink" title="MyBatis关联表"></a>MyBatis关联表</h1><blockquote>
+<p>参考 <a href="http://www.cnblogs.com/xdp-gacl/p/4264440.html" target="_blank" rel="external">http://www.cnblogs.com/xdp-gacl/p/4264440.html</a></p>
+</blockquote>
+<h2 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h2><p>MyBatis中在关联映射配置文件中使用association标签来解决一对一的关联查询</p>
+<p>建表语句<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> people(</div><div class="line">p_id <span class="built_in">int</span> primary <span class="keyword">key</span> auto_increment,</div><div class="line">p_name <span class="built_in">varchar</span>(<span class="number">50</span>),</div><div class="line">p_info <span class="built_in">varchar</span>(<span class="number">50</span>)</div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> idcard(</div><div class="line">ic_id <span class="built_in">int</span> primary <span class="keyword">key</span> auto_increment,</div><div class="line">p_id <span class="built_in">int</span>,</div><div class="line">ic_number <span class="built_in">varchar</span>(<span class="number">50</span>),</div><div class="line">foreign <span class="keyword">key</span>(p_id) <span class="keyword">references</span> people(p_id)</div><div class="line">);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> people <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'aaa'</span>,<span class="string">'no describe'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> people <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'bbb'</span>,<span class="string">'no describe'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> people <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'ccc'</span>,<span class="string">'no describe'</span>);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> idcard <span class="keyword">values</span>(<span class="literal">null</span>,<span class="number">1</span>,<span class="string">'678686'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> idcard <span class="keyword">values</span>(<span class="literal">null</span>,<span class="number">2</span>,<span class="string">'6789792'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> idcard <span class="keyword">values</span>(<span class="literal">null</span>,<span class="number">3</span>,<span class="string">'9635224'</span>);</div></pre></td></tr></table></figure></p>
+<p>实体类people包含3个属性p_id,p_name,p_info和一个toString方法<br>@Idcard.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Idcard</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> ic_id;</div><div class="line">	<span class="keyword">private</span> String ic_number;</div><div class="line">	<span class="keyword">private</span> People people;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getIc_id</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> ic_id;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setIc_id</span><span class="params">(<span class="keyword">int</span> icId)</span> </span>&#123;</div><div class="line">		ic_id = icId;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getIc_number</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> ic_number;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setIc_number</span><span class="params">(String icNumber)</span> </span>&#123;</div><div class="line">		ic_number = icNumber;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> People <span class="title">getPeople</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> people;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPeople</span><span class="params">(People people)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.people = people;</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"Idcard [ic_id="</span> + ic_id + <span class="string">", ic_number="</span> + ic_number</div><div class="line">				+ <span class="string">", people="</span> + people + <span class="string">"]"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>映射文件@idcardMapper.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getICard"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span> <span class="attr">resultMap</span>=<span class="string">"IdcardResultMap"</span>&gt;</span></div><div class="line">        select * from idcard i,people p where i.p_id=p.p_id and i.ic_id=#&#123;ic_id&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"com.pad.entity.Idcard"</span> <span class="attr">id</span>=<span class="string">"IdcardResultMap"</span>&gt;</span></div><div class="line">    	<span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"ic_id"</span> <span class="attr">column</span>=<span class="string">"ic_id"</span>/&gt;</span></div><div class="line">    	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"ic_number"</span> <span class="attr">column</span>=<span class="string">"ic_number"</span>/&gt;</span></div><div class="line">    	<span class="tag">&lt;<span class="name">association</span> <span class="attr">property</span>=<span class="string">"people"</span> <span class="attr">javaType</span>=<span class="string">"com.pad.entity.People"</span>&gt;</span></div><div class="line">    		<span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"p_id"</span> <span class="attr">column</span>=<span class="string">"p_id"</span>/&gt;</span></div><div class="line">    		<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"p_name"</span> <span class="attr">column</span>=<span class="string">"p_name"</span>/&gt;</span></div><div class="line">    		<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"p_info"</span> <span class="attr">column</span>=<span class="string">"p_info"</span>/&gt;</span></div><div class="line">    	<span class="tag">&lt;/<span class="name">association</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在conf.xml中引入关联<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/pad/mapping/idcardMapper.xml"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<p>测试代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMuti</span><span class="params">()</span></span>&#123;</div><div class="line">	String statement=<span class="string">"com.pad.mapping.idcardMapper.getICard"</span>;</div><div class="line">    <span class="comment">//查询ic_id为1的数据,这里session在@Before中已经获取</span></div><div class="line">	Idcard ic=session.selectOne(statement, <span class="number">1</span>);</div><div class="line">	System.out.println(ic);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>以上是嵌套结果方式，另一种为嵌套查询，是分别用2个select查询后进行关联。</p>
+<p>关联xml如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getICard2"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span> <span class="attr">resultMap</span>=<span class="string">"IdcardResultMap2"</span>&gt;</span></div><div class="line">       select * from idcard i,people p where i.p_id=p.p_id and i.ic_id=#&#123;ic_id&#125;</div><div class="line">   <span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getPeople2"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span> <span class="attr">resultType</span>=<span class="string">"com.pad.entity.People"</span>&gt;</span></div><div class="line">       select p_id,p_name,p_info from people where p_id=#&#123;p_id&#125;</div><div class="line">   <span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"com.pad.entity.Idcard"</span> <span class="attr">id</span>=<span class="string">"IdcardResultMap2"</span>&gt;</span></div><div class="line">   	<span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"ic_id"</span> <span class="attr">column</span>=<span class="string">"ic_id"</span>/&gt;</span></div><div class="line">   	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"ic_number"</span> <span class="attr">column</span>=<span class="string">"ic_number"</span>/&gt;</span></div><div class="line">   	<span class="tag">&lt;<span class="name">association</span> <span class="attr">property</span>=<span class="string">"people"</span> <span class="attr">column</span>=<span class="string">"p_id"</span> <span class="attr">select</span>=<span class="string">"getPeople2"</span> /&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="一对多关联"><a href="#一对多关联" class="headerlink" title="一对多关联"></a>一对多关联</h2><p>MyBatis中使用collection标签进行一对多的关联，ofType属性指的是元素的对象类型。<br>实体类People中加入一个属性List&lt;Items&gt; items.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getItems"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span> <span class="attr">resultMap</span>=<span class="string">"itemsResultMap"</span>&gt;</span></div><div class="line">        select * from items,people where  items.p_id=people.p_id and people.p_id=#&#123;p_id&#125;;</div><div class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"com.pad.entity.People"</span> <span class="attr">id</span>=<span class="string">"itemsResultMap"</span>&gt;</span></div><div class="line">    	<span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"p_id"</span> <span class="attr">column</span>=<span class="string">"p_id"</span>/&gt;</span></div><div class="line">    	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"p_name"</span> <span class="attr">column</span>=<span class="string">"p_name"</span>/&gt;</span></div><div class="line">    	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"p_info"</span> <span class="attr">column</span>=<span class="string">"p_info"</span>/&gt;</span></div><div class="line">    	<span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">"items"</span> <span class="attr">ofType</span>=<span class="string">"com.pad.entity.Items"</span>&gt;</span></div><div class="line">    		<span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"it_id"</span> <span class="attr">column</span>=<span class="string">"it_id"</span>/&gt;</span></div><div class="line">    		<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"it_name"</span> <span class="attr">column</span>=<span class="string">"it_name"</span>/&gt;</span></div><div class="line">    		<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"it_info"</span> <span class="attr">column</span>=<span class="string">"it_info"</span>/&gt;</span></div><div class="line">    	<span class="tag">&lt;/<span class="name">collection</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>嵌套查询方式也是类似配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--方式二：嵌套查询：通过执行另外一个SQL映射语句来返回预期的复杂类型--&gt;</span></div><div class="line"> 	<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getItems2"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span> <span class="attr">resultMap</span>=<span class="string">"itemsResultMap2"</span>&gt;</span></div><div class="line">         select * from people where p_id=#&#123;p_id&#125;;</div><div class="line">     <span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getItem2"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span> <span class="attr">resultType</span>=<span class="string">"com.pad.entity.Items"</span>&gt;</span></div><div class="line">         select * from items where p_id=#&#123;p_id&#125;;</div><div class="line">     <span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line">     </div><div class="line">     <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"com.pad.entity.People"</span> <span class="attr">id</span>=<span class="string">"itemsResultMap2"</span>&gt;</span></div><div class="line">     	<span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"p_id"</span> <span class="attr">column</span>=<span class="string">"p_id"</span>/&gt;</span></div><div class="line">     	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"p_name"</span> <span class="attr">column</span>=<span class="string">"p_name"</span>/&gt;</span></div><div class="line">     	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"p_info"</span> <span class="attr">column</span>=<span class="string">"p_info"</span>/&gt;</span></div><div class="line">     	<span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">"items"</span> <span class="attr">column</span>=<span class="string">"p_id"</span> <span class="attr">ofType</span>=<span class="string">"com.pad.entity.Items"</span> <span class="attr">select</span>=<span class="string">"getItem2"</span>/&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>有一点需要注意的是使用了resultMap之后再resultMap中未声明的属性将不会获取，无论字段名和属性名是否一致。</p>
+</blockquote>
+<h1 id="调用存储过程"><a href="#调用存储过程" class="headerlink" title="调用存储过程"></a>调用存储过程</h1><p>调用存储过程的方式对于使用时和调用select一样，主要是映射文件方面的配置,statementType=”CALLABLE”，如果没有对应的parameterMap则需要加上对应的resultType.其实可以理解为一个特殊的select.</p>
+<p>相关配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUserCount"</span> <span class="attr">parameterMap</span>=<span class="string">"getUserCountMap"</span> <span class="attr">statementType</span>=<span class="string">"CALLABLE"</span>&gt;</span></div><div class="line">    CALL mybatis.ges_user_count(?,?)</div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--如果有参数，参数的设置，如果没有则需要在select标签中加上resultType--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">parameterMap</span> <span class="attr">type</span>=<span class="string">"java.util.Map"</span> <span class="attr">id</span>=<span class="string">"getUserCountMap"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">property</span>=<span class="string">"sexid"</span> <span class="attr">mode</span>=<span class="string">"IN"</span> <span class="attr">jdbcType</span>=<span class="string">"INTEGER"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">property</span>=<span class="string">"usercount"</span> <span class="attr">mode</span>=<span class="string">"OUT"</span> <span class="attr">jdbcType</span>=<span class="string">"INTEGER"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">parameterMap</span>&gt;</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MyBatis/" rel="tag"># MyBatis</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/10/2017-05-10-HQL/" rel="next" title="HQL以及N+1和缓存问题">
+                <i class="fa fa-chevron-left"></i> HQL以及N+1和缓存问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/12/2017-05-12-MyBatisSingleTable/" rel="prev" title="MyBastis环境搭建以及单表CURD">
+                MyBastis环境搭建以及单表CURD <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Pad" />
+          <p class="site-author-name" itemprop="name">Pad</p>
+           
+              <p class="site-description motion-element" itemprop="description">funny tree funny fruit,funny tree under you and me.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MyBatis关联表"><span class="nav-number">1.</span> <span class="nav-text">MyBatis关联表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一对一"><span class="nav-number">1.1.</span> <span class="nav-text">一对一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一对多关联"><span class="nav-number">1.2.</span> <span class="nav-text">一对多关联</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调用存储过程"><span class="nav-number">2.</span> <span class="nav-text">调用存储过程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pad</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
