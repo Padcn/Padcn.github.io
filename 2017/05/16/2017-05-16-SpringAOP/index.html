@@ -1,0 +1,741 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Spring," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="AOP主要功能：日志记录，性能统计，安全控制，事务处理，异常处理等 实现方式：  预编译 AspcetJ 运行期动态代理（JDK动态代理、CGLib动态代理）  SpringAOP JBoss  Spring框架中AOP用途  提供了声明式的企业服务，特别是EJB的替代服务的声明 允许用户定制自己的方面，以完成OOP和AOP的互补使用    Spring的AOP实现  纯java实现，无序特殊编译">
+<meta name="keywords" content="Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringAOP">
+<meta property="og:url" content="http://yoursite.com/2017/05/16/2017-05-16-SpringAOP/index.html">
+<meta property="og:site_name" content="Pad">
+<meta property="og:description" content="AOP主要功能：日志记录，性能统计，安全控制，事务处理，异常处理等 实现方式：  预编译 AspcetJ 运行期动态代理（JDK动态代理、CGLib动态代理）  SpringAOP JBoss  Spring框架中AOP用途  提供了声明式的企业服务，特别是EJB的替代服务的声明 允许用户定制自己的方面，以完成OOP和AOP的互补使用    Spring的AOP实现  纯java实现，无序特殊编译">
+<meta property="og:image" content="http://img.mukewang.com/590fbedf0001f41c12800720.jpg">
+<meta property="og:image" content="http://img.mukewang.com/5913c9400001292012800720.jpg">
+<meta property="og:updated_time" content="2017-05-16T14:12:27.117Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringAOP">
+<meta name="twitter:description" content="AOP主要功能：日志记录，性能统计，安全控制，事务处理，异常处理等 实现方式：  预编译 AspcetJ 运行期动态代理（JDK动态代理、CGLib动态代理）  SpringAOP JBoss  Spring框架中AOP用途  提供了声明式的企业服务，特别是EJB的替代服务的声明 允许用户定制自己的方面，以完成OOP和AOP的互补使用    Spring的AOP实现  纯java实现，无序特殊编译">
+<meta name="twitter:image" content="http://img.mukewang.com/590fbedf0001f41c12800720.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/16/2017-05-16-SpringAOP/"/>
+
+
+
+
+
+  <title>SpringAOP | Pad</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pad</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/2017-05-16-SpringAOP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pad">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pad">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringAOP</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-16T00:00:00+08:00">
+                2017-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h1><p>主要功能：日志记录，性能统计，安全控制，事务处理，异常处理等</p>
+<p>实现方式：</p>
+<ul>
+<li>预编译 AspcetJ</li>
+<li><p>运行期动态代理（JDK动态代理、CGLib动态代理）<br>  SpringAOP JBoss</p>
+<p><img src="http://img.mukewang.com/590fbedf0001f41c12800720.jpg" alt=""><br><hr><br><img src="http://img.mukewang.com/5913c9400001292012800720.jpg" alt=""></p>
+<p>Spring框架中AOP用途</p>
+<ul>
+<li>提供了声明式的企业服务，特别是EJB的替代服务的声明</li>
+<li>允许用户定制自己的方面，以完成OOP和AOP的互补使用</li>
+</ul>
+</li>
+</ul>
+<p>Spring的AOP实现</p>
+<ul>
+<li>纯java实现，无序特殊编译过程，不需要控制类加载器</li>
+<li>目前只支持方法执行连接点(通知Spring Bean的方法执行)</li>
+<li>Spring的AOP不是提供最完整的AOP实现，而是侧重于提供一种AOP实现和SpringIoC容器之间的整合，用于帮助企业应用中的常见问题。</li>
+<li>Spring AOP不会与AspectJ（是一个完整的AOP解决方案）竞争，从而提供综合全面的AOP解决方案。</li>
+</ul>
+<p>有接口和无接口的Spring AOP 实现区别</p>
+<ul>
+<li>有接口：Spring AOP默认使用标准的JavaSE动态代理作为AOP代理，这使得任何接口（或者接口集）都可以被代理。</li>
+<li>无接口：Spring AOP中也可以使用CGLib代理（如果一个业务对象并没有实现一个接口）</li>
+</ul>
+<h1 id="Schema-Based-AOP"><a href="#Schema-Based-AOP" class="headerlink" title="Schema-Based AOP"></a>Schema-Based AOP</h1><p>基于配置的AOP实现<br>Spring所有切面和通知器都必须放在一个<aop:config>内(可以配置包含多个<aop:config>元素)，每一个<aop:config>可以包含pointcut，advisor和aspect元素。（必须按照相应顺序配置）<br>大量使用了Spring的动态代理机制。</aop:config></aop:config></aop:config></p>
+<h2 id="声明aspect"><a href="#声明aspect" class="headerlink" title="声明aspect"></a>声明aspect</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"moocAspectAo"</span> <span class="attr">ref</span>=<span class="string">"aspcetBean"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aspcetBean"</span> <span class="attr">class</span>=<span class="string">"com.pad.s"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="pointcut"><a href="#pointcut" class="headerlink" title="pointcut"></a>pointcut</h2><p>execution(public <em> </em>(..)) 切入点为执行所有public方法时<br>execution(<em> set</em>(..)) 切入点为执行所有set开始的方法时<br>execution(<em> com.xyz.service.AccountService.</em>(..)) 切入点为执行AccountService类中所有方法时<br>execution(<em> com.xyz.service..(..)) 切入点为执行com.xyz.service包下所有方法时<br>execution(</em> com.xyz.service…*(..)) 切入点为执行com.xyz.service包及其子包下所有方法类中所有方法时</p>
+<p>以上是springAop和AspectJ都支持的 以下只有springAop支持</p>
+<p>within（com.xyz.service.<em>）<br>within（com.xyz.service..</em>）<br>this（com.xyz.service.AccountService）</p>
+<h2 id="声明pointcut-切入点"><a href="#声明pointcut-切入点" class="headerlink" title="声明pointcut(切入点)"></a>声明pointcut(切入点)</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--这里是只执行特定方法--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"businnessService"</span> <span class="attr">expression</span>=<span class="string">"com.xyz.myapp.SystemArchitecture.businessService()"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="advice通知"><a href="#advice通知" class="headerlink" title="advice通知"></a>advice通知</h2><p>使用切面需要的maven依赖<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-aspects<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.1.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>不然会抛异常<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;org.springframework.aop.aspectj.AspectJPointcutAdvisor#0&apos;:</div></pre></td></tr></table></figure></p>
+<h3 id="Before-advice"><a href="#Before-advice" class="headerlink" title="Before advice"></a>Before advice</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">pointcut-ref</span>=<span class="string">"dataAccessOperation"</span> <span class="attr">method</span>=<span class="string">"doAccessCheck"</span>/&gt;</span></div><div class="line">   <span class="comment">&lt;!--两种方式--&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">pointcut</span>=<span class="string">"execution(* com.pad.service..*(..))"</span> <span class="attr">method</span>=<span class="string">"doAccessCheck"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="After-returning-advice"><a href="#After-returning-advice" class="headerlink" title="After returning advice"></a>After returning advice</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;aop:after-returing pointcut-ref=&quot;dataAccessOperation&quot; method=&quot;doAccessCheck&quot;/&gt;</div><div class="line">   &lt;!--或者--&gt;</div><div class="line">   &lt;aop:after-returing pointcut-ref=&quot;dataAccessOperation&quot; returning=&quot;retVal&quot; method=&quot;doAccessCheck&quot;/&gt;</div></pre></td></tr></table></figure>
+<p>Around advice 第一个参数必须是ProceedingJoinPoint类型，不调用他的proceed()方法的话原函数就不执行了。</p>
+<p>配置文件配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"moocAspect"</span> <span class="attr">class</span>=<span class="string">"com.imooc.advice.MoocAspect"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aspectBiz"</span> <span class="attr">class</span>=<span class="string">"com.imooc.biz.AspectBiz"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"></div><div class="line">   <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"moocAspectAOP"</span> <span class="attr">ref</span>=<span class="string">"moocAspect"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">expression</span>=<span class="string">"execution(* com.imooc.biz.AspectBiz.run())"</span> <span class="attr">id</span>=<span class="string">"moocPiontcut"</span>/&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"before"</span> <span class="attr">pointcut-ref</span>=<span class="string">"moocPiontcut"</span>/&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">method</span>=<span class="string">"after"</span> <span class="attr">pointcut-ref</span>=<span class="string">"moocPiontcut"</span>/&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">aop:after-returning</span> <span class="attr">method</span>=<span class="string">"afterReturn"</span> <span class="attr">pointcut-ref</span>=<span class="string">"moocPiontcut"</span>/&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">aop:after-throwing</span> <span class="attr">method</span>=<span class="string">"afterThrow"</span> <span class="attr">pointcut-ref</span>=<span class="string">"moocPiontcut"</span>/&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">method</span>=<span class="string">"around"</span> <span class="attr">pointcut-ref</span>=<span class="string">"moocPiontcut"</span>/&gt;</span></div><div class="line"></div><div class="line">		<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">method</span>=<span class="string">"aroundInit"</span> <span class="attr">pointcut</span>=<span class="string">"execution(* com.imooc.biz.AspectBiz</span></span></div><div class="line">		.init(String,int)) and args(name,time)"/&gt;</div><div class="line">	<span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>切面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">public class MoocAspect &#123;</div><div class="line">    public void before()&#123;</div><div class="line">        System.out.println(&quot;before apsect method run.&quot;);</div><div class="line">    &#125;</div><div class="line">    public void after()&#123;</div><div class="line">        System.out.println(&quot;after apsect method run.&quot;);</div><div class="line">    &#125;</div><div class="line">    public String afterReturn()&#123;</div><div class="line">        System.out.println(&quot;after Return&quot;);</div><div class="line">        String retVal=&quot;sss&quot;;</div><div class="line">        return retVal;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void afterThrow()&#123;</div><div class="line">        System.out.println(&quot;after Throw.&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public Object around(ProceedingJoinPoint p) throws Throwable&#123;</div><div class="line">        System.out.println(&quot;around head&quot;);</div><div class="line">        Object obj=p.proceed();</div><div class="line">        System.out.println(&quot;around footer&quot;);</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">     public Object aroundInit(ProceedingJoinPoint p,String name,int time) throws Throwable&#123;</div><div class="line">        System.out.println(&quot;around head&quot;);</div><div class="line">         System.out.println(name+time);</div><div class="line">        Object obj=p.proceed();</div><div class="line">        System.out.println(&quot;around footer&quot;);</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>测试代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AspectBiz</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"testtttttttt"</span>);</div><div class="line"><span class="comment">//        throw new RuntimeException("ss");</span></div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(String name,<span class="keyword">int</span> time)</span></span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">        ApplicationContext context=<span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</div><div class="line">        AspectBiz biz=(AspectBiz)context.getBean(<span class="string">"aspectBiz"</span>);</div><div class="line">       biz.run();</div><div class="line">        biz.init(<span class="string">"iii"</span>,<span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Introductions"><a href="#Introductions" class="headerlink" title="Introductions"></a>Introductions</h2><p>为在types-maching中匹配的类增加新的parent，使得可以getBean后强制转换成父类接口，实现接口实现方式为default-impl中指定的类<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">aop:declare-parents</span></span></div><div class="line">	<span class="attr">types-matching</span>=<span class="string">"com.xyz.service.*+"</span></div><div class="line">    <span class="attr">implement-interface</span>=<span class="string">"com.xyz.service.tracking.UsageTracked"</span> </div><div class="line"></div><div class="line"><span class="attr">default-impl</span>=<span class="string">"com.xyz.service.tracking.DefaultUsageTracked"</span>/&gt;</div><div class="line"><span class="tag">&lt;<span class="name">aop:before</span></span></div><div class="line">	<span class="attr">pointcut</span>=<span class="string">"com.xyz.SystemArchitecture.businessService() and this (usageTracked)"</span> <span class="attr">method</span>=<span class="string">"recordUsage"</span>/&gt;</div></pre></td></tr></table></figure></p>
+<p>UsageTracked usageTracked=(UsageTracked)context.getBean(“myService”);</p>
+<p>所有基于配置文件的aspects只支持单例模式singleton model</p>
+<h2 id="Advisors"><a href="#Advisors" class="headerlink" title="Advisors"></a>Advisors</h2><p>advisor就像一个小的自包含的方面，只有一个advice</p>
+<p>切面自身通过一个bean表示，并且必须实现某个advice接口，同时，advisor也可以很好的利用AspectJ的切入点表达式</p>
+<p>Spring通过配置文件中<aop:advisor>元素支持advisor实际使用中，大多数情况下它会和transactional advice配合使用</aop:advisor></p>
+<p>为了定义一个advisor的优先级以便让advice可以有序，可以使用order属性来定义advisor的顺序。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/15/2017-05-15-ECS/" rel="next" title="阿里云服务器折腾笔记">
+                <i class="fa fa-chevron-left"></i> 阿里云服务器折腾笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Pad" />
+          <p class="site-author-name" itemprop="name">Pad</p>
+           
+              <p class="site-description motion-element" itemprop="description">funny tree funny fruit,funny tree under you and me.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AOP"><span class="nav-number">1.</span> <span class="nav-text">AOP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Schema-Based-AOP"><span class="nav-number">2.</span> <span class="nav-text">Schema-Based AOP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明aspect"><span class="nav-number">2.1.</span> <span class="nav-text">声明aspect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pointcut"><span class="nav-number">2.2.</span> <span class="nav-text">pointcut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明pointcut-切入点"><span class="nav-number">2.3.</span> <span class="nav-text">声明pointcut(切入点)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#advice通知"><span class="nav-number">2.4.</span> <span class="nav-text">advice通知</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Before-advice"><span class="nav-number">2.4.1.</span> <span class="nav-text">Before advice</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#After-returning-advice"><span class="nav-number">2.4.2.</span> <span class="nav-text">After returning advice</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introductions"><span class="nav-number">2.5.</span> <span class="nav-text">Introductions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advisors"><span class="nav-number">2.6.</span> <span class="nav-text">Advisors</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pad</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
