@@ -97,7 +97,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/14/2017-05-14-maven/index.html">
 <meta property="og:site_name" content="Pad">
 <meta property="og:description" content="mavenMaven是基于项目对象模型（POM），可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目的工具 下载网站 http://maven.apache.org 配置环境变量  新建M2_HOME变量  指向maven的安装目录如 目录\apache-maven-3.3.3 加入path最后 %M2_HOME%\bin; 验证 mvn -v查看版本号  目录结构 项目名     sr">
-<meta property="og:updated_time" content="2017-05-14T13:56:22.788Z">
+<meta property="og:updated_time" content="2017-06-13T13:16:16.846Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="maven">
 <meta name="twitter:description" content="mavenMaven是基于项目对象模型（POM），可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目的工具 下载网站 http://maven.apache.org 配置环境变量  新建M2_HOME变量  指向maven的安装目录如 目录\apache-maven-3.3.3 加入path最后 %M2_HOME%\bin; 验证 mvn -v查看版本号  目录结构 项目名     sr">
@@ -349,8 +349,14 @@
 </code></pre><p>pom.xml在struts2-core-*.jar下META_INF\maven中有模板，可以改造，删除中间部分。修改后放入项目中如maven01目录下<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> </span></div><div class="line"><span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line"><span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line">    </div><div class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.imooc.maven01<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven01-model<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">    	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <p>进入项目路径运行 mvn complie 进行编译，生成文件在target文件夹下</p>
 <p>mvn package 生成maven01-model的jar 相当于打包。</p>
+<blockquote>
+<p>初次使用compile的时候可能会报“Unknown lifecycle phase”的错误，这个时候需要先执行下面命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mvn install</div><div class="line">mvn compiler:compile</div><div class="line">mvn org.apache.maven.plugins:maven-compiler-plugin:compile</div><div class="line">mvn org.apache.maven.plugins:maven-compiler-plugin:2.0.2:compile</div></pre></td></tr></table></figure></p>
+</blockquote>
 <p>mvn常用构建命令<br>    mvn -v 查看maven版本<br>        compile 编译<br>        test 测试<br>        package 打包<br>        clean 删除target<br>        install 安装jar包到本地仓库中（进入相关项目目录使用，之后再pom.xml中还需要配置dependency，先从本地查找，如果找不到会去网上maven的中央仓库中找）</p>
 <p>mvn archetype:generate<br>使用archetype插件自动产生目录骨架。<br>mvn archetype:generate -DgroupId=com.imooc.maven04 -DatifactId=maven04-demo -Dversion=1.0.0SNAPSHOT -Dpackage=com.imooc.maven04.demo</p>
+<blockquote>
+<p>使用Maven运行Java main的3种方式 <a href="http://www.tuicool.com/articles/UJJvim" target="_blank" rel="external">http://www.tuicool.com/articles/UJJvim</a></p>
+</blockquote>
 <h1 id="坐标和仓库"><a href="#坐标和仓库" class="headerlink" title="坐标和仓库"></a>坐标和仓库</h1><p><a href="https://repo.maven.apache.org/maven2" target="_blank" rel="external">https://repo.maven.apache.org/maven2</a> 默认全球中央仓库地址，其中可以搜索很多。</p>
 <p>修改maven镜像方法</p>
 <p>在conf文件下settings.xml找到mirror标签更改<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">id</span>&gt;</span>maven.net.cn<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>central mirror in china<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.net.cn/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div></pre></td></tr></table></figure></p>
@@ -470,8 +476,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/14/2017-05-13-MyBatis补充/" rel="next" title="Mybatis动态sql拼接以及使用log4j">
-                <i class="fa fa-chevron-left"></i> Mybatis动态sql拼接以及使用log4j
+              <a href="/2017/05/12/2017-05-12-MyBatisMutiTable/" rel="next" title="MyBatis多表关联以及调用存储过程">
+                <i class="fa fa-chevron-left"></i> MyBatis多表关联以及调用存储过程
               </a>
             
           </div>
@@ -480,8 +486,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/15/2017-05-15-ECS/" rel="prev" title="阿里云服务器折腾笔记">
-                阿里云服务器折腾笔记 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/14/2017-05-13-MyBatis补充/" rel="prev" title="Mybatis动态sql拼接以及使用log4j">
+                Mybatis动态sql拼接以及使用log4j <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -554,7 +560,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -567,7 +573,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
