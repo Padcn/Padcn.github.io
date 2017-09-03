@@ -97,7 +97,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/14/2017-05-14-maven/index.html">
 <meta property="og:site_name" content="Pad">
 <meta property="og:description" content="mavenMaven是基于项目对象模型（POM），可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目的工具 下载网站 http://maven.apache.org 配置环境变量  新建M2_HOME变量  指向maven的安装目录如 目录\apache-maven-3.3.3 加入path最后 %M2_HOME%\bin; 验证 mvn -v查看版本号  目录结构 项目名     sr">
-<meta property="og:updated_time" content="2017-06-13T13:16:16.847Z">
+<meta property="og:updated_time" content="2017-09-03T08:49:06.045Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="maven">
 <meta name="twitter:description" content="mavenMaven是基于项目对象模型（POM），可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目的工具 下载网站 http://maven.apache.org 配置环境变量  新建M2_HOME变量  指向maven的安装目录如 目录\apache-maven-3.3.3 加入path最后 %M2_HOME%\bin; 验证 mvn -v查看版本号  目录结构 项目名     sr">
@@ -434,6 +434,8 @@
 <blockquote>
 <p>如果想在打包时就运行则使用executions标签<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">      	<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          	<span class="comment">&lt;!--依旧要指定坐标--&gt;</span></div><div class="line">          	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span><span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">         		 <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">               <span class="tag">&lt;<span class="name">executions</span>&gt;</span></div><div class="line">               	<span class="tag">&lt;<span class="name">execution</span>&gt;</span></div><div class="line">                  	<span class="comment">&lt;!--打包成功后使用jetty:run来运行jetty服务--&gt;</span></div><div class="line">                  	<span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></div><div class="line">                      <span class="tag">&lt;<span class="name">goals</span>&gt;</span></div><div class="line">                      	<span class="tag">&lt;<span class="name">goal</span>&gt;</span>run<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></div><div class="line">                      <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></div><div class="line">                  <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></div><div class="line">               <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div></pre></td></tr></table></figure></p>
 </blockquote>
+<hr>
+<p>查看本地仓库路径：mvn help:effective-settings</p>
 
       
     </div>
@@ -476,8 +478,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/14/2017-05-13-MyBatis补充/" rel="next" title="Mybatis动态sql拼接以及使用log4j">
-                <i class="fa fa-chevron-left"></i> Mybatis动态sql拼接以及使用log4j
+              <a href="/2017/05/12/2017-05-12-MyBatisSingleTable/" rel="next" title="MyBastis环境搭建以及单表CURD">
+                <i class="fa fa-chevron-left"></i> MyBastis环境搭建以及单表CURD
               </a>
             
           </div>
@@ -486,8 +488,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/15/2017-05-15-ECS/" rel="prev" title="阿里云服务器折腾笔记">
-                阿里云服务器折腾笔记 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/14/2017-05-13-MyBatis补充/" rel="prev" title="Mybatis动态sql拼接以及使用log4j">
+                Mybatis动态sql拼接以及使用log4j <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -560,7 +562,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -573,7 +575,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
