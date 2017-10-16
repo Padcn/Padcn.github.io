@@ -94,10 +94,10 @@
 <meta name="keywords" content="网络编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unix网络编程卷一笔记（一）">
-<meta property="og:url" content="http://yoursite.com/2017/10/15/2017-09-09-UnixNetNote1/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/10/15/2017-09-14-UnixNetNote1/index.html">
 <meta property="og:site_name" content="Pad">
 <meta property="og:description" content="Unix网络编程卷一笔记（一）准备工作： 在官网下载make所需要的库文件http://www.unpbook.com/下载后解压unpv13e.tar.gz文件 1tar -zxvf unpv13e.tar.gz  进入解压出的unpv13e目录根据README文件提示，进行make 123./configurecd libmake  在unp13e目录下生成了libunp.a文件复制到/usr">
-<meta property="og:updated_time" content="2017-10-15T10:11:43.546Z">
+<meta property="og:updated_time" content="2017-10-16T14:36:07.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unix网络编程卷一笔记（一）">
 <meta name="twitter:description" content="Unix网络编程卷一笔记（一）准备工作： 在官网下载make所需要的库文件http://www.unpbook.com/下载后解压unpv13e.tar.gz文件 1tar -zxvf unpv13e.tar.gz  进入解压出的unpv13e目录根据README文件提示，进行make 123./configurecd libmake  在unp13e目录下生成了libunp.a文件复制到/usr">
@@ -128,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/15/2017-09-09-UnixNetNote1/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/15/2017-09-14-UnixNetNote1/"/>
 
 
 
@@ -263,7 +263,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/15/2017-09-09-UnixNetNote1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/15/2017-09-14-UnixNetNote1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pad">
@@ -354,6 +354,13 @@
 <p>直接被定义成了<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">Socket</span><span class="params">(<span class="keyword">int</span> family,<span class="keyword">int</span> type,<span class="keyword">int</span> protocol)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> n;</div><div class="line">	<span class="keyword">if</span>( (n=socket(AF_INET,SOCK_STREAM,<span class="number">0</span>)) &lt; <span class="number">0</span> )</div><div class="line">        err_sys(<span class="string">"socket error"</span>);</div><div class="line">    <span class="keyword">return</span> n;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>书中称为包裹函数。</p>
 <p>/intro/daytimetcpsrv.c<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"unp.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,<span class="keyword">char</span>** argv)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> listenfd,connfd;</div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">servaddr</span>;</span></div><div class="line">    <span class="keyword">char</span> buff[MAXLINE];</div><div class="line">    <span class="keyword">time_t</span> ticks;</div><div class="line">	<span class="comment">//创建套接字</span></div><div class="line">    listenfd=Socket(AF_INET,SOCK_STREAM,<span class="number">0</span>);</div><div class="line">	<span class="comment">//初始化</span></div><div class="line">    bzero(&amp;servaddr,<span class="keyword">sizeof</span>(servaddr));</div><div class="line">    servaddr.sin_family=AF_INET;</div><div class="line">    servaddr.sin_addr.s_addr=htonl(INADDR_ANY);</div><div class="line">    servaddr.sin_port=htons(<span class="number">13</span>);</div><div class="line">	<span class="comment">//绑定端口</span></div><div class="line">    Bind(listenfd,(SA*)&amp;servaddr,<span class="keyword">sizeof</span>(servaddr));</div><div class="line">	<span class="comment">//将套接字转换为一个监听套接字</span></div><div class="line">    Listen(listenfd,LISTENQ);</div><div class="line"></div><div class="line">    <span class="keyword">for</span>(;;)&#123;</div><div class="line">        connfd=Accept(listenfd,(SA*)<span class="literal">NULL</span>,<span class="literal">NULL</span>);</div><div class="line"></div><div class="line">        ticks=time(<span class="literal">NULL</span>);</div><div class="line">        <span class="built_in">snprintf</span>(buff,<span class="keyword">sizeof</span>(buff),<span class="string">"%.24s\r\n"</span>,ctime(&amp;ticks));</div><div class="line">        <span class="comment">//返回时间</span></div><div class="line">        Write(connfd,buff,<span class="built_in">strlen</span>(buff));</div><div class="line"></div><div class="line">        Close(connfd);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="查看网络接口信息"><a href="#查看网络接口信息" class="headerlink" title="查看网络接口信息"></a>查看网络接口信息</h2><p>netstat -ni 显示网络接口的信息，-n标志以输出数值地址，而不是反向解析成名字。 lo为loopback环回接口，以太网接口称为eth0,</p>
+<p>netstat -nr 展示路由表，其中n也是和上面相同作用。</p>
+<p>ifconfig eth0显示接口详细信息。</p>
+<p>找出本地网络中众多主机的ip地址方法之一是ping从ifconfig命令找出的广播地址。</p>
+<blockquote>
+<p>单一UNIX规范第三版<br>POSIX 标准为 Portable Operating System Interface的首字母的缩写，可移植操作系统接口</p>
+</blockquote>
 
       
     </div>
@@ -396,8 +403,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/03/2017-09-02-SpringBoot/" rel="next" title="Spring Boot - HelloWorld">
-                <i class="fa fa-chevron-left"></i> Spring Boot - HelloWorld
+              <a href="/2017/09/09/2017-09-09.ElasticSearch/" rel="next" title="ElasticSearch">
+                <i class="fa fa-chevron-left"></i> ElasticSearch
               </a>
             
           </div>
@@ -405,10 +412,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/15/2017-09-09.ElasticSearch/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -539,7 +542,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Unix网络编程卷一笔记（一）"><span class="nav-number">1.</span> <span class="nav-text">Unix网络编程卷一笔记（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作："><span class="nav-number">1.1.</span> <span class="nav-text">准备工作：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取时间的客户端"><span class="nav-number">1.2.</span> <span class="nav-text">获取时间的客户端</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Unix网络编程卷一笔记（一）"><span class="nav-number">1.</span> <span class="nav-text">Unix网络编程卷一笔记（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作："><span class="nav-number">1.1.</span> <span class="nav-text">准备工作：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取时间的客户端"><span class="nav-number">1.2.</span> <span class="nav-text">获取时间的客户端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看网络接口信息"><span class="nav-number">1.3.</span> <span class="nav-text">查看网络接口信息</span></a></li></ol></li></ol></div>
             
 
           </div>
