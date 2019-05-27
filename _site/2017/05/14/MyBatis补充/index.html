@@ -1,0 +1,945 @@
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MyBatis," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Padcn" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="动态sql拼接 由于select只接受一个附加参数，所以需要封装后传入，动态拼接使用了ognl表达式, &amp;lt;select id=&quot;queryData&quot; parameter=&quot;com.imooc.bean.Message&quot; resultMap=&quot;&quot;&amp;gt; select ID,COMMAND from MESSAGE where 1=1 &amp;lt;!-- 这里&amp;amp;quot;是转义的上引号 &amp;amp;不能在这里用所以用ognl自带的操作符and 还有or 、in、 not in ognl可以直接获取对象中的属性值，这里的command是从Message中获得，还能调用对象属性 --&amp;gt; &amp;lt;if test=&quot;command!=null and !&amp;amp;quit;&amp;amp;quot;.equals(command.trim())&quot;&amp;gt; &amp;lt;!--这里下面的语法并不是ognl表达式，是mybatis自己的--&amp;gt; and COMMAND=#{command} &amp;lt;/if&amp;gt; &amp;lt;if test=&quot;description!=null and !&amp;amp;quit;&amp;amp;quot;.equals(command.trim())&quot;&amp;gt; and description like &apos;%&apos; #{description} &apos;%&apos; &amp;lt;/if&amp;gt; &amp;lt;/select&amp;gt; ## 使用log4j调试动态SQL 引用相应jar(log4j-*.jar)和configuration.xml 输出分为几个级别 log.debug() log.info() log.warn() log.error() 在log4j.properties中配置 log4j.rootLogger=DEBUG,Console 如果是以上配置则会输出所有，输出为大于配置等级的信息，如果配了ERROR则只会输出log.error()">
+<meta name="keywords" content="MyBatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis动态sql拼接以及使用log4j">
+<meta property="og:url" content="http://localhost:4000/2017/05/14/MyBatis%E8%A1%A5%E5%85%85/">
+<meta property="og:site_name" content="Padcn">
+<meta property="og:description" content="动态sql拼接 由于select只接受一个附加参数，所以需要封装后传入，动态拼接使用了ognl表达式, &amp;lt;select id=&quot;queryData&quot; parameter=&quot;com.imooc.bean.Message&quot; resultMap=&quot;&quot;&amp;gt; select ID,COMMAND from MESSAGE where 1=1 &amp;lt;!-- 这里&amp;amp;quot;是转义的上引号 &amp;amp;不能在这里用所以用ognl自带的操作符and 还有or 、in、 not in ognl可以直接获取对象中的属性值，这里的command是从Message中获得，还能调用对象属性 --&amp;gt; &amp;lt;if test=&quot;command!=null and !&amp;amp;quit;&amp;amp;quot;.equals(command.trim())&quot;&amp;gt; &amp;lt;!--这里下面的语法并不是ognl表达式，是mybatis自己的--&amp;gt; and COMMAND=#{command} &amp;lt;/if&amp;gt; &amp;lt;if test=&quot;description!=null and !&amp;amp;quit;&amp;amp;quot;.equals(command.trim())&quot;&amp;gt; and description like &apos;%&apos; #{description} &apos;%&apos; &amp;lt;/if&amp;gt; &amp;lt;/select&amp;gt; ## 使用log4j调试动态SQL 引用相应jar(log4j-*.jar)和configuration.xml 输出分为几个级别 log.debug() log.info() log.warn() log.error() 在log4j.properties中配置 log4j.rootLogger=DEBUG,Console 如果是以上配置则会输出所有，输出为大于配置等级的信息，如果配了ERROR则只会输出log.error()">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://img.mukewang.com/590b2a98000162fc12800720.jpg">
+<meta property="og:image" content="http://img.mukewang.com/5917e6c80001a7d612800720.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mybatis动态sql拼接以及使用log4j">
+<meta name="twitter:description" content="动态sql拼接 由于select只接受一个附加参数，所以需要封装后传入，动态拼接使用了ognl表达式, &amp;lt;select id=&quot;queryData&quot; parameter=&quot;com.imooc.bean.Message&quot; resultMap=&quot;&quot;&amp;gt; select ID,COMMAND from MESSAGE where 1=1 &amp;lt;!-- 这里&amp;amp;quot;是转义的上引号 &amp;amp;不能在这里用所以用ognl自带的操作符and 还有or 、in、 not in ognl可以直接获取对象中的属性值，这里的command是从Message中获得，还能调用对象属性 --&amp;gt; &amp;lt;if test=&quot;command!=null and !&amp;amp;quit;&amp;amp;quot;.equals(command.trim())&quot;&amp;gt; &amp;lt;!--这里下面的语法并不是ognl表达式，是mybatis自己的--&amp;gt; and COMMAND=#{command} &amp;lt;/if&amp;gt; &amp;lt;if test=&quot;description!=null and !&amp;amp;quit;&amp;amp;quot;.equals(command.trim())&quot;&amp;gt; and description like &apos;%&apos; #{description} &apos;%&apos; &amp;lt;/if&amp;gt; &amp;lt;/select&amp;gt; ## 使用log4j调试动态SQL 引用相应jar(log4j-*.jar)和configuration.xml 输出分为几个级别 log.debug() log.info() log.warn() log.error() 在log4j.properties中配置 log4j.rootLogger=DEBUG,Console 如果是以上配置则会输出所有，输出为大于配置等级的信息，如果配了ERROR则只会输出log.error()">
+<meta name="twitter:image" content="http://img.mukewang.com/590b2a98000162fc12800720.jpg">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://localhost:4000/"/>
+
+
+
+
+
+  <title>Mybatis动态sql拼接以及使用log4j | Padcn</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Padcn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">start now.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2017/05/14/MyBatis%E8%A1%A5%E5%85%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Padcn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Padcn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            Mybatis动态sql拼接以及使用log4j
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-14T00:00:00+08:00">
+                2017-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1 id="动态sql拼接">动态sql拼接</h1>
+<p>由于select只接受一个附加参数，所以需要封装后传入，动态拼接使用了ognl表达式,</p>
+
+<p><img src="http://img.mukewang.com/590b2a98000162fc12800720.jpg" alt="" /></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14</pre></td><td class="code"><pre class="highlight"><code> <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"queryData"</span> <span class="na">parameter=</span><span class="s">"com.imooc.bean.Message"</span> <span class="na">resultMap=</span><span class="s">""</span><span class="nt">&gt;</span>
+ 	select ID,COMMAND from MESSAGE where 1=1
+    <span class="c">&lt;!--
+    这里&amp;quot;是转义的上引号  &amp;不能在这里用所以用ognl自带的操作符and 还有or 、in、 not in
+    ognl可以直接获取对象中的属性值，这里的command是从Message中获得，还能调用对象属性
+    --&gt;</span>
+    <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">"command!=null and !&amp;quit;&amp;quot;.equals(command.trim())"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!--这里下面的语法并不是ognl表达式，是mybatis自己的--&gt;</span>
+    and COMMAND=#{command}
+    <span class="nt">&lt;/if&gt;</span>
+    <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">"description!=null and !&amp;quit;&amp;quot;.equals(command.trim())"</span><span class="nt">&gt;</span>
+    and description like '%' #{description} '%'
+    <span class="nt">&lt;/if&gt;</span>
+ <span class="nt">&lt;/select&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>## 使用log4j调试动态SQL
+ 引用相应jar(log4j-*.jar)和configuration.xml
+ 输出分为几个级别</p>
+
+   	log.debug() log.info() log.warn() log.error() 
+<p>在log4j.properties中配置
+ 	log4j.rootLogger=DEBUG,Console
+如果是以上配置则会输出所有，输出为大于配置等级的信息，如果配了ERROR则只会输出log.error()</p>
+
+<p>其中Console只是取的一个变量名，可以更改，但是前面的不能更改</p>
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code>log4j.rootLogger=DEBUG,Console
+log4j.appender.Console=org.apache.log4j.ConsoleAppender
+//定义输出布局
+log4j.appender.Console.layout=org.apache.log4j.PatternLayout
+//定义输出格式 %d日期 %t线程 -5表示输出至少为5为不足则补齐 %p输出日志级别 %c输出日志是所属类全名  %m输出时附加的信息 %n换行
+log4j.appender.Console.layout.ConversionPattern=%d[%t]%-5p[%c]-%m%n
+//org.apache是自己写的包名，个性化 第一行是整个工程的
+log4j.logger.org.apache=INFO
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>mybatis本身定义了调用log工具的借口，导入哪种jar就用哪种日志，org.apache.ibatis.logging下源码。</p>
+
+<h1 id="mybatis中的配置文件标签">MyBatis中的配置文件标签</h1>
+<p><img src="http://img.mukewang.com/5917e6c80001a7d612800720.jpg" alt="MyBatis中的标签" /></p>
+
+<h2 id="foreach标签">foreach标签</h2>
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10</pre></td><td class="code"><pre class="highlight"><code>```xml
+&lt;delete id="deleteBatch" parameterType="java.util.List"&gt;
+    delete from message where id in(
+        &lt;!--用separator让mybatis来拼接，值为所需分隔符，这里index没有使用单纯只是做笔记--&gt;
+        &lt;foreach collection="list"  index="i" item="item" separator=","&gt;
+            #{item}
+        &lt;/foreach&gt;
+    )
+&lt;/delete&gt;
+```
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>## where标签</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code>  <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"queryData"</span> <span class="na">parameter=</span><span class="s">"com.imooc.bean.Message"</span> <span class="na">resultMap=</span><span class="s">""</span><span class="nt">&gt;</span>
+ 	select ID,COMMAND from MESSAGE 
+    <span class="nt">&lt;where&gt;</span>
+    <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">"command!=null and !&amp;quit;&amp;quot;.equals(command.trim())"</span><span class="nt">&gt;</span>
+    and COMMAND=#{command}
+    <span class="nt">&lt;/if&gt;</span>
+   <span class="nt">&lt;/where&gt;</span>
+ <span class="nt">&lt;/select&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>## sql标签</p>
+
+<p>可以重复引用sql片段。</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10</pre></td><td class="code"><pre class="highlight"><code> <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"queryData"</span> <span class="na">parameter=</span><span class="s">"com.imooc.bean.Message"</span> <span class="na">resultMap=</span><span class="s">""</span><span class="nt">&gt;</span>
+ 	select <span class="nt">&lt;include</span> <span class="na">refid=</span><span class="s">"colums"</span><span class="nt">/&gt;</span> from MESSAGE 
+    <span class="nt">&lt;where&gt;</span>
+    <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">"command!=null and !&amp;quit;&amp;quot;.equals(command.trim())"</span><span class="nt">&gt;</span>
+    and COMMAND=#{command}
+    <span class="nt">&lt;/if&gt;</span>
+   <span class="nt">&lt;/where&gt;</span>
+ <span class="nt">&lt;/select&gt;</span>
+ 
+ <span class="nt">&lt;sql</span> <span class="na">id=</span><span class="s">"colums"</span><span class="nt">&gt;</span> ID,COMMADN<span class="nt">&lt;/sql&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>## set标签
+  主要解决拼接时分隔符</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code>   <span class="nt">&lt;update</span> <span class="na">id=</span><span class="s">""</span><span class="nt">&gt;</span>
+    update message 
+    	<span class="nt">&lt;set&gt;</span>
+        	<span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">"command!=null and !&amp;quit;&amp;quot;.equals(command.trim())"</span><span class="nt">&gt;</span>
+    and COMMAND=#{command}
+    <span class="nt">&lt;/if&gt;</span>
+        <span class="nt">&lt;/set&gt;</span>
+   <span class="nt">&lt;/update&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>## trim标签
+   可以代替where和set</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>   <span class="c">&lt;!--prefix 如果内有内容加入where  suffix如果有内容输出则加上  如果有会在最后切掉prefixOverrides="and/or"  suffixOverrides=","--&gt;</span>
+   <span class="nt">&lt;trim</span> <span class="na">prefix=</span><span class="s">"where"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;/trim&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>## choose标签</p>
+
+<p>类似java的switch case</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</pre></td><td class="code"><pre class="highlight"><code>   <span class="nt">&lt;choose&gt;</span>
+        <span class="nt">&lt;when</span> <span class="na">test=</span><span class="s">""</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/when&gt;</span>
+        <span class="nt">&lt;when</span> <span class="na">test=</span><span class="s">""</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/when&gt;</span>
+        <span class="nt">&lt;when</span> <span class="na">test=</span><span class="s">""</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/when&gt;</span>
+    	<span class="nt">&lt;otherwise&gt;&lt;/otherwise&gt;</span>
+   <span class="nt">&lt;/choose&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>## association用于一对一映射</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>   <span class="nt">&lt;association</span> <span class="na">property=</span><span class="s">""</span> <span class="na">resultMap=</span><span class="s">"sss.resultid"</span><span class="nt">/&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/MyBatis" rel="tag"># MyBatis</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/14/maven/" rel="next" title="maven">
+                <i class="fa fa-chevron-left"></i> maven
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/12/MyBatisSingleTable/" rel="prev" title="MyBastis环境搭建以及单表CURD">
+                MyBastis环境搭建以及单表CURD <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="Padcn" />
+          <p class="site-author-name" itemprop="name">Padcn</p>
+           
+              <p class="site-description motion-element" itemprop="description">...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-1"> <a class="nav-link" href="#动态sql拼接"> <span class="nav-number">1</span> <span class="nav-text">动态sql拼接</span> </a> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#mybatis中的配置文件标签"> <span class="nav-number">2</span> <span class="nav-text">MyBatis中的配置文件标签</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-2"> <a class="nav-link" href="#foreach标签"> <span class="nav-number">2.1</span> <span class="nav-text">foreach标签</span> </a> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Padcn</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://jekyllrb.com">Jekyll</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+

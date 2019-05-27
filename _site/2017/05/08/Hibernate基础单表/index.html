@@ -1,0 +1,1215 @@
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hibernate," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Padcn" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Hibernate">
+<meta name="keywords" content="Hibernate">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hibernate基础单表">
+<meta property="og:url" content="http://localhost:4000/2017/05/08/Hibernate%E5%9F%BA%E7%A1%80%E5%8D%95%E8%A1%A8/">
+<meta property="og:site_name" content="Padcn">
+<meta property="og:description" content="Hibernate">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://img.mukewang.com/590f0c940001053412800720.jpg">
+<meta property="og:image" content="http://img.mukewang.com/5909a7100001deb812800720.jpg">
+<meta property="og:image" content="http://img.mukewang.com/58ff54610001e2ab12800720.jpg">
+<meta property="og:image" content="http://img.mukewang.com/58e44fe7000163ec07180404.jpg">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/966412/201611/966412-20161105234424768-1479445986.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hibernate基础单表">
+<meta name="twitter:description" content="Hibernate">
+<meta name="twitter:image" content="http://img.mukewang.com/590f0c940001053412800720.jpg">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://localhost:4000/"/>
+
+
+
+
+
+  <title>Hibernate基础单表 | Padcn</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Padcn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">start now.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2017/05/08/Hibernate%E5%9F%BA%E7%A1%80%E5%8D%95%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Padcn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Padcn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            Hibernate基础单表
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-08T00:00:00+08:00">
+                2017-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1 id="hibernate">Hibernate</h1>
+
+<h3 id="orm">ORM</h3>
+<p>(Object/Relationship Mapping):对象/关系映射
+利用面向对象思想编写的数据库应用程序最终都是把对象信息保存在关系型数据库中，于是要编写很多sql
+1.不同数据库使用sql语法不同
+2.同一个功能使用的SQL不同。</p>
+
+<h3 id="hibernate-1">Hibernate</h3>
+<p>Hibernate是java领域的一款开元的ORM框架技术
+对jdbc进行了封装。</p>
+
+<p>业务逻辑层通过持久化层（Hibernate）操作数据库</p>
+
+<h3 id="简单配置">简单配置</h3>
+<p>方便Hibernate使用的eclipse插件 Hibernate Tools for Eclipse Plugin
+JBoss tools</p>
+
+<p>搭建步骤：</p>
+<ul>
+  <li>编写Hibernate配置文件</li>
+  <li>创建持久化类</li>
+  <li>创建对象-关系映射文件</li>
+  <li>通过Hibernate API编写访问数据库的代码</li>
+</ul>
+
+<p>导入Hibernate必须的jar包
+hibernate-release-*\lib\required
+导入jdbc驱动</p>
+
+<ol>
+  <li>创建java工程</li>
+  <li>导入Hibernate必须的jar包 hibernate-release-*\lib\required ，导入jdbc驱动</li>
+  <li>
+    <p>创建Hibernate的配置文件
+ 如果没有代码提示功能就需要手工导入 hibernate-release-*\project\hibernate-core\src\main\resources\org\hibernate\hibernate-mapping-3.0.dtd
+ 在src下创建hibernate添加了插件的话直接可以右键新建hibernate。</p>
+
+    <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12</pre></td><td class="code"><pre class="highlight"><code> <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"connection.username"</span><span class="nt">&gt;</span>root<span class="nt">&lt;/property&gt;</span>
+ <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"connection.password"</span><span class="nt">&gt;&lt;/property&gt;</span>
+ <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"connection.driver_class"</span><span class="nt">&gt;</span>com.mysql.jdbc.Driver<span class="nt">&lt;/property&gt;</span>
+ <span class="c">&lt;!--\\ 是简写 useUnicode防止乱码--&gt;</span>
+ <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"connection.url"</span><span class="nt">&gt;</span>jdbc:mysql:///hibernate?useUnicode=true<span class="ni">&amp;amp;</span>characterEncoding=UTF-8<span class="nt">&lt;/property&gt;</span>
+ <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"dialect"</span><span class="nt">&gt;</span>org.hibernate.dialect.MySQLDialect<span class="nt">&lt;/property&gt;</span>
+
+ <span class="c">&lt;!--常用的3个属性--&gt;</span>
+ <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"show_sql"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/property&gt;</span>
+ <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"format_sql"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/property&gt;</span>
+ <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hbm2ddl.auto"</span><span class="nt">&gt;</span>create<span class="nt">&lt;/property&gt;</span>
+
+</code></pre></td></tr></tbody></table></div>
+    </div>
+  </li>
+  <li>
+    <p>创建持久化层</p>
+
+    <p>创建实体化类
+ @Student.java</p>
+    <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17</pre></td><td class="code"><pre class="highlight"><code> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Students</span><span class="o">{</span>
+ 	<span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+        
+     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+         <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+     <span class="o">}</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+         <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+     <span class="o">}</span>
+     <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+         <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+     <span class="o">}</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+         <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+     <span class="o">}</span>
+ <span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+    </div>
+    <p>还可以使用注解的方式进行关系映射，这样就不需要创建关系映射文件，可以跳过第5步，使用注解方式关联的实体类如下</p>
+
+    <p>@Person.java</p>
+    <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40</pre></td><td class="code"><pre class="highlight"><code> <span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">pad</span><span class="o">.</span><span class="na">entity</span><span class="o">;</span>
+
+ <span class="kn">import</span> <span class="nn">javax.persistence.Column</span><span class="o">;</span>
+ <span class="kn">import</span> <span class="nn">javax.persistence.Entity</span><span class="o">;</span>
+ <span class="kn">import</span> <span class="nn">javax.persistence.GeneratedValue</span><span class="o">;</span>
+ <span class="kn">import</span> <span class="nn">javax.persistence.GenerationType</span><span class="o">;</span>
+ <span class="kn">import</span> <span class="nn">javax.persistence.Id</span><span class="o">;</span>
+ <span class="kn">import</span> <span class="nn">javax.persistence.Table</span><span class="o">;</span>
+
+ <span class="nd">@Entity</span>
+ <span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"t_person"</span><span class="o">)</span>
+ <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+     <span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">sex</span><span class="o">;</span>
+
+     <span class="nd">@Id</span>
+     <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span><span class="o">=</span><span class="n">GenerationType</span><span class="o">.</span><span class="na">AUTO</span><span class="o">)</span>
+     <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"p_id"</span><span class="o">)</span>
+     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+         <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+     <span class="o">}</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+         <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+     <span class="o">}</span>
+     <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"p_name"</span><span class="o">)</span>
+     <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+         <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+     <span class="o">}</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+         <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+     <span class="o">}</span>
+     <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"p_sex"</span><span class="o">)</span>
+     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isSex</span><span class="o">()</span> <span class="o">{</span>
+         <span class="k">return</span> <span class="n">sex</span><span class="o">;</span>
+     <span class="o">}</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSex</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">sex</span><span class="o">)</span> <span class="o">{</span>
+         <span class="k">this</span><span class="o">.</span><span class="na">sex</span> <span class="o">=</span> <span class="n">sex</span><span class="o">;</span>
+     <span class="o">}</span>
+ <span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+    </div>
+  </li>
+  <li>创建对象关系映射文件
+    <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24</pre></td><td class="code"><pre class="highlight"><code> <span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+ <span class="cp">&lt;!DOCTYPE hibernate-mapping PUBLIC 
+     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"&gt;</span>
+ <span class="nt">&lt;hibernate-mapping</span> <span class="na">package=</span><span class="s">"com.pad.entity"</span><span class="nt">&gt;</span>
+
+     <span class="nt">&lt;class</span> <span class="na">name=</span><span class="s">"Student"</span> <span class="na">table=</span><span class="s">"t_student"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;id</span> <span class="na">name=</span><span class="s">"id"</span><span class="nt">&gt;</span>
+             <span class="c">&lt;!-- 交由数据库处理。如果有设置自增则自增，否则由java代码指定 --&gt;</span>
+             <span class="nt">&lt;generator</span> <span class="na">class=</span><span class="s">"native"</span> <span class="nt">/&gt;</span>
+             <span class="c">&lt;!-- 由代码指定主键 --&gt;</span>
+             <span class="c">&lt;!--&lt;generator class="assigned"&gt;  --&gt;</span>
+             <span class="c">&lt;!--强制为自增--&gt;</span>
+             <span class="c">&lt;!--  &lt;generator class="identity"&gt;  --&gt;</span>
+             <span class="c">&lt;!--指定序列,oracle，db2上--&gt;</span>
+             <span class="c">&lt;!--  &lt;generator class="sequence"&gt;  --&gt;</span>
+             <span class="c">&lt;!--随机生成16进制的唯一ID--&gt;</span>
+             <span class="c">&lt;!-- &lt;generator class="hexuid"&gt;  --&gt;</span>
+         <span class="nt">&lt;/id&gt;</span>
+         <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"name"</span><span class="nt">&gt;&lt;/property&gt;</span>
+         <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"age"</span><span class="nt">&gt;&lt;/property&gt;</span>
+     <span class="nt">&lt;/class&gt;</span>
+
+ <span class="nt">&lt;/hibernate-mapping&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+    </div>
+  </li>
+  <li>在hibernate.cfg.xml中包含</li>
+</ol>
+
+<p>如果使用xml配置关联则</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>	<span class="nt">&lt;mapping</span> <span class="na">resource=</span><span class="s">"Student.hbm.xml"</span><span class="nt">/&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>如果使用注解方式则为</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>	<span class="nt">&lt;mapping</span> <span class="na">class=</span><span class="s">"com.pad.entity.Person"</span><span class="nt">/&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<ol>
+  <li>访问数据
+    <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code> <span class="n">Configuration</span> <span class="n">config</span><span class="o">=</span><span class="k">new</span> <span class="n">Configuration</span><span class="o">().</span><span class="na">configure</span><span class="o">();</span> <span class="c1">//创建配置对象</span>
+ <span class="n">ServiceRegistry</span> <span class="n">serviceRegistry</span><span class="o">=</span><span class="k">new</span> <span class="n">ServiceRegistryBuilder</span><span class="o">().</span><span class="na">applySettings</span><span class="o">(</span><span class="n">config</span><span class="o">.</span><span class="na">getProperties</span><span class="o">()).</span><span class="na">buildServiceRegistry</span><span class="o">();</span><span class="c1">//创建服务注册对象</span>
+ <span class="n">sessionFactory</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="na">buldSessionFactory</span><span class="o">(</span><span class="n">serviceRegistry</span><span class="o">);</span><span class="c1">//创建会话工厂对象</span>
+ <span class="n">session</span><span class="o">=</span><span class="n">sessionFactory</span><span class="o">.</span><span class="na">openSesson</span><span class="o">();</span><span class="c1">//打开会话</span>
+ <span class="n">transaction</span><span class="o">=</span><span class="n">session</span><span class="o">.</span><span class="na">beginTransaction</span><span class="o">();</span><span class="c1">//打开事务</span>
+</code></pre></td></tr></tbody></table></div>
+    </div>
+    <p>创建测试用例
+@testHibernate.java</p>
+    <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41</pre></td><td class="code"><pre class="highlight"><code> <span class="kn">import</span> <span class="nn">org.hibernate.Session</span><span class="o">;</span>
+ <span class="kn">import</span> <span class="nn">org.hibernate.SessionFactory</span><span class="o">;</span>
+ <span class="kn">import</span> <span class="nn">org.hibernate.Transaction</span><span class="o">;</span>
+ <span class="kn">import</span> <span class="nn">org.hibernate.cfg.Configuration</span><span class="o">;</span>
+ <span class="kn">import</span> <span class="nn">org.hibernate.service.ServiceRegistry</span><span class="o">;</span>
+ <span class="kn">import</span> <span class="nn">org.hibernate.service.ServiceRegistryBuilder</span><span class="o">;</span>
+ <span class="kn">import</span> <span class="nn">org.junit.After</span><span class="o">;</span>
+ <span class="kn">import</span> <span class="nn">org.junit.Before</span><span class="o">;</span>
+ <span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+ <span class="kn">import</span> <span class="nn">com.pad.entity.Student</span><span class="o">;</span>
+
+ <span class="kd">public</span> <span class="kd">class</span> <span class="nc">testHibernate</span> <span class="o">{</span>
+     <span class="kd">private</span> <span class="n">SessionFactory</span> <span class="n">sessionFactory</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="n">Session</span> <span class="n">session</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="n">Transaction</span> <span class="n">transaction</span><span class="o">;</span>
+
+     <span class="nd">@Before</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(){</span>
+         <span class="n">Configuration</span> <span class="n">config</span><span class="o">=</span><span class="k">new</span> <span class="n">Configuration</span><span class="o">().</span><span class="na">configure</span><span class="o">();</span>
+         <span class="n">ServiceRegistry</span> <span class="n">serviceRegistry</span><span class="o">=</span><span class="k">new</span> <span class="n">ServiceRegistryBuilder</span><span class="o">().</span><span class="na">applySettings</span><span class="o">(</span><span class="n">config</span><span class="o">.</span><span class="na">getProperties</span><span class="o">())</span>
+         	<span class="o">.</span><span class="na">buildServiceRegistry</span><span class="o">();</span>
+         <span class="n">sessionFactory</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="na">buildSessionFactory</span><span class="o">(</span><span class="n">serviceRegistry</span><span class="o">);</span>
+         <span class="n">session</span><span class="o">=</span><span class="n">sessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+         <span class="n">transaction</span><span class="o">=</span><span class="n">session</span><span class="o">.</span><span class="na">beginTransaction</span><span class="o">();</span>
+     <span class="o">}</span>
+
+     <span class="nd">@After</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">destory</span><span class="o">(){</span>
+         <span class="n">transaction</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+         <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+         <span class="n">sessionFactory</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+     <span class="o">}</span>
+
+     <span class="nd">@Test</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testHiber</span><span class="o">(){</span>
+         <span class="n">Student</span> <span class="n">stu</span><span class="o">=</span><span class="k">new</span> <span class="n">Student</span><span class="o">();</span>
+         <span class="n">stu</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span><span class="mi">12</span><span class="o">);</span>
+         <span class="n">stu</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"aaa"</span><span class="o">);</span>
+         <span class="n">session</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">stu</span><span class="o">);</span>
+     <span class="o">}</span>
+ <span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+    </div>
+    <h3 id="hibernate执行流程">Hibernate执行流程</h3>
+  </li>
+</ol>
+
+<p><img src="http://img.mukewang.com/590f0c940001053412800720.jpg" alt="Hibernate执行流程" title="Hibernate执行流程" /></p>
+
+<h3 id="hibernatecfgxml常用配置">hibernate.cfg.xml常用配置</h3>
+<ul>
+  <li>show_sql 是否把Hibernate运行时将sql语句输出到控制台</li>
+  <li>format_sql 对输出到控制台的sql是否进行排版，便于阅读</li>
+  <li>auto 可以帮助由java代码生成数据库脚本，进而生成具体表结构。 属性有create（如果原来表存在则先删除）|update（在原有表数据上更新）|create-drop（先创建在删除）|validate（对原表结构验证，如果现有表结构与原来表结构不同则不会创建表结构，不执行）</li>
+  <li>default_schema 默认数据库</li>
+  <li>dialect 数据库方言，Hibernate可以对特殊数据库进行优化。</li>
+</ul>
+
+<h3 id="session会话">session（会话）</h3>
+<p>是一个操作数据库的对象
+session与connection，是多对一关系，每个session都有一个与之对应的connection，一个connection不同时刻可以供多个session使用。
+把对象保存在关系数据库中需要调用session的各种方法，如：save(),update(),delete(),createQuery()等。</p>
+
+<ul>
+  <li>
+    <p>获取session</p>
+
+    <p>1) openSession</p>
+
+    <p>2)getCurrentSession</p>
+
+    <p>如果使用getCurrentSession需要在hibernate.cfg.xml文件中配置
+如果是本地事务（jdbc事务）</p>
+    <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.current_session_context_class"</span><span class="nt">&gt;</span>thread<span class="nt">&lt;/property&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+    </div>
+    <p>如果是全局事务（jta事务）</p>
+    <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.current_session_context_class"</span><span class="nt">&gt;</span>jta<span class="nt">&lt;/property&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+    </div>
+    <p>两种方式获取session的区别：
+      1. 使用getCurrentSession在事务提交或者回滚之后会自动关闭，而openSession需要手动关闭。如果使用openSession而没有手动关闭，多次之后会导致连接池溢出。
+      2. openSession每次创建新的session对象，getCurrentSession使用现有的session对象。</p>
+  </li>
+</ul>
+
+<h3 id="transaction事务">transaction（事务）</h3>
+<p>hibernate对数据库的操作都是封装在事务中，并默认是非自动提交的方式，所以session保存对象时，如果不开启事务，并且手动提交事务，对象并不会真保存进数据库。</p>
+
+<p>如果想像jdbc一样自动提交事务，必须调用session对象的doWork()方法，获取jdbc的connection后，设置为自动提交事务模式。（不推荐）</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code><span class="n">session</span><span class="o">.</span><span class="na">doWork</span><span class="o">(</span><span class="k">new</span> <span class="n">Work</span><span class="o">(){</span>
+	<span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="n">Connection</span> <span class="n">connection</span><span class="o">)</span><span class="kd">throws</span> <span class="n">SQLException</span><span class="o">{</span>
+    	<span class="n">connection</span><span class="o">.</span><span class="na">setAutoCommit</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">})</span><span class="err">；</span>
+<span class="n">session</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+<span class="n">session</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span><span class="c1">//没有这句也不会提交</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h3 id="hbm配置文件常用设置">hbm配置文件常用设置</h3>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;hibernate-mapping</span>
+	<span class="na">schema=</span><span class="s">"schemaName"</span>
+    <span class="na">catalog=</span><span class="s">"catalogName"</span>
+    <span class="na">default-cascade=</span><span class="s">"cascade_style"</span> <span class="err">//级联风格</span>
+    <span class="na">default-access=</span><span class="s">"field|property|ClassName"</span> <span class="err">//访问策略</span>
+    <span class="na">default-lazy=</span><span class="s">"true|false"</span> <span class="err">//加载策略</span>
+    <span class="na">package=</span><span class="s">"packagename"</span>
+    <span class="nt">/&gt;</span>
+  <span class="nt">&lt;class</span>
+  	<span class="na">name=</span><span class="s">"ClassName"</span>
+    <span class="na">table=</span><span class="s">"tableName"</span>
+    <span class="na">batch-size=</span><span class="s">"N"</span>   <span class="err">//一次抓取N条记录</span>
+    <span class="na">where=</span><span class="s">"condition"</span>	<span class="err">//抓取条件</span>
+    <span class="na">entity-name=</span><span class="s">"EntityName"</span>  <span class="err">//同一个类映射多张表</span>
+    <span class="nt">/&gt;</span>
+    <span class="nt">&lt;id</span>
+    	<span class="na">name=</span><span class="s">"propertyName"</span>
+        <span class="na">type=</span><span class="s">"typename"</span>	<span class="err">//数据类型</span>
+        <span class="na">column=</span><span class="s">"column_name"</span> <span class="err">//映射成字段名</span>
+        <span class="na">length=</span><span class="s">"length"</span><span class="nt">&gt;</span>	//长度
+        <span class="nt">&lt;generator</span> <span class="na">class=</span><span class="s">"generatorClass"</span><span class="nt">/&gt;</span> //主键生成策略
+    <span class="nt">&lt;/id&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p><img src="http://img.mukewang.com/5909a7100001deb812800720.jpg" alt="主键生成策略" title="主键生成策略" /></p>
+
+<h2 id="单表映射">单表映射</h2>
+<h3 id="单一主键">单一主键</h3>
+<ul>
+  <li>assigned由java应用程序负责生成（手工赋值）</li>
+  <li>native 由底层数据库自动生成标识符，如果是MySQL就是increment,如果是Oracle就是sequence，等等。</li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;generator</span> <span class="na">class=</span><span class="s">"native"</span> <span class="nt">/&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h3 id="基本类型">基本类型</h3>
+<p><img src="http://img.mukewang.com/58ff54610001e2ab12800720.jpg" alt="基本类型映射关系" title="基本类型映射关系" /></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"birthday"</span> <span class="na">type=</span><span class="s">"timestamp"</span><span class="nt">&gt;&lt;/property&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h3 id="对象类型">对象类型</h3>
+<p><img src="http://img.mukewang.com/58e44fe7000163ec07180404.jpg" alt="对象类型映射关系" title="对象类型映射关系" /></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25</pre></td><td class="code"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testWriteBlob</span><span class="o">()</span><span class="n">throwsException</span><span class="o">{</span>
+ <span class="n">Student</span> <span class="n">s</span><span class="o">=</span><span class="k">new</span> <span class="n">Students</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="s">"ss"</span><span class="o">,</span><span class="s">"m"</span><span class="o">,</span><span class="k">new</span> <span class="n">Date</span><span class="o">(),</span><span class="s">"wudang"</span><span class="o">);</span>
+ <span class="n">File</span> <span class="n">f</span><span class="o">=</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"d:"</span><span class="o">+</span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="o">+</span><span class="s">"filenamebak.jpg"</span><span class="o">);</span>
+ <span class="n">InputStream</span> <span class="n">input</span><span class="o">=</span><span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="n">f</span><span class="o">);</span>
+ <span class="n">Blob</span> <span class="n">image</span><span class="o">=</span><span class="n">Hibernate</span><span class="o">.</span><span class="na">getLobCreator</span><span class="o">(</span><span class="n">session</span><span class="o">).</span><span class="na">createBlob</span><span class="o">(</span><span class="n">input</span><span class="o">,</span><span class="n">input</span><span class="o">.</span><span class="na">available</span><span class="o">());</span>
+ <span class="n">s</span><span class="o">.</span><span class="na">setPicture</span><span class="o">(</span><span class="n">image</span><span class="o">);</span>
+<span class="n">session</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testReadBlob</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+	<span class="n">Student</span> <span class="n">s</span><span class="o">=(</span><span class="n">Student</span><span class="o">)</span><span class="n">session</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Students</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="mi">1</span><span class="o">);</span>
+    <span class="c1">//获得Blob对象</span>
+    <span class="n">Blob</span> <span class="n">image</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="na">getPicture</span><span class="o">();</span>
+    <span class="n">InputStream</span> <span class="n">input</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="na">getBinaryStream</span><span class="o">();</span>
+    <span class="n">File</span> <span class="n">f</span><span class="o">=</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"d:"</span><span class="o">+</span><span class="n">File</span><span class="o">.</span><span class="na">separator</span><span class="o">+</span><span class="s">"filename.jpg"</span><span class="o">);</span>
+    <span class="n">OutputStream</span> <span class="n">output</span><span class="o">=</span><span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="n">f</span><span class="o">);</span>
+    <span class="c1">//创建缓冲区</span>
+    <span class="kt">byte</span><span class="o">[]</span> <span class="n">buff</span><span class="o">=</span><span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">input</span><span class="o">.</span><span class="na">available</span><span class="o">()];</span>
+    <span class="n">inpput</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buff</span><span class="o">);</span>
+    <span class="n">output</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">buff</span><span class="o">);</span>
+    <span class="n">input</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="n">output</span><span class="o">.</span><span class="na">close</span><span class="o">();</span> 
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h3 id="组件属性">组件属性</h3>
+
+<p>实体类中的某个属性属于用户自定义的类的对象。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"address"</span> <span class="na">class=</span><span class="s">"com.pad.entity.Address"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"postcode"</span> <span class="na">column=</span><span class="s">"POSTCODE"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"phone"</span> <span class="na">column=</span><span class="s">"PHONE"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"address"</span> <span class="na">column=</span><span class="s">"ADDRESS"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>测试用例没有什么变化</p>
+
+<h3 id="单表crud实例">单表CRUD实例</h3>
+<ul>
+  <li>save</li>
+  <li>update</li>
+  <li>delete</li>
+  <li>get/load</li>
+</ul>
+
+<p>get/load区别</p>
+
+<ol>
+  <li>
+    <p>get在调用后立即向数据库发出sql，返回持久化对象
+ load方法会在调用后返回一个代理对象，该对象只是保存了实体类的id，直到使用对象的非主键属性时才会发出sql</p>
+  </li>
+  <li>
+    <p>查询数据库中不存在的数据时，get返回null，
+ load方法抛出异常org.hibernate.ObjectNotFoundException</p>
+  </li>
+</ol>
+
+<h3 id="hibernate持久化对象的三种状态">Hibernate持久化对象的三种状态</h3>
+<p>http://blog.csdn.net/lovesummerforever/article/details/19171571</p>
+
+<p><img src="http://images2015.cnblogs.com/blog/966412/201611/966412-20161105234424768-1479445986.png" alt="Hibernate持久化对象的三种状态" title="Hibernate持久化对象的三种状态" /></p>
+
+<h3 id="hibernate注解相关">Hibernate注解相关</h3>
+<ul>
+  <li>Hibernate4注解方法(全) http://blog.csdn.net/houfeng30920/article/details/51439958</li>
+  <li>hibernate annotation注解方式来处理映射关系 http://www.cnblogs.com/xiaoluo501395377/p/3374955.html</li>
+</ul>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/Hibernate" rel="tag"># Hibernate</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/09/Hibernate%E5%A4%9A%E8%A1%A8%E6%98%A0%E5%B0%84/" rel="next" title="Hibernate映射">
+                <i class="fa fa-chevron-left"></i> Hibernate映射
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/05/Struts2%E4%B8%8EAjax%E4%BA%A4%E4%BA%92/" rel="prev" title="Struts2与Ajax交互">
+                Struts2与Ajax交互 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="Padcn" />
+          <p class="site-author-name" itemprop="name">Padcn</p>
+           
+              <p class="site-description motion-element" itemprop="description">...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-1"> <a class="nav-link" href="#hibernate"> <span class="nav-number">1</span> <span class="nav-text">Hibernate</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-2"> <a class="nav-link" href="#单表映射"> <span class="nav-number">1.1</span> <span class="nav-text">单表映射</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#单一主键"> <span class="nav-number">1.1.1</span> <span class="nav-text">单一主键</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#基本类型"> <span class="nav-number">1.1.2</span> <span class="nav-text">基本类型</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#对象类型"> <span class="nav-number">1.1.3</span> <span class="nav-text">对象类型</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#组件属性"> <span class="nav-number">1.1.4</span> <span class="nav-text">组件属性</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#单表crud实例"> <span class="nav-number">1.1.5</span> <span class="nav-text">单表CRUD实例</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#hibernate持久化对象的三种状态"> <span class="nav-number">1.1.6</span> <span class="nav-text">Hibernate持久化对象的三种状态</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#hibernate注解相关"> <span class="nav-number">1.1.7</span> <span class="nav-text">Hibernate注解相关</span> </a> </li> </ol> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Padcn</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://jekyllrb.com">Jekyll</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+

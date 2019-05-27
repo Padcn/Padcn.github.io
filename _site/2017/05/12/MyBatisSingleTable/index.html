@@ -1,0 +1,1184 @@
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MyBatis," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Padcn" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="MyBatis MyBatis 是支持普通 SQL查询，存储过程和高级映射的优秀持久层框架。MyBatis 消除了几乎所有的JDBC代码和参数的手工设置以及结果集的检索。MyBatis 使用简单的 XML或注解用于配置和原始映射，将接口和 Java 的POJOs（Plain Old Java Objects，普通的 Java对象）映射成数据库中的记录。">
+<meta name="keywords" content="MyBatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBastis环境搭建以及单表CURD">
+<meta property="og:url" content="http://localhost:4000/2017/05/12/MyBatisSingleTable/">
+<meta property="og:site_name" content="Padcn">
+<meta property="og:description" content="MyBatis MyBatis 是支持普通 SQL查询，存储过程和高级映射的优秀持久层框架。MyBatis 消除了几乎所有的JDBC代码和参数的手工设置以及结果集的检索。MyBatis 使用简单的 XML或注解用于配置和原始映射，将接口和 Java 的POJOs（Plain Old Java Objects，普通的 Java对象）映射成数据库中的记录。">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MyBastis环境搭建以及单表CURD">
+<meta name="twitter:description" content="MyBatis MyBatis 是支持普通 SQL查询，存储过程和高级映射的优秀持久层框架。MyBatis 消除了几乎所有的JDBC代码和参数的手工设置以及结果集的检索。MyBatis 使用简单的 XML或注解用于配置和原始映射，将接口和 Java 的POJOs（Plain Old Java Objects，普通的 Java对象）映射成数据库中的记录。">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://localhost:4000/"/>
+
+
+
+
+
+  <title>MyBastis环境搭建以及单表CURD | Padcn</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Padcn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">start now.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2017/05/12/MyBatisSingleTable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Padcn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Padcn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            MyBastis环境搭建以及单表CURD
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-12T00:00:00+08:00">
+                2017-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1 id="mybatis">MyBatis</h1>
+<p>MyBatis 是支持普通 SQL查询，存储过程和高级映射的优秀持久层框架。MyBatis 消除了几乎所有的JDBC代码和参数的手工设置以及结果集的检索。MyBatis 使用简单的 XML或注解用于配置和原始映射，将接口和 Java 的POJOs（Plain Old Java Objects，普通的 Java对象）映射成数据库中的记录。</p>
+
+<h2 id="1-相关jar包下载并且导入项目">1. 相关jar包下载并且导入项目</h2>
+
+<p>https://github.com/mybatis/mybatis-3/releases</p>
+
+<h2 id="2-配置核心配置文件">2. 配置核心配置文件</h2>
+<blockquote>
+  <p>如果下载的是source code可以在下面目录找到核心配置文件模板：<br />
+mybatis-*/src/test/java/org/apache/ibatis/submitted/complex_property/Configuration.xml</p>
+</blockquote>
+
+<p>@conf.xml(这里文件名可以自己取，主要是后续自己通过方法加载)</p>
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21</pre></td><td class="code"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="cp">&lt;!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span>
+<span class="nt">&lt;configuration&gt;</span>
+    <span class="nt">&lt;environments</span> <span class="na">default=</span><span class="s">"development"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;environment</span> <span class="na">id=</span><span class="s">"development"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;transactionManager</span> <span class="na">type=</span><span class="s">"JDBC"</span> <span class="nt">/&gt;</span>
+            <span class="c">&lt;!-- 配置数据库连接信息 --&gt;</span>
+            <span class="nt">&lt;dataSource</span> <span class="na">type=</span><span class="s">"POOLED"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"driver"</span> <span class="na">value=</span><span class="s">"com.mysql.jdbc.Driver"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"url"</span> <span class="na">value=</span><span class="s">"jdbc:mysql://localhost:3306/mybatisDB"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"username"</span> <span class="na">value=</span><span class="s">"root"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"password"</span> <span class="na">value=</span><span class="s">"123"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/dataSource&gt;</span>
+        <span class="nt">&lt;/environment&gt;</span>
+    <span class="nt">&lt;/environments&gt;</span>
+    <span class="nt">&lt;mappers&gt;</span>
+    	 <span class="c">&lt;!--第一种是通过xml进行映射加载的xml，第二种是通过注解方式映射加载的是接口--&gt;</span>
+	     <span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">"com/pad/mapping/cardMapper.xml"</span><span class="nt">/&gt;</span>
+	     <span class="nt">&lt;mapper</span> <span class="na">class=</span><span class="s">"com.pad.mapping.IUserMapper"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/mappers&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h2 id="3-在数据库中建立对应表并建立实体类">3. 在数据库中建立对应表并建立实体类</h2>
+<div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code><span class="k">create</span> <span class="k">table</span> <span class="k">user</span><span class="p">(</span>
+<span class="n">u_id</span> <span class="n">int</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">auto_increment</span><span class="p">,</span>
+<span class="n">u_name</span> <span class="n">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="n">u_age</span> <span class="n">int</span>
+<span class="p">);</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>@User.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25</pre></td><td class="code"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">u_id</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">u_name</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">u_age</span><span class="o">;</span>
+	
+	
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getU_id</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">u_id</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setU_id</span><span class="o">(</span><span class="kt">int</span> <span class="n">uId</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">u_id</span> <span class="o">=</span> <span class="n">uId</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">getU_name</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">u_name</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setU_name</span><span class="o">(</span><span class="n">String</span> <span class="n">uName</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">u_name</span> <span class="o">=</span> <span class="n">uName</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getU_age</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">u_age</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setU_age</span><span class="o">(</span><span class="kt">int</span> <span class="n">uAge</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">u_age</span> <span class="o">=</span> <span class="n">uAge</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+</div>
+
+<h2 id="4-建立映射关系">4. 建立映射关系</h2>
+<p>这里有2种方式注解方式和xml配置方式，因为下面将使用注解方式这里就使用xml配置方式：</p>
+
+<p>@userMapper.xml</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18</pre></td><td class="code"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<span class="cp">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span>
+<span class="c">&lt;!--命名空间可以自定义，但是习惯上是包名+映射文件名，可以保证唯一--&gt;</span>
+ <span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">"com.pad.mapping.userMapper"</span><span class="nt">&gt;</span>
+ 	<span class="c">&lt;!--依次为指定id到时候调用，指定参数类型（这里u_id为int所以是int），指定返回类型，这里返回的是User类--&gt;</span>
+ 	<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"getUser"</span> <span class="na">parameterType=</span><span class="s">"int"</span> <span class="na">resultType=</span><span class="s">"com.pad.entity.User"</span><span class="nt">&gt;</span>
+    	select u_id,u_name,u_age from user where u_id=#{u_id};
+    <span class="nt">&lt;/select&gt;</span>
+    <span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">"addUser"</span> <span class="na">parameterType=</span><span class="s">"com.pad.entity.User"</span> <span class="na">resultType=</span><span class="s">"int"</span><span class="nt">&gt;</span>
+    	insert into user(u_name,u_age) values(#{u_name},#{u_age});
+    <span class="nt">&lt;/insert&gt;</span>
+    <span class="nt">&lt;delete</span> <span class="na">id=</span><span class="s">"deleteUser"</span> <span class="na">parameterType=</span><span class="s">"int"</span> <span class="na">resultType=</span><span class="s">"int"</span><span class="nt">&gt;</span>
+    	delete from user where u_id=#{u_id}
+    <span class="nt">&lt;/delete&gt;</span>
+    <span class="nt">&lt;update</span> <span class="na">id=</span><span class="s">"updateUser"</span> <span class="na">parameterType=</span><span class="s">"com.pad.entity.User"</span> <span class="na">resultType=</span><span class="s">"int"</span><span class="nt">&gt;</span>
+    	update user set u_name=#{u_name},u_age=#{u_age} where u_id=#{u_id}
+    <span class="nt">&lt;/update&gt;</span>
+ <span class="nt">&lt;/mapper&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<blockquote>
+  <p>如果觉得写类型时打全路径比较麻烦可以考虑取别名，在核心配置文件conf.xml的configuration标签范围内使用
+```</p>
+</blockquote>
+<typeAliases>  
+    <typeAlias type="com.pad.entity.User" alias="_User" />
+    <!--
+    	如需为包下面所有设置别名则如下，默认会为这个包下所有设置别名，别名即类名
+    	<package name="com.pad.entity"/>
+    -->
+</typeAliases>
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code>&gt; 之后就可以愉快的直接使用 _User 替代 com.pad.entity.User 了
+
+写完配置文件之后再conf.xml中引入
+```xml
+&lt;mappers&gt;
+	&lt;mapper resource="com/pad/mapping/userMapper.xml" /&gt;
+&lt;/mappers&gt;
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h2 id="5-编写测试代码">5. 编写测试代码</h2>
+
+<p>MyBatis 向DAO层提供sqlsession对象
+SqlSession作用</p>
+<ol>
+  <li>向SQL语句传入参数</li>
+  <li>执行SQL语句</li>
+  <li>获取执行SQL语句的结果</li>
+  <li>事务的控制</li>
+</ol>
+
+<p>获取SqlSession
+1.通过配置文件获取数据库连接相关信息
+2.通过配置文件构建SqlSessionFactory
+3.通过SqlSessionFactory打开数据库会话</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10</pre></td><td class="code"><pre class="highlight"><code><span class="cm">/*获取SqlSession函数
+ *抛出IOException，在调用时try...catch 在finally中close()
+ */</span>
+<span class="kd">public</span> <span class="n">SqlSession</span> <span class="nf">getSqlSession</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">{</span>
+    <span class="n">Reader</span> <span class="n">reader</span><span class="o">=</span><span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsReader</span><span class="o">(</span><span class="s">"com/imooc/confg/xxx.xml"</span><span class="o">);</span>
+    <span class="n">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span><span class="o">=</span><span class="k">new</span> <span class="n">SqlSessionFactoryBuilder</span><span class="o">().</span><span class="na">build</span><span class="o">(</span><span class="n">reader</span><span class="o">);</span>
+    <span class="n">SqlSession</span> <span class="n">sqlSession</span><span class="o">=</span><span class="n">sqlSessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+
+    <span class="k">return</span> <span class="n">sqlSession</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>@TestMB.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22</pre></td><td class="code"><pre class="highlight"><code>	<span class="nd">@Before</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">{</span>
+    	<span class="c1">//加载配置文件，build方法可以接收Reader或者InputStream，用以产生XMLConfigBuilder对象</span>
+		<span class="n">Reader</span> <span class="n">reader</span><span class="o">=</span><span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsReader</span><span class="o">(</span><span class="s">"conf.xml"</span><span class="o">);</span>
+		<span class="n">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span><span class="o">=</span><span class="k">new</span> <span class="n">SqlSessionFactoryBuilder</span><span class="o">().</span><span class="na">build</span><span class="o">(</span><span class="n">reader</span><span class="o">);</span>
+		<span class="n">session</span><span class="o">=</span><span class="n">sqlSessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span><span class="c1">//可以接收一个boolean值，如为true则自动commit</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@After</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">destory</span><span class="o">(){</span>
+		<span class="n">session</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+		<span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+	<span class="o">}</span>
+    
+	<span class="nd">@Test</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testAddU</span><span class="o">(){</span>
+    	<span class="n">String</span> <span class="n">statement</span><span class="o">=</span><span class="s">"com.pad.mapping.addUser"</span><span class="o">;</span>
+		<span class="n">User</span> <span class="n">u</span><span class="o">=</span><span class="n">session</span><span class="o">.</span><span class="na">selectOne</span><span class="o">(</span><span class="n">statement</span><span class="o">,</span><span class="mi">1</span><span class="o">);</span>
+		<span class="n">u</span><span class="o">.</span><span class="na">setU_name</span><span class="o">(</span><span class="s">"xiaoming"</span><span class="o">);</span>
+		<span class="n">u</span><span class="o">.</span><span class="na">setU_age</span><span class="o">(</span><span class="mi">18</span><span class="o">);</span>
+		<span class="n">user</span><span class="o">.</span><span class="na">addUser</span><span class="o">(</span><span class="n">u</span><span class="o">);</span>
+	<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h1 id="注解接口方式实现curd">注解+接口方式实现CURD</h1>
+<p>实体类@User.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25</pre></td><td class="code"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">u_id</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">u_name</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">u_age</span><span class="o">;</span>
+	
+	
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getU_id</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">u_id</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setU_id</span><span class="o">(</span><span class="kt">int</span> <span class="n">uId</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">u_id</span> <span class="o">=</span> <span class="n">uId</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">getU_name</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">u_name</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setU_name</span><span class="o">(</span><span class="n">String</span> <span class="n">uName</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">u_name</span> <span class="o">=</span> <span class="n">uName</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getU_age</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">u_age</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setU_age</span><span class="o">(</span><span class="kt">int</span> <span class="n">uAge</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">u_age</span> <span class="o">=</span> <span class="n">uAge</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+</div>
+
+<p>接口 @IUserMapper.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25</pre></td><td class="code"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.ibatis.annotations.Delete</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.ibatis.annotations.Insert</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.ibatis.annotations.Select</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.ibatis.annotations.Update</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.pad.entity.User</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IUserMapper</span> <span class="o">{</span>
+
+	<span class="nd">@Insert</span><span class="o">(</span><span class="s">"insert into user(u_name,u_age) values(#{u_name},#{u_age})"</span><span class="o">)</span>
+	<span class="kt">int</span> <span class="nf">addUser</span><span class="o">(</span><span class="n">User</span> <span class="n">u</span><span class="o">);</span>
+	
+	<span class="nd">@Delete</span><span class="o">(</span><span class="s">"delete from user where u_id=#{u_id}"</span><span class="o">)</span>
+	<span class="kt">int</span> <span class="nf">deleteUser</span><span class="o">(</span><span class="n">User</span> <span class="n">u</span><span class="o">);</span>
+	
+	<span class="nd">@Update</span><span class="o">(</span><span class="s">"update user set u_name=#{u_name},u_age=#{u_age} where u_id=#{u_id}"</span><span class="o">)</span>
+	<span class="kt">int</span> <span class="nf">updateUser</span><span class="o">(</span><span class="n">User</span> <span class="n">u</span><span class="o">);</span>
+	
+	<span class="nd">@Select</span><span class="o">(</span><span class="s">"select u_id,u_name,u_age from user where u_id=#{u_id}"</span><span class="o">)</span>
+	<span class="n">User</span> <span class="nf">selectUser</span><span class="o">(</span><span class="kt">int</span> <span class="n">u_id</span><span class="o">);</span>
+	
+	<span class="nd">@Select</span><span class="o">(</span><span class="s">"select u_id,u_name,u_age from user"</span><span class="o">)</span>
+	<span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">selectUsers</span><span class="o">();</span>
+<span class="o">}</span>
+
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>测试用例@TestMB.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47<br/>48<br/>49<br/>50<br/>51<br/>52<br/>53<br/>54<br/>55<br/>56<br/>57<br/>58<br/>59<br/>60<br/>61<br/>62<br/>63<br/>64<br/>65<br/>66<br/>67<br/>68<br/>69<br/>70<br/>71<br/>72<br/>73<br/>74<br/>75<br/>76</pre></td><td class="code"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.Reader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.ibatis.io.Resources</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSession</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSessionFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSessionFactoryBuilder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.After</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.Before</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.pad.entity.Card</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.pad.entity.User</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.pad.mapping.IUserMapper</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestMB</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="n">SqlSession</span> <span class="n">session</span><span class="o">;</span>
+	
+	<span class="nd">@Before</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">{</span>
+<span class="c1">//		String res="mybatis.xml";</span>
+<span class="c1">//		InputStream is=TestMB.class.getClassLoader().getResourceAsStream(res);</span>
+<span class="c1">//		SqlSessionFactory sessionfactory=new SqlSessionFactoryBuilder().build(is);</span>
+<span class="c1">//		SqlSession session=sessionfactory.openSession();</span>
+		
+		<span class="n">Reader</span> <span class="n">reader</span><span class="o">=</span><span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsReader</span><span class="o">(</span><span class="s">"conf.xml"</span><span class="o">);</span>
+		<span class="n">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span><span class="o">=</span><span class="k">new</span> <span class="n">SqlSessionFactoryBuilder</span><span class="o">().</span><span class="na">build</span><span class="o">(</span><span class="n">reader</span><span class="o">);</span>
+		<span class="n">session</span><span class="o">=</span><span class="n">sqlSessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@After</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">destory</span><span class="o">(){</span>
+		<span class="n">session</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+		<span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+	<span class="o">}</span>
+	
+	
+	<span class="nd">@Test</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testAddU</span><span class="o">(){</span>
+		<span class="n">IUserMapper</span> <span class="n">user</span><span class="o">=(</span><span class="n">IUserMapper</span><span class="o">)</span><span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">IUserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+		<span class="n">User</span> <span class="n">u</span><span class="o">=</span><span class="k">new</span> <span class="n">User</span><span class="o">();</span>
+		<span class="n">u</span><span class="o">.</span><span class="na">setU_name</span><span class="o">(</span><span class="s">"xiaoming"</span><span class="o">);</span>
+		<span class="n">u</span><span class="o">.</span><span class="na">setU_age</span><span class="o">(</span><span class="mi">18</span><span class="o">);</span>
+		<span class="n">user</span><span class="o">.</span><span class="na">addUser</span><span class="o">(</span><span class="n">u</span><span class="o">);</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@Test</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testDeleteU</span><span class="o">(){</span>
+		<span class="n">IUserMapper</span> <span class="n">user</span><span class="o">=(</span><span class="n">IUserMapper</span><span class="o">)</span><span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">IUserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+		<span class="n">User</span> <span class="n">u</span><span class="o">=</span><span class="k">new</span> <span class="n">User</span><span class="o">();</span>
+		<span class="n">u</span><span class="o">.</span><span class="na">setU_id</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+		<span class="n">u</span><span class="o">.</span><span class="na">setU_name</span><span class="o">(</span><span class="s">"xiaoming"</span><span class="o">);</span>
+		<span class="n">u</span><span class="o">.</span><span class="na">setU_age</span><span class="o">(</span><span class="mi">18</span><span class="o">);</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">deleteUser</span><span class="o">(</span><span class="n">u</span><span class="o">));</span>
+	<span class="o">}</span>
+	<span class="nd">@Test</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUpdateU</span><span class="o">(){</span>
+		<span class="n">IUserMapper</span> <span class="n">user</span><span class="o">=(</span><span class="n">IUserMapper</span><span class="o">)</span><span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">IUserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+		<span class="n">User</span> <span class="n">u</span><span class="o">=</span><span class="k">new</span> <span class="n">User</span><span class="o">();</span>
+		<span class="n">u</span><span class="o">.</span><span class="na">setU_id</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+		<span class="n">u</span><span class="o">.</span><span class="na">setU_name</span><span class="o">(</span><span class="s">"烫烫烫"</span><span class="o">);</span>
+		<span class="n">u</span><span class="o">.</span><span class="na">setU_age</span><span class="o">(</span><span class="mi">999</span><span class="o">);</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">updateUser</span><span class="o">(</span><span class="n">u</span><span class="o">));</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@Test</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectU</span><span class="o">(){</span>
+		<span class="n">IUserMapper</span> <span class="n">user</span><span class="o">=(</span><span class="n">IUserMapper</span><span class="o">)</span><span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">IUserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">selectUser</span><span class="o">(</span><span class="mi">2</span><span class="o">));</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@Test</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectUs</span><span class="o">(){</span>
+		<span class="n">IUserMapper</span> <span class="n">user</span><span class="o">=(</span><span class="n">IUserMapper</span><span class="o">)</span><span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">IUserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">selectUsers</span><span class="o">());</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>conf.xml引入映射</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;mapper</span> <span class="na">class=</span><span class="s">"com.pad.mapping.IUserMapper"</span><span class="nt">/&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h1 id="因为字段名和属性不相同导致查询不出结果问题">因为字段名和属性不相同导致查询不出结果问题</h1>
+<p>在一些情况下表中字段名和实体类中属性名不一致，如User表字段为u_id,u_name， User类属性为 uid,uname。在这种情况下直接使用select* 是查询不出结果的。有以下两种方式解决。</p>
+<h2 id="1-为查询字段取别名">1. 为查询字段取别名</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="k">select</span> <span class="n">u_id</span> <span class="n">uid</span><span class="p">,</span><span class="n">u_name</span> <span class="n">uname</span> <span class="k">from</span> <span class="k">user</span><span class="p">;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h2 id="2-为字段和属性建立映射">2. 为字段和属性建立映射</h2>
+<p>建立之后就可以使用select *来查找(当然select * 性能上比较差，还是手写字段名把)</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;resultMap</span> <span class="na">type=</span><span class="s">"com.pad.entity.User"</span> <span class="na">id=</span><span class="s">"userResultMap"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;id</span> <span class="na">property=</span><span class="s">"uid"</span> <span class="na">column=</span><span class="s">"u_id"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">"uname"</span> <span class="na">column=</span><span class="s">"u_name"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/resultMap&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h1 id="一些配置方面优化">一些配置方面优化</h1>
+
+<blockquote>
+  <p>conf.xml对于标签的顺序是有规定的，以下是当顺序出错时提示的格式信息： (properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,reflectorFactory?,plugins?,environments?,databaseIdProvider?,mappers?)</p>
+</blockquote>
+
+<h2 id="提取分离数据库配置信息">提取分离数据库配置信息</h2>
+<p>可以把核心配置文件中的数据库相关信息提取出来，放入一个.properties文件中例如db.properties文件
+@db.properties</p>
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code>driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/mybatisdb
+name=root
+password=123
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>在conf.xml中引入</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;properties</span> <span class="na">resource=</span><span class="s">"db.properties"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;environments</span> <span class="na">default=</span><span class="s">"development"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;environment</span> <span class="na">id=</span><span class="s">"development"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;transactionManager</span> <span class="na">type=</span><span class="s">"JDBC"</span> <span class="nt">/&gt;</span>
+            <span class="c">&lt;!-- 配置数据库连接信息 --&gt;</span>
+            <span class="nt">&lt;dataSource</span> <span class="na">type=</span><span class="s">"POOLED"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"driver"</span> <span class="na">value=</span><span class="s">"${driver}"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"url"</span> <span class="na">value=</span><span class="s">"${url}"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"username"</span> <span class="na">value=</span><span class="s">"${name}"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"password"</span> <span class="na">value=</span><span class="s">"${password}"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/dataSource&gt;</span>
+        <span class="nt">&lt;/environment&gt;</span>
+    <span class="nt">&lt;/environments&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<blockquote>
+  <p>关于在实体类映射文件中使用的sql #{属性名}与${属性名}的区别，#{}方式比较安全，可以防止sql注入，估计调的是peraparedStatement，第二种可以被sql注入，估计是Statement。</p>
+</blockquote>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/MyBatis" rel="tag"># MyBatis</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/14/MyBatis%E8%A1%A5%E5%85%85/" rel="next" title="Mybatis动态sql拼接以及使用log4j">
+                <i class="fa fa-chevron-left"></i> Mybatis动态sql拼接以及使用log4j
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/12/MyBatisMutiTable/" rel="prev" title="MyBatis多表关联以及调用存储过程">
+                MyBatis多表关联以及调用存储过程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="Padcn" />
+          <p class="site-author-name" itemprop="name">Padcn</p>
+           
+              <p class="site-description motion-element" itemprop="description">...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-1"> <a class="nav-link" href="#mybatis"> <span class="nav-number">1</span> <span class="nav-text">MyBatis</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-2"> <a class="nav-link" href="#1-相关jar包下载并且导入项目"> <span class="nav-number">1.1</span> <span class="nav-text">1. 相关jar包下载并且导入项目</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2-配置核心配置文件"> <span class="nav-number">1.2</span> <span class="nav-text">2. 配置核心配置文件</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#3-在数据库中建立对应表并建立实体类"> <span class="nav-number">1.3</span> <span class="nav-text">3. 在数据库中建立对应表并建立实体类</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#4-建立映射关系"> <span class="nav-number">1.4</span> <span class="nav-text">4. 建立映射关系</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#5-编写测试代码"> <span class="nav-number">1.5</span> <span class="nav-text">5. 编写测试代码</span> </a> </li> </ol> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#注解接口方式实现curd"> <span class="nav-number">2</span> <span class="nav-text">注解+接口方式实现CURD</span> </a> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#因为字段名和属性不相同导致查询不出结果问题"> <span class="nav-number">3</span> <span class="nav-text">因为字段名和属性不相同导致查询不出结果问题</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-2"> <a class="nav-link" href="#1-为查询字段取别名"> <span class="nav-number">3.1</span> <span class="nav-text">1. 为查询字段取别名</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#2-为字段和属性建立映射"> <span class="nav-number">3.2</span> <span class="nav-text">2. 为字段和属性建立映射</span> </a> </li> </ol> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#一些配置方面优化"> <span class="nav-number">4</span> <span class="nav-text">一些配置方面优化</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-2"> <a class="nav-link" href="#提取分离数据库配置信息"> <span class="nav-number">4.1</span> <span class="nav-text">提取分离数据库配置信息</span> </a> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Padcn</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://jekyllrb.com">Jekyll</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+

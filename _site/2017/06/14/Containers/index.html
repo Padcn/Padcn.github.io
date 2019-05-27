@@ -1,0 +1,1113 @@
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaSE," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Padcn" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JavaSE集合 http://blog.csdn.net/zsw101259/article/details/7570033 http://blog.csdn.net/u014136713/article/details/52089156">
+<meta name="keywords" content="JavaSE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaSE集合">
+<meta property="og:url" content="http://localhost:4000/2017/06/14/Containers/">
+<meta property="og:site_name" content="Padcn">
+<meta property="og:description" content="JavaSE集合 http://blog.csdn.net/zsw101259/article/details/7570033 http://blog.csdn.net/u014136713/article/details/52089156">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201205/15/1337080070_5795.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaSE集合">
+<meta name="twitter:description" content="JavaSE集合 http://blog.csdn.net/zsw101259/article/details/7570033 http://blog.csdn.net/u014136713/article/details/52089156">
+<meta name="twitter:image" content="http://img.my.csdn.net/uploads/201205/15/1337080070_5795.jpg">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://localhost:4000/"/>
+
+
+
+
+
+  <title>JavaSE集合 | Padcn</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Padcn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">start now.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2017/06/14/Containers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Padcn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Padcn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            JavaSE集合
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-14T00:00:00+08:00">
+                2017-06-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1 id="javase集合">JavaSE集合</h1>
+<blockquote>
+  <p>http://blog.csdn.net/zsw101259/article/details/7570033
+http://blog.csdn.net/u014136713/article/details/52089156</p>
+</blockquote>
+
+<p><img src="http://img.my.csdn.net/uploads/201205/15/1337080070_5795.jpg" alt="CollectionMap" /></p>
+
+<p>java中集合的关系大致上就是图中所示。</p>
+
+<p>List和Set实现了Colection接口，</p>
+<h1 id="collection">Collection</h1>
+<p>Collection接口继承了Iterable接口，因此可以使用迭代器进行遍历，是List和Set的上层。</p>
+
+<p>其中规定了一些常用的集合需要的方法，：</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12</pre></td><td class="code"><pre class="highlight"><code>  <span class="kt">boolean</span> <span class="n">add</span><span class="err">（</span><span class="n">object</span> <span class="n">o</span><span class="err">）</span>
+  <span class="kt">boolean</span> <span class="n">remove</span><span class="err">（</span><span class="n">object</span> <span class="n">o</span><span class="err">）</span>
+  <span class="kt">int</span> <span class="nf">size</span><span class="o">()</span>
+  <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="o">()</span>
+  <span class="kt">boolean</span> <span class="nf">contains</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span>
+  <span class="n">Iterator</span> <span class="nf">iterator</span><span class="o">()</span>
+  <span class="kt">boolean</span> <span class="nf">containsAll</span><span class="o">(</span><span class="n">Collection</span> <span class="n">c</span><span class="o">)</span>
+  <span class="kt">boolean</span> <span class="nf">addAll</span><span class="o">(</span><span class="n">Collection</span> <span class="n">c</span><span class="o">)</span>
+  <span class="kt">void</span> <span class="nf">clear</span><span class="o">()</span>
+  <span class="kt">void</span> <span class="nf">removeAll</span><span class="o">(</span><span class="n">Collection</span> <span class="n">c</span><span class="o">)</span> <span class="err">去除集合</span><span class="n">c</span><span class="err">中包含的元素</span>
+  <span class="kt">void</span> <span class="nf">retainAll</span><span class="o">(</span><span class="n">Collection</span> <span class="n">c</span><span class="o">)</span> <span class="err">去除集合</span><span class="n">c</span><span class="err">中不包含的元素</span>
+  <span class="n">Object</span><span class="o">[]</span> <span class="nf">toArray</span><span class="o">()</span> <span class="err">将集合转换为</span><span class="n">array</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>Collection中不提供get方法，如果要遍历Collection中的元素则需要使用iterator。</p>
+
+<p>Collection的Iterator方法返回一个Iterator，Iterator接口以迭代的方式逐一的访问元素，与c++中的iterator不同的时这里的iterator并不是指向元素的，而是类似于处在两个元素之间的位置，调用next()方法越过下一个元素，并且返回那个元素。hasNext()返回是否存在下一个元素，remove()方法删除上一次访问的元素。</p>
+
+<blockquote>
+  <p>迭代器是 故障快速修复（fail-fast）的。这意味着，当另一个线程修改底层集合的时候，如
+果正在用 Iterator 遍历集合，那么，Iterator就会抛出 
+ConcurrentModificationException （另一种 RuntimeException异常）异常并立刻失败</p>
+</blockquote>
+
+<p>## List
+ List接口继承自Collection接口，允许重复元素并且有序。</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10</pre></td><td class="code"><pre class="highlight"><code> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span><span class="n">Object</span> <span class="n">element</span><span class="o">)</span>
+ <span class="kt">boolean</span> <span class="nf">addAll</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span><span class="n">Collection</span> <span class="n">c</span><span class="o">)</span> <span class="c1">//将c中元素加入到index位置</span>
+ <span class="n">Object</span> <span class="nf">get</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span>
+ <span class="kt">int</span> <span class="nf">indexOf</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span>
+ <span class="kt">int</span> <span class="nf">lastIndexOf</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span>
+ <span class="n">Object</span> <span class="nf">remove</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span>
+ <span class="n">Object</span> <span class="nf">set</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span><span class="n">Object</span> <span class="n">element</span><span class="o">)</span> <span class="c1">//设置指定位置，返回旧元素</span>
+ <span class="n">ListIterator</span> <span class="nf">listIterator</span><span class="o">()</span>
+ <span class="n">ListIterator</span> <span class="nf">listIterator</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="err">返回列表迭代器，从</span><span class="n">index</span><span class="err">位置开始访问</span>
+ <span class="n">List</span> <span class="nf">subList</span><span class="o">(</span><span class="kt">int</span> <span class="n">form</span> <span class="n">Index</span><span class="o">,</span><span class="kt">int</span> <span class="n">toIndex</span><span class="o">)</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>以及一些从Collection中继承的方法。
+其中listIterator()方法返回的是ListIterator，继承自Iterator，对比Iterator不同在于可以双向移动，Iterator只能使用next()进行向后遍历，ListIterator中可以使用perivious()方法进行向前遍历。相应的hasPervious()判断是否到达头部，previousIndex()返回下次调用previous()的索引。add(Object o)添加元素和set(Object o)设置元素。</p>
+
+<blockquote>
+  <p>add元素后使用元素会被增加到隐式光标前。</p>
+</blockquote>
+
+<p>对于LinkedList和ArrayList来说，如果需要随机访问，而不需要在尾部以外的地方插入数据的话，使用ArrayList比较好，而如果只需要按照顺序进行访问数据，并且需要在中间灵活的插入数据，则使用LinkedList比较好。两者都实现了Cloneable接口。</p>
+<h3 id="linkedlist">LinkedList</h3>
+<p>链表常用方法：</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6</pre></td><td class="code"><pre class="highlight"><code> <span class="kt">void</span> <span class="nf">addFirst</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span>
+ <span class="kt">void</span> <span class="nf">addLast</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span>
+ <span class="n">Object</span> <span class="nf">getFirst</span><span class="o">()</span>
+ <span class="n">Object</span> <span class="nf">getLast</span><span class="o">()</span>
+ <span class="n">Object</span> <span class="nf">removeFirst</span><span class="o">()</span>
+ <span class="n">Object</span> <span class="nf">removeLast</span><span class="o">()</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<h3 id="arraylist">ArrayList</h3>
+
+<p>动态数组ArrayList类封装了一个动态分配的Object[]数组，每个ArrayList对象有一个capacity。这个capacity表示存储列表中元素的容器打容量。当元素添加到ArrayList时，其capacity在常量时间内自动增加。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">ensureCapacity</span><span class="o">(</span><span class="kt">int</span> <span class="n">minCapacity</span><span class="o">)</span> <span class="err">将</span><span class="n">ArrayList</span><span class="err">对象容量增加</span><span class="n">minCapacity</span>
+<span class="kt">void</span> <span class="nf">trimToSize</span><span class="o">()</span><span class="err">整理</span><span class="n">ArrayList</span><span class="err">对象容量为当前列表大小，减少对象存储空间。</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<h3 id="vector">Vector</h3>
+<p>Vector是一种老的动态数组，是线程同步的，效率很低，一般不赞成使用。</p>
+
+<p>对比ArrayList来讲，区别在于他是线程安全的，看源码中可以知道，他每个方法都加类synchronized，但是就是因为这样所以对比ArrayList在非多线程中他的效率是比较低的，而由于只是方法加了锁，并不能保证复合操作的线程安全性，所以应该尽量少用。</p>
+<blockquote>
+  <p>10、为什么Vector类认为是废弃的或者是非官方地不推荐使用？或者说为什么我们应该一直使用ArrayList而不是Vector</p>
+</blockquote>
+
+<blockquote>
+  <p>　你应该使用ArrayList而不是Vector是因为默认情况下你是非同步访问的，Vector同步了每个方法，你几乎从不要那样做，通常有想要同步的是整个操作序列。同步单个的操作也不安全（如果你迭代一个Vector，你还是要加锁，以避免其它线程在同一时刻改变集合）.而且效率更慢。当然同样有锁的开销即使你不需要，这是个很糟糕的方法在默认情况下同步访问。你可以一直使用Collections.sychronizedList来装饰一个集合。</p>
+</blockquote>
+
+<blockquote>
+  <p>　　事实上Vector结合了“可变数组”的集合和同步每个操作的实现。这是另外一个设计上的缺陷。Vector还有些遗留的方法在枚举和元素获取的方法，这些方法不同于List接口，如果这些方法在代码中程序员更趋向于想用它。尽管枚举速度更快，但是他们不能检查如果集合在迭代的时候修改了，这样将导致问题。尽管以上诸多原因，Oracle也从没宣称过要废弃Vector。
+http://blog.csdn.net/u014136713/article/details/52089156</p>
+</blockquote>
+
+<p>## Set
+ Set接口继承自Coolection，常见的实现有HashSet和TreeSet,set集合中不允许出现重复。
+ ### HashSet
+ HashSet是无序的
+ ### TreeSet
+ TreeSet是有序的。</p>
+
+<p>### LinkedHashSet
+ LinkedHashSet扩展了HashSet，如果想跟踪添加给HashSet的元素的顺序，LinkedHashSet实
+现会有帮助。 LinkedHashSet的迭代器按照元素的插入顺序来访问各个元素。它提供了一个
+可以快速访问各个元素的有序集合。同时，它也增加了实现的代价，因为 哈希表元中的各个
+元素是通过双重链接式列表链接在一起的。</p>
+
+<p>## Queue
+ 队列尊需FIFO先进先出，LinkedList实现类Queue接口，所以LinkedList也可以被作为Queue来使用</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6</pre></td><td class="code"><pre class="highlight"><code> <span class="kt">boolean</span> <span class="nf">add</span><span class="o">(</span><span class="n">E</span> <span class="n">e</span><span class="o">);</span>
+ <span class="kt">boolean</span> <span class="nf">offer</span><span class="o">(</span><span class="n">E</span> <span class="n">e</span><span class="o">);</span> <span class="c1">//功能同add，但是在受限制容量的情况下offer比较好。</span>
+  <span class="n">E</span> <span class="nf">remove</span><span class="o">();</span><span class="c1">//检索并且删除队列头部，如果队列是空抛出异常</span>
+  <span class="n">E</span> <span class="nf">poll</span><span class="o">();</span><span class="c1">//检索并且删除队列头部，如果队列是空返回null</span>
+  <span class="n">E</span> <span class="nf">element</span><span class="o">();</span><span class="c1">//检索但不删除队列头部，如果队列是空抛出异常</span>
+  <span class="n">E</span> <span class="nf">peek</span><span class="o">();</span> <span class="c1">//检索但不删除队列头部，如果队列是空返回null</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>### PriorityQueue</p>
+<blockquote>
+  <p>http://blog.csdn.net/hiphopmattshi/article/details/7334487</p>
+</blockquote>
+
+<p>java5中加入。
+ 通过Comparator进行排序，默认按自然顺序排列,也就是数字默认是小的在队列头，字符串则按字典序排列。如果需要自定义，则需要自己实现Comparator接口，作为参数传入PriorityQueue的构造器中。
+ # Map
+ Map接口用于维护键值对，描述了从不重复的键到值的映射。</p>
+
+<p>常用方法：</p>
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23</pre></td><td class="code"><pre class="highlight"><code> Object put(Object key, Object value) 
+ 
+Object remove(Object key)
+ 
+void putAll(Map t)  // 将来自特定映像的所有元素添加给该映像 
+ 
+void clear() //从映像中删除所有映射 
+
+Object get(Object key) //获得与关键字key相关的值，并且返回与关键字key相关的对象，如果没有在该映像中找到该关键字，则返回null 
+ 
+boolean containsKey(Object key)//判断映像中是否存在关键字key 
+ 
+boolean containsValue(Object value)//判断映像中是否存在值value 
+ 
+int size()//返回当前映像中映射的数量 
+ 
+boolean isEmpty() 
+
+Set keySet() // 返回映像中所有关键字的视图集 
+  
+Collection values()//返回映像中所有值的视图集 
+ 
+Set entrySet() //返回Map.Entry对象的视图集，即映像中的关键字/值对 
+</code></pre></td></tr></tbody></table></div>
+</div>
+<blockquote>
+  <p>键和值都可以是null，但是不能把map作为键或者值添加给自身。</p>
+</blockquote>
+
+<h2 id="entry">Entry</h2>
+<p>Map的entrySet()方法返回一个实现了Map.Entry接口的对象集合，集合中每个对象都是底层Map中一个特定的键值对。</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code> <span class="n">Object</span> <span class="nf">getKey</span><span class="o">()</span> <span class="c1">//返回条目的关键字 </span>
+ 
+ <span class="n">Object</span> <span class="nf">getValue</span><span class="o">()</span> <span class="c1">//返回条目的值 </span>
+ 
+ <span class="n">Object</span> <span class="nf">setValue</span><span class="o">(</span><span class="n">Object</span> <span class="n">value</span><span class="o">)</span> <span class="c1">//将相关映像中的值改为value，并且返回旧值 </span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>## HashMap
+构造函数如下：</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</pre></td><td class="code"><pre class="highlight"><code><span class="n">HashMap</span><span class="o">()</span> <span class="c1">//构建一个空的哈希映像 </span>
+ 
+<span class="n">HashMap</span><span class="o">(</span><span class="n">Map</span> <span class="n">m</span><span class="o">)</span><span class="c1">//构建一个哈希映像，并且添加映像m的所有映射 </span>
+ 
+ <span class="n">HashMap</span><span class="o">(</span><span class="kt">int</span> <span class="n">initialCapacity</span><span class="o">)</span><span class="c1">//构建一个拥有特定容量的空的哈希映像 </span>
+ 
+ 
+<span class="n">HashMap</span><span class="o">(</span><span class="kt">int</span> <span class="n">initialCapacity</span><span class="o">,</span> <span class="kt">float</span> <span class="n">loadFactor</span><span class="o">)</span><span class="c1">//构建一个拥有特定容量和加载因子</span>
+<span class="err">的空的哈希映像</span> 
+</code></pre></td></tr></tbody></table></div>
+</div>
+<blockquote>
+  <p>HashMap和Hashtable的区别：Hashtable是个过时的集合类，在java4中被重写，实现类Map接口。</p>
+  <ol>
+    <li>HashMap和Hashtable几乎等价，除了HashMap可以接受null值和键值，而Hashtable不行。</li>
+    <li>HashMap是非synchronized，而Hashtable是synchronized，所以多个线程可以共享一个Hashtable,如果没有进行同步处理HashMap不能安全打在多线程环境下使用，所以java5提供了ConcurrentHashMap，时HashTable的替代，比Hashtable扩展性好。 所以在非多线程环境下HashMap会比HashTable效率高。</li>
+    <li>HashMap不能保证随着时间的推移Map中打元素次序是不变的。
+<br />http://www.importnew.com/7010.html</li>
+  </ol>
+</blockquote>
+
+<p>如果需要让HashMap同步可以使用</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="n">Map</span> <span class="n">m</span><span class="o">=</span><span class="n">Collections</span><span class="o">.</span><span class="na">synchronizeMap</span><span class="o">(</span><span class="n">hashMap</span><span class="o">);</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>## TreeMap
+ 对比HashMap，TreeMap是有序的，实现了SortedMap接口。</p>
+
+<p>在Map 中插入、删除和定位元素，HashMap 是最好的选择。但如果您要按自然顺序或自定义顺序遍历键，那么TreeMap会更好。使用HashMap要求添加的键类明确定义了hashCode()和 
+equals()的实现。</p>
+
+<p>TreeMap构造函数如下：</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</pre></td><td class="code"><pre class="highlight"><code><span class="c1">//TreeMap没有类似HashMap的调优选项，因为该树总处于平衡状态。 </span>
+ 
+<span class="n">TreeMap</span><span class="o">()</span>
+ 
+<span class="n">TreeMap</span><span class="o">(</span><span class="n">Map</span> <span class="n">m</span><span class="o">)</span><span class="c1">//构建一个映像树，并且添加映像m中所有元素 </span>
+ 
+<span class="n">TreeMap</span><span class="o">(</span><span class="n">Comparator</span> <span class="n">c</span><span class="o">)</span> <span class="c1">//构建一个映像树，并且使用特定的比较器对关键字进行排序 </span>
+ 
+<span class="n">TreeMap</span><span class="o">(</span><span class="n">SortedMap</span> <span class="n">s</span><span class="o">)</span> <span class="c1">//构建一个映像树，添加映像树s中所有映射，并且使用与有序映像s相同的比较器排序 </span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p># Collections和Arrays</p>
+
+<p>Collections和Arrays是提供的工具类
+ Collections中提供了一系列接受对应的容器返回一个线程安全的容器的方法如下，方法接受原容器也可以传入自定义的锁对象：</p>
+<ul>
+  <li>synchronizedCollection</li>
+  <li>synchronizedSet</li>
+  <li>synchronizedSortedSet</li>
+  <li>synchronizedNavigableSet</li>
+  <li>synchronizedList</li>
+  <li>SynchronizedRandomAccessList</li>
+  <li>synchronizedMap</li>
+  <li>synchronizedSortedMap</li>
+  <li>synchronizedNavigableMap</li>
+</ul>
+
+<p>Collections类提供的sort方法可以自定义排序规则。</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47<br/>48<br/>49<br/>50<br/>51<br/>52<br/>53<br/>54<br/>55<br/>56<br/>57<br/>58<br/>59</pre></td><td class="code"><pre class="highlight"><code> <span class="c1">//方法一：在sort中传入比较器</span>
+ <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">)</span>
+    <span class="o">{</span>
+    	<span class="n">List</span><span class="o">&lt;</span><span class="n">ObjForCompare</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">=</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ObjForCompare</span><span class="o">&gt;();</span>
+       	<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">ObjForCompare</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span><span class="s">"2"</span><span class="o">));</span>
+    	<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">ObjForCompare</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="s">"1"</span><span class="o">));</span>
+    	<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">ObjForCompare</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span><span class="s">"3"</span><span class="o">));</span>
+
+    	<span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">list</span><span class="o">,</span><span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">ObjForCompare</span><span class="o">&gt;(){</span>
+			<span class="nd">@Override</span>
+			<span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">ObjForCompare</span> <span class="n">o1</span><span class="o">,</span> <span class="n">ObjForCompare</span> <span class="n">o2</span><span class="o">)</span> <span class="o">{</span>
+				<span class="k">if</span> <span class="o">(</span><span class="n">o1</span><span class="o">.</span><span class="na">i</span><span class="o">&gt;</span><span class="n">o2</span><span class="o">.</span><span class="na">i</span><span class="o">){</span>
+					<span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+				<span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">o1</span><span class="o">.</span><span class="na">i</span><span class="o">&lt;</span><span class="n">o2</span><span class="o">.</span><span class="na">i</span><span class="o">){</span>
+						<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+				<span class="o">}</span>
+				<span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+			<span class="o">}</span>
+    	<span class="o">});</span>
+    	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">list</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="kd">class</span> <span class="nc">ObjForCompare</span><span class="o">{</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="n">i</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="n">str</span><span class="o">;</span>
+	
+	<span class="kd">public</span> <span class="nf">ObjForCompare</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kd">super</span><span class="o">();</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">str</span> <span class="o">=</span> <span class="n">str</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">str</span><span class="o">;</span>
+	<span class="o">}</span>
+    
+    <span class="c1">//方法二：直接让比较的类实现Comparator接口</span>
+    <span class="kd">class</span> <span class="nc">ObjForCompare</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">ObjForCompare</span><span class="o">&gt;{</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="n">i</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="n">str</span><span class="o">;</span>
+	
+	<span class="kd">public</span> <span class="nf">ObjForCompare</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kd">super</span><span class="o">();</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">str</span> <span class="o">=</span> <span class="n">str</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">str</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">ObjForCompare</span> <span class="n">o1</span><span class="o">,</span> <span class="n">ObjForCompare</span> <span class="n">o2</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">o1</span><span class="o">.</span><span class="na">i</span><span class="o">&gt;</span><span class="n">o2</span><span class="o">.</span><span class="na">i</span><span class="o">){</span>
+			<span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+		<span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">o1</span><span class="o">.</span><span class="na">i</span><span class="o">&lt;</span><span class="n">o2</span><span class="o">.</span><span class="na">i</span><span class="o">){</span>
+				<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+	<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>Arrays类主要提供了一些排序，查找，比较的方法，主要针对数组。</p>
+
+<p>Arrays.asList()和Collections.toArray()可以互相转换。</p>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/JavaSE" rel="tag"># JavaSE</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/16/swap/" rel="next" title="Swap">
+                <i class="fa fa-chevron-left"></i> Swap
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/13/UbuntuAddApplication/" rel="prev" title="Ubuntu增加程序到系统菜单">
+                Ubuntu增加程序到系统菜单 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="Padcn" />
+          <p class="site-author-name" itemprop="name">Padcn</p>
+           
+              <p class="site-description motion-element" itemprop="description">...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-1"> <a class="nav-link" href="#javase集合"> <span class="nav-number">1</span> <span class="nav-text">JavaSE集合</span> </a> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#collection"> <span class="nav-number">2</span> <span class="nav-text">Collection</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-2"> <a class="nav-link" href="#entry"> <span class="nav-number">2.1</span> <span class="nav-text">Entry</span> </a> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Padcn</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://jekyllrb.com">Jekyll</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+

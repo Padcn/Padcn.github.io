@@ -1,0 +1,1225 @@
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据库,db," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Padcn" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="数据库总结（索引，存储过程，函数等）">
+<meta name="keywords" content="数据库, db">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库索引存储过程视图">
+<meta property="og:url" content="http://localhost:4000/2017/04/17/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E8%A7%86%E5%9B%BE%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%87%BD%E6%95%B0%E7%AD%89%E6%80%BB%E7%BB%93/">
+<meta property="og:site_name" content="Padcn">
+<meta property="og:description" content="数据库总结（索引，存储过程，函数等）">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库索引存储过程视图">
+<meta name="twitter:description" content="数据库总结（索引，存储过程，函数等）">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://localhost:4000/"/>
+
+
+
+
+
+  <title>数据库索引存储过程视图 | Padcn</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Padcn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">start now.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2017/04/17/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E8%A7%86%E5%9B%BE%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%87%BD%E6%95%B0%E7%AD%89%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Padcn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Padcn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            数据库索引存储过程视图
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-17T00:00:00+08:00">
+                2017-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1 id="数据库总结索引存储过程函数等">数据库总结（索引，存储过程，函数等）</h1>
+
+<ul>
+  <li>
+    <p><strong>索引（index）</strong></p>
+
+    <p>给某个列，或者某些列的组合，进行添加加快查询的效率的标记。</p>
+
+    <p>作用：索引在一定条件下可以提高查询效率，但是在某些情况下可能会拖慢运行效率</p>
+
+    <p>适用场景：
+  		- 在数据量大的情况下，数据量大于10万行+的情况下比较适用。
+          - 因为创建索引开销不小，所以在数据需要频繁更改的情况下不适用。比较适合在数据不经常更改的情况。
+          - 在字段需要经常查询或者排序的情况下
+          - 查询出来结果占表的15%
+  索引分为唯一索引，集簇索引，非集簇索引。</p>
+
+    <p>索引的创建和删除</p>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建索引</span>
+  <span class="k">create</span> <span class="p">[</span><span class="k">unique</span><span class="p">]</span> <span class="k">index</span> <span class="n">index_name</span> <span class="k">on</span> <span class="k">table_name</span><span class="p">(</span><span class="n">colum_name</span><span class="p">[,</span><span class="n">cloumn_name2</span><span class="p">]);</span>
+    
+  <span class="c1">--删除索引</span>
+  <span class="k">drop</span> <span class="k">index</span> <span class="k">table_name</span><span class="p">.</span><span class="n">index_name</span><span class="p">;</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+    </div>
+
+    <blockquote>
+      <p>创建索引开销比较大，所以尽量不要多建索引
+有索引就尽量使用，用explain plan for (sql语句)可以解析sql执行，查看索引是否使用了索引。  where关键字后的索引字段不能使用函数进行处理否则不使用索引。</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p><br /></p>
+<ul>
+  <li>
+    <p><strong>视图（view）</strong></p>
+
+    <p>本质上是子查询，把子查询结果看成新表。</p>
+
+    <p>定义：是一张虚表，数据来自于表，并可对原来数据进行操作，可能包含一些实际不存在的数据</p>
+
+    <p>作用：
+  	1.作为表使用。
+  	2.隐藏一些重要数据，提升数据的安全性。
+  	3.简化数据操作的过程。</p>
+
+    <p>适用场景：
+  		- 当数据要进行复杂操作的情况下
+          - 数据比较重要且需要转换</p>
+
+    <p>视图的创建和删除</p>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建视图</span>
+  <span class="k">create</span> <span class="k">view</span> <span class="n">view_name</span> <span class="k">as</span> <span class="p">(</span><span class="k">select</span> <span class="err">结果</span><span class="p">);</span>
+    
+  <span class="c1">--删除视图</span>
+  <span class="k">drop</span> <span class="k">view</span> <span class="n">view_name</span><span class="p">;</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+    </div>
+
+    <blockquote>
+      <p>在视图中可以对数据进行直接插入，但是要在特定条件下，比如单表的视图，而且插入的数据受到实体表的约束影响。
+但是一般约定俗成，不在视图中进行数据的修改操作。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong>存储过程（procedure）</strong></p>
+
+    <p>定义：存在数据库中，比较独立的对象。主要是对数据进行复杂的过程化处理，供外部调用。</p>
+
+    <p>作用：
+  	1.封装数据库的操作，在数据库内部进行数据处理，提高数据安全性。
+  	2.在数据处理比较复杂的情况下，提高程序的性能。
+  	3.处理过程中可以结合事务，进一步提高数据的安全性。</p>
+
+    <p>适用场景：
+  		- 供外部程序直接调用
+          - 数据需要进行繁杂的处理结合事务
+          - 不适合数据库之间的移植（geshujuku）</p>
+
+    <p>存储过程的创建、使用和删除</p>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建存储过程</span>
+  <span class="k">create</span> <span class="k">procedure</span> <span class="n">procedure_name</span><span class="p">([</span><span class="n">param1</span> <span class="k">in</span> <span class="n">paramtype</span><span class="p">,[</span><span class="n">param2</span> <span class="k">out</span> <span class="n">paramtpe</span><span class="p">]])</span>
+  <span class="k">is</span><span class="p">[</span><span class="o">|</span><span class="k">as</span><span class="p">]</span>
+  <span class="p">[</span><span class="n">delare</span><span class="p">]</span>
+  <span class="k">begin</span>
+  	<span class="p">[</span><span class="k">sql</span><span class="p">]</span>
+  <span class="k">end</span><span class="p">;</span>
+  <span class="o">/</span>
+  <span class="c1">--调用存储过程</span>
+  <span class="k">exec</span> <span class="n">procedure_name</span><span class="p">([</span><span class="n">param1</span><span class="p">[,</span><span class="n">param2</span><span class="p">]]);</span> <span class="c1">--sqlplus独有exec</span>
+  <span class="k">call</span> <span class="n">procedure_name</span><span class="p">([</span><span class="n">param1</span><span class="p">[,</span><span class="n">param2</span><span class="p">]]);</span> <span class="c1">--其他程序可以调用</span>
+  <span class="c1">--删除存储过程</span>
+  <span class="k">drop</span> <span class="k">procedure</span> <span class="n">procedure_name</span><span class="p">;</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+    </div>
+
+    <blockquote>
+      <p>在存储过程中可以进行commit和rollback，但是一般不再之中进行commit和rollback。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong>函数（function）</strong></p>
+
+    <p>定义：定义在数据库中。主要是对数据进行复杂的过程化处理，供sql调用。</p>
+
+    <p>作用：
+  	1.封装数据库的操作，在数据库内部进行数据处理，提高数据安全性。
+  	2.有返回值，供sql语句调用</p>
+
+    <p>适用场景：
+  		- 需要对数据进行处理，并有结果返回，这个结果用于其他sql语句中。</p>
+
+    <p>函数的创建、使用和删除</p>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建函数</span>
+  <span class="k">create</span> <span class="n">functio</span> <span class="n">function_name</span><span class="p">([</span><span class="n">param1</span> <span class="n">paramtype</span><span class="p">,[</span><span class="n">param2</span> <span class="n">paramtpe</span><span class="p">]])</span>
+  <span class="k">return</span> <span class="n">paramtype</span>
+  <span class="k">is</span><span class="p">[</span><span class="o">|</span><span class="k">as</span><span class="p">]</span>
+  <span class="p">[</span><span class="n">delare</span><span class="p">]</span>
+  <span class="k">begin</span>
+  	<span class="p">[</span><span class="k">sql</span><span class="o">-</span><span class="err">有</span><span class="k">return</span><span class="p">]</span>
+  <span class="k">end</span><span class="p">;</span>
+  <span class="o">/</span>
+  <span class="c1">--调用函数</span>
+  <span class="k">select</span>  <span class="n">function_name</span><span class="p">([</span><span class="n">param1</span><span class="p">[,</span><span class="n">param2</span><span class="p">]])</span> <span class="k">from</span> <span class="k">table_name</span><span class="p">;</span> <span class="c1">--其他程序可以调用</span>
+  <span class="c1">--删除函数</span>
+  <span class="k">drop</span> <span class="k">function</span> <span class="n">function_name</span><span class="p">;</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+    </div>
+  </li>
+  <li>
+    <p><strong>游标（cursor）</strong></p>
+
+    <p>定义：只存在于函数或者存储过程中，类似于一个独特的变量</p>
+
+    <p>作用：
+  	内存中的一块区域,存放的是select 的结果。</p>
+
+    <p>游标的使用：
+  1.声明	2.打开	3.循环	4.关闭</p>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建函数</span>
+  <span class="k">create</span> <span class="k">procedure</span> <span class="n">function_name</span>
+  <span class="k">is</span><span class="p">[</span><span class="o">|</span><span class="k">as</span><span class="p">]</span>
+  <span class="n">v_record</span> <span class="n">emp</span><span class="o">%</span><span class="n">rowtype</span><span class="p">;</span>
+  <span class="k">cursor</span> <span class="n">c_query</span> <span class="k">is</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">emp</span><span class="p">;</span>	<span class="c1">--声明游标</span>
+  <span class="k">begin</span>
+  	<span class="n">if</span> <span class="k">not</span> <span class="n">c_query</span><span class="o">%</span><span class="n">ISOPEN</span> <span class="k">then</span>	<span class="c1">--打开游标</span>
+      	<span class="k">open</span> <span class="n">c_query</span><span class="p">;</span>
+      <span class="k">end</span> <span class="n">if</span><span class="p">;</span>
+      <span class="n">loop</span>
+      	<span class="k">fetch</span> <span class="n">c_query</span> <span class="k">into</span> <span class="n">v_record</span><span class="p">;</span>	<span class="c1">--将游标中数据存入v_record中</span>
+          <span class="n">exit</span> <span class="k">when</span> <span class="n">c_query</span><span class="o">%</span><span class="n">NOTFOUND</span><span class="p">;</span>
+          <span class="n">dbms_output</span><span class="p">.</span><span class="n">put_line</span><span class="p">(</span><span class="n">v_record</span><span class="p">.</span><span class="n">ename</span><span class="p">);</span>
+          <span class="n">dbms_output</span><span class="p">.</span><span class="n">put_line</span><span class="p">(</span><span class="n">v_record</span><span class="p">.</span><span class="n">deptno</span><span class="p">);</span>
+          <span class="n">dbms_output</span><span class="p">.</span><span class="n">put_line</span><span class="p">(</span><span class="n">v_record</span><span class="p">.</span><span class="n">sal</span><span class="p">);</span>
+      <span class="k">end</span> <span class="n">loop</span><span class="p">;</span>
+      <span class="k">close</span> <span class="n">c_query</span><span class="p">;</span>	<span class="c1">--关闭游标</span>
+  <span class="k">end</span><span class="p">;</span>
+  <span class="o">/</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+    </div>
+  </li>
+  <li>
+    <p><strong>序列（sequence）</strong></p>
+  </li>
+</ul>
+
+<p>使用场景：可以实现类似mysql的auto_increment</p>
+
+<p>序列的创建</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><pre class="highlight"><code><span class="k">Create</span> <span class="err">创建</span>
+<span class="n">Sequence</span> <span class="err">序列</span> <span class="n">seqEmop</span> <span class="err">序列名称</span>
+<span class="k">Increment</span> <span class="k">by</span> <span class="err">步长</span>
+<span class="n">Stat</span> <span class="k">with</span> <span class="mi">1</span> <span class="err">开始值</span>
+<span class="k">Maxvalue</span>  <span class="err">最大值</span>
+<span class="k">Minvalue</span>  <span class="err">最小值</span>
+ 
+<span class="k">Cycle</span> <span class="err">循环</span> <span class="n">nocycle</span> <span class="err">不循环</span>
+<span class="k">Cache</span> <span class="err">缓存</span>   <span class="k">Cache</span><span class="o">&lt;</span><span class="k">maxvalue</span><span class="o">-</span><span class="k">minvalue</span><span class="o">/</span><span class="k">increment</span> <span class="k">by</span><span class="o">//</span><span class="err">一般不采用缓存</span>
+<span class="n">Nextvalue</span> <span class="err">下一个</span>
+<span class="n">Currval</span> <span class="err">当前值</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+</div>
+<blockquote>
+  <p>序列一般不能清零，只能重新删除后新建。</p>
+</blockquote>
+
+<ul>
+  <li><strong>触发器（trigger）</strong></li>
+</ul>
+
+<p>定义:当某表中数据发生改变（insert、delete、update）时，出发相应触发器。</p>
+
+<p>场景：用来记录用户操作数据的日志表。也可以和序列组合使用实现自动递增。</p>
+
+<p>使用</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code><span class="k">create</span> <span class="n">sequence</span> <span class="n">seq_userInfo_usid</span> <span class="k">start</span> <span class="k">with</span> <span class="mi">1001</span><span class="p">;</span>
+
+<span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="n">triggle</span> <span class="n">tri_userInfo_usid</span> <span class="c1">--创建或替换触发器tri_userInfo_usid</span>
+<span class="k">before</span> <span class="k">insert</span> <span class="k">on</span> <span class="n">userInfo</span>	<span class="c1">--在向userInfo表中添加 记录之前的触发</span>
+<span class="k">for</span> <span class="k">each</span> <span class="k">row</span>	<span class="c1">--每次影响一行出发一次</span>
+<span class="k">begin</span>	<span class="c1">--触发之后执行下面的语句 </span>
+<span class="k">select</span> <span class="n">seq_userInfo_usid</span><span class="p">.</span><span class="n">nextval</span> <span class="k">into</span> <span class="p">:</span><span class="k">new</span><span class="p">.</span><span class="n">usid</span> <span class="k">from</span> <span class="n">dual</span><span class="p">;</span>	<span class="c1">--:new新值 :old老值</span>
+<span class="k">end</span><span class="p">;</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+</div>
+
+<ul>
+  <li>
+    <p><strong>索引（index）</strong></p>
+
+    <p>给某个列，或者某些列的组合，进行添加加快查询的效率的标记。</p>
+
+    <p>作用：索引在一定条件下可以提高查询效率，但是在某些情况下可能会拖慢运行效率</p>
+
+    <p>适用场景：
+  		- 在数据量大的情况下，数据量大于10万行+的情况下比较适用。
+          - 因为创建索引开销不小，所以在数据需要频繁更改的情况下不适用。比较适合在数据不经常更改的情况。
+          - 在字段需要经常查询或者排序的情况下
+          - 查询出来结果占表的15%
+  索引分为唯一索引，集簇索引，非集簇索引。</p>
+
+    <p>索引的创建和删除</p>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建索引</span>
+  <span class="k">create</span> <span class="p">[</span><span class="k">unique</span><span class="p">]</span> <span class="k">index</span> <span class="n">index_name</span> <span class="k">on</span> <span class="k">table_name</span><span class="p">(</span><span class="n">colum_name</span><span class="p">[,</span><span class="n">cloumn_name2</span><span class="p">]);</span>
+    
+  <span class="c1">--删除索引</span>
+  <span class="k">drop</span> <span class="k">index</span> <span class="k">table_name</span><span class="p">.</span><span class="n">index_name</span><span class="p">;</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+    </div>
+
+    <blockquote>
+      <p>创建索引开销比较大，所以尽量不要多建索引
+有索引就尽量使用，用explain plan for (sql语句)可以解析sql执行，查看索引是否使用了索引。  where关键字后的索引字段不能使用函数进行处理否则不使用索引。</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p><br /></p>
+<ul>
+  <li>
+    <p><strong>视图（view）</strong></p>
+
+    <p>本质上是子查询，把子查询结果看成新表。</p>
+
+    <p>定义：是一张虚表，数据来自于表，并可对原来数据进行操作，可能包含一些实际不存在的数据</p>
+
+    <p>作用：
+  	1.作为表使用。
+  	2.隐藏一些重要数据，提升数据的安全性。
+  	3.简化数据操作的过程。</p>
+
+    <p>适用场景：
+  		- 当数据要进行复杂操作的情况下
+          - 数据比较重要且需要转换</p>
+
+    <p>视图的创建和删除</p>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建视图</span>
+  <span class="k">create</span> <span class="k">view</span> <span class="n">view_name</span> <span class="k">as</span> <span class="p">(</span><span class="k">select</span> <span class="err">结果</span><span class="p">);</span>
+    
+  <span class="c1">--删除视图</span>
+  <span class="k">drop</span> <span class="k">view</span> <span class="n">view_name</span><span class="p">;</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+    </div>
+
+    <blockquote>
+      <p>在视图中可以对数据进行直接插入，但是要在特定条件下，比如单表的视图，而且插入的数据受到实体表的约束影响。
+但是一般约定俗成，不在视图中进行数据的修改操作。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong>存储过程（procedure）</strong></p>
+
+    <p>定义：存在数据库中，比较独立的对象。主要是对数据进行复杂的过程化处理，供外部调用。</p>
+
+    <p>作用：
+  	1.封装数据库的操作，在数据库内部进行数据处理，提高数据安全性。
+  	2.在数据处理比较复杂的情况下，提高程序的性能。
+  	3.处理过程中可以结合事务，进一步提高数据的安全性。</p>
+
+    <p>适用场景：
+  		- 供外部程序直接调用
+          - 数据需要进行繁杂的处理结合事务
+          - 不适合数据库之间的移植（geshujuku）</p>
+
+    <p>存储过程的创建、使用和删除</p>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建存储过程</span>
+  <span class="k">create</span> <span class="k">procedure</span> <span class="n">procedure_name</span><span class="p">([</span><span class="n">param1</span> <span class="k">in</span> <span class="n">paramtype</span><span class="p">,[</span><span class="n">param2</span> <span class="k">out</span> <span class="n">paramtpe</span><span class="p">]])</span>
+  <span class="k">is</span><span class="p">[</span><span class="o">|</span><span class="k">as</span><span class="p">]</span>
+  <span class="p">[</span><span class="n">delare</span><span class="p">]</span>
+  <span class="k">begin</span>
+  	<span class="p">[</span><span class="k">sql</span><span class="p">]</span>
+  <span class="k">end</span><span class="p">;</span>
+  <span class="o">/</span>
+  <span class="c1">--调用存储过程</span>
+  <span class="k">exec</span> <span class="n">procedure_name</span><span class="p">([</span><span class="n">param1</span><span class="p">[,</span><span class="n">param2</span><span class="p">]]);</span> <span class="c1">--sqlplus独有exec</span>
+  <span class="k">call</span> <span class="n">procedure_name</span><span class="p">([</span><span class="n">param1</span><span class="p">[,</span><span class="n">param2</span><span class="p">]]);</span> <span class="c1">--其他程序可以调用</span>
+  <span class="c1">--删除存储过程</span>
+  <span class="k">drop</span> <span class="k">procedure</span> <span class="n">procedure_name</span><span class="p">;</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+    </div>
+
+    <blockquote>
+      <p>在存储过程中可以进行commit和rollback，但是一般不再之中进行commit和rollback。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong>函数（function）</strong></p>
+
+    <p>定义：定义在数据库中。主要是对数据进行复杂的过程化处理，供sql调用。</p>
+
+    <p>作用：
+  	1.封装数据库的操作，在数据库内部进行数据处理，提高数据安全性。
+  	2.有返回值，供sql语句调用</p>
+
+    <p>适用场景：
+  		- 需要对数据进行处理，并有结果返回，这个结果用于其他sql语句中。</p>
+
+    <p>函数的创建、使用和删除</p>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建函数</span>
+  <span class="k">create</span> <span class="n">functio</span> <span class="n">function_name</span><span class="p">([</span><span class="n">param1</span> <span class="n">paramtype</span><span class="p">,[</span><span class="n">param2</span> <span class="n">paramtpe</span><span class="p">]])</span>
+  <span class="k">return</span> <span class="n">paramtype</span>
+  <span class="k">is</span><span class="p">[</span><span class="o">|</span><span class="k">as</span><span class="p">]</span>
+  <span class="p">[</span><span class="n">delare</span><span class="p">]</span>
+  <span class="k">begin</span>
+  	<span class="p">[</span><span class="k">sql</span><span class="o">-</span><span class="err">有</span><span class="k">return</span><span class="p">]</span>
+  <span class="k">end</span><span class="p">;</span>
+  <span class="o">/</span>
+  <span class="c1">--调用函数</span>
+  <span class="k">select</span>  <span class="n">function_name</span><span class="p">([</span><span class="n">param1</span><span class="p">[,</span><span class="n">param2</span><span class="p">]])</span> <span class="k">from</span> <span class="k">table_name</span><span class="p">;</span> <span class="c1">--其他程序可以调用</span>
+  <span class="c1">--删除函数</span>
+  <span class="k">drop</span> <span class="k">function</span> <span class="n">function_name</span><span class="p">;</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+    </div>
+  </li>
+  <li>
+    <p><strong>游标（cursor）</strong></p>
+
+    <p>定义：只存在于函数或者存储过程中，类似于一个独特的变量</p>
+
+    <p>作用：
+  	内存中的一块区域,存放的是select 的结果。</p>
+
+    <p>游标的使用：
+  1.声明	2.打开	3.循环	4.关闭</p>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建函数</span>
+  <span class="k">create</span> <span class="k">procedure</span> <span class="n">function_name</span>
+  <span class="k">is</span><span class="p">[</span><span class="o">|</span><span class="k">as</span><span class="p">]</span>
+  <span class="n">v_record</span> <span class="n">emp</span><span class="o">%</span><span class="n">rowtype</span><span class="p">;</span>
+  <span class="k">cursor</span> <span class="n">c_query</span> <span class="k">is</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">emp</span><span class="p">;</span>	<span class="c1">--声明游标</span>
+  <span class="k">begin</span>
+  	<span class="n">if</span> <span class="k">not</span> <span class="n">c_query</span><span class="o">%</span><span class="n">ISOPEN</span> <span class="k">then</span>	<span class="c1">--打开游标</span>
+      	<span class="k">open</span> <span class="n">c_query</span><span class="p">;</span>
+      <span class="k">end</span> <span class="n">if</span><span class="p">;</span>
+      <span class="n">loop</span>
+      	<span class="k">fetch</span> <span class="n">c_query</span> <span class="k">into</span> <span class="n">v_record</span><span class="p">;</span>	<span class="c1">--将游标中数据存入v_record中</span>
+          <span class="n">exit</span> <span class="k">when</span> <span class="n">c_query</span><span class="o">%</span><span class="n">NOTFOUND</span><span class="p">;</span>
+          <span class="n">dbms_output</span><span class="p">.</span><span class="n">put_line</span><span class="p">(</span><span class="n">v_record</span><span class="p">.</span><span class="n">ename</span><span class="p">);</span>
+          <span class="n">dbms_output</span><span class="p">.</span><span class="n">put_line</span><span class="p">(</span><span class="n">v_record</span><span class="p">.</span><span class="n">deptno</span><span class="p">);</span>
+          <span class="n">dbms_output</span><span class="p">.</span><span class="n">put_line</span><span class="p">(</span><span class="n">v_record</span><span class="p">.</span><span class="n">sal</span><span class="p">);</span>
+      <span class="k">end</span> <span class="n">loop</span><span class="p">;</span>
+      <span class="k">close</span> <span class="n">c_query</span><span class="p">;</span>	<span class="c1">--关闭游标</span>
+  <span class="k">end</span><span class="p">;</span>
+  <span class="o">/</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+    </div>
+  </li>
+  <li>
+    <p><strong>序列（sequence）</strong></p>
+  </li>
+</ul>
+
+<p>使用场景：可以实现类似mysql的auto_increment</p>
+
+<p>序列的创建</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><pre class="highlight"><code><span class="k">Create</span> <span class="err">创建</span>
+<span class="n">Sequence</span> <span class="err">序列</span> <span class="n">seqEmop</span> <span class="err">序列名称</span>
+<span class="k">Increment</span> <span class="k">by</span> <span class="err">步长</span>
+<span class="n">Stat</span> <span class="k">with</span> <span class="mi">1</span> <span class="err">开始值</span>
+<span class="k">Maxvalue</span>  <span class="err">最大值</span>
+<span class="k">Minvalue</span>  <span class="err">最小值</span>
+ 
+<span class="k">Cycle</span> <span class="err">循环</span> <span class="n">nocycle</span> <span class="err">不循环</span>
+<span class="k">Cache</span> <span class="err">缓存</span>   <span class="k">Cache</span><span class="o">&lt;</span><span class="k">maxvalue</span><span class="o">-</span><span class="k">minvalue</span><span class="o">/</span><span class="k">increment</span> <span class="k">by</span><span class="o">//</span><span class="err">一般不采用缓存</span>
+<span class="n">Nextvalue</span> <span class="err">下一个</span>
+<span class="n">Currval</span> <span class="err">当前值</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+</div>
+<blockquote>
+  <p>序列一般不能清零，只能重新删除后新建。</p>
+</blockquote>
+
+<ul>
+  <li><strong>触发器（trigger）</strong></li>
+</ul>
+
+<p>定义:当某表中数据发生改变（insert、delete、update）时，出发相应触发器。</p>
+
+<p>场景：用来记录用户操作数据的日志表。也可以和序列组合使用实现自动递增。</p>
+
+<p>使用</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code><span class="k">create</span> <span class="n">sequence</span> <span class="n">seq_userInfo_usid</span> <span class="k">start</span> <span class="k">with</span> <span class="mi">1001</span><span class="p">;</span>
+
+<span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="n">triggle</span> <span class="n">tri_userInfo_usid</span> <span class="c1">--创建或替换触发器tri_userInfo_usid</span>
+<span class="k">before</span> <span class="k">insert</span> <span class="k">on</span> <span class="n">userInfo</span>	<span class="c1">--在向userInfo表中添加 记录之前的触发</span>
+<span class="k">for</span> <span class="k">each</span> <span class="k">row</span>	<span class="c1">--每次影响一行出发一次</span>
+<span class="k">begin</span>	<span class="c1">--触发之后执行下面的语句 </span>
+<span class="k">select</span> <span class="n">seq_userInfo_usid</span><span class="p">.</span><span class="n">nextval</span> <span class="k">into</span> <span class="p">:</span><span class="k">new</span><span class="p">.</span><span class="n">usid</span> <span class="k">from</span> <span class="n">dual</span><span class="p">;</span>	<span class="c1">--:new新值 :old老值</span>
+<span class="k">end</span><span class="p">;</span>
+</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/%E6%95%B0%E6%8D%AE%E5%BA%93" rel="tag"># 数据库</a>
+          
+            
+            <a href="/tag/#/db" rel="tag"># db</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/20/JavaSE%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="next" title="JavaSE数据类型">
+                <i class="fa fa-chevron-left"></i> JavaSE数据类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="Padcn" />
+          <p class="site-author-name" itemprop="name">Padcn</p>
+           
+              <p class="site-description motion-element" itemprop="description">...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-1"> <a class="nav-link" href="#数据库总结索引存储过程函数等"> <span class="nav-number">1</span> <span class="nav-text">数据库总结（索引，存储过程，函数等）</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Padcn</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://jekyllrb.com">Jekyll</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+

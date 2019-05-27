@@ -1,0 +1,1282 @@
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hibernate," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Padcn" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Hibernate映射1-1，1-N，N-N">
+<meta name="keywords" content="Hibernate">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hibernate映射">
+<meta property="og:url" content="http://localhost:4000/2017/05/09/Hibernate%E5%A4%9A%E8%A1%A8%E6%98%A0%E5%B0%84/">
+<meta property="og:site_name" content="Padcn">
+<meta property="og:description" content="Hibernate映射1-1，1-N，N-N">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hibernate映射">
+<meta name="twitter:description" content="Hibernate映射1-1，1-N，N-N">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://localhost:4000/"/>
+
+
+
+
+
+  <title>Hibernate映射 | Padcn</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Padcn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">start now.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2017/05/09/Hibernate%E5%A4%9A%E8%A1%A8%E6%98%A0%E5%B0%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Padcn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Padcn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            Hibernate映射
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-09T00:00:00+08:00">
+                2017-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1 id="hibernate映射1-11-nn-n">Hibernate映射1-1，1-N，N-N</h1>
+
+<p>一般由外键所在的实体类去维护</p>
+<h3 id="注解方式">注解方式</h3>
+<h4 id="1-1映射">1-1映射</h4>
+
+<p>@Person.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47<br/>48<br/>49<br/>50<br/>51<br/>52<br/>53</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">pad</span><span class="o">.</span><span class="na">entity</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.persistence.Column</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GeneratedValue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GenerationType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.OneToOne</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Table</span><span class="o">;</span>
+
+<span class="nd">@Entity</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"t_person"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">pid</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">boolean</span> <span class="n">sex</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">IdCard</span> <span class="n">idcard</span><span class="o">;</span>
+	
+	<span class="nd">@Id</span>
+	<span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span><span class="o">=</span><span class="n">GenerationType</span><span class="o">.</span><span class="na">AUTO</span><span class="o">)</span>
+	<span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"p_id"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPid</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">pid</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPid</span><span class="o">(</span><span class="kt">int</span> <span class="n">pid</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">pid</span> <span class="o">=</span> <span class="n">pid</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"p_name"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"p_sex"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isSex</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">sex</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSex</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">sex</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">sex</span> <span class="o">=</span> <span class="n">sex</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="c1">//表示由IdCard中的p进行维护</span>
+	<span class="nd">@OneToOne</span><span class="o">(</span><span class="n">mappedBy</span><span class="o">=</span><span class="s">"p"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="n">IdCard</span> <span class="nf">getIdcard</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">idcard</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setIdcard</span><span class="o">(</span><span class="n">IdCard</span> <span class="n">idcard</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">idcard</span> <span class="o">=</span> <span class="n">idcard</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+<span class="o">}</span>
+
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>@IdCard.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">pad</span><span class="o">.</span><span class="na">entity</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Column</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GeneratedValue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GenerationType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.JoinColumn</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.OneToOne</span><span class="o">;</span>
+
+<span class="nd">@Entity</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"idcard"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">IdCard</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">C_Id</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">Date</span> <span class="n">birth</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">Person</span> <span class="n">p</span><span class="o">;</span>
+
+	<span class="nd">@Id</span>
+	<span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span><span class="o">=</span><span class="n">GenerationType</span><span class="o">.</span><span class="na">AUTO</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getC_Id</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">C_Id</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setC_Id</span><span class="o">(</span><span class="kt">int</span> <span class="n">cId</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">C_Id</span> <span class="o">=</span> <span class="n">cId</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"birth"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="n">Date</span> <span class="nf">getBirth</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">birth</span><span class="o">;</span>
+	<span class="o">}</span>
+    
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setBirth</span><span class="o">(</span><span class="n">Date</span> <span class="n">birth</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">birth</span> <span class="o">=</span> <span class="n">birth</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="c1">//维护方，使用外键p_id进行关联</span>
+	<span class="nd">@OneToOne</span>
+	<span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"p_id"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="n">Person</span> <span class="nf">getP</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">p</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setP</span><span class="o">(</span><span class="n">Person</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>测试代码
+@testHibernate.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45</pre></td><td class="code"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.hibernate.Session</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.hibernate.SessionFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.hibernate.Transaction</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.hibernate.cfg.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.hibernate.service.ServiceRegistry</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.hibernate.service.ServiceRegistryBuilder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.After</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.Before</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.pad.entity.IdCard</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.pad.entity.Person</span><span class="o">;</span>
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">testHibernate</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="n">SessionFactory</span> <span class="n">sessionFactory</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">Session</span> <span class="n">session</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">Transaction</span> <span class="n">transaction</span><span class="o">;</span>
+	
+	
+	<span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">"deprecation"</span><span class="o">)</span>
+	<span class="nd">@Before</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(){</span>
+		<span class="n">Configuration</span> <span class="n">config</span><span class="o">=</span><span class="k">new</span> <span class="n">Configuration</span><span class="o">().</span><span class="na">configure</span><span class="o">();</span>
+		<span class="n">ServiceRegistry</span> <span class="n">serviceRegistry</span><span class="o">=</span><span class="k">new</span> <span class="n">ServiceRegistryBuilder</span><span class="o">()</span>
+			<span class="o">.</span><span class="na">applySettings</span><span class="o">(</span><span class="n">config</span><span class="o">.</span><span class="na">getProperties</span><span class="o">()).</span><span class="na">buildServiceRegistry</span><span class="o">();</span>
+		<span class="n">sessionFactory</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="na">buildSessionFactory</span><span class="o">(</span><span class="n">serviceRegistry</span><span class="o">);</span>
+		<span class="n">session</span><span class="o">=</span><span class="n">sessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+		<span class="n">transaction</span><span class="o">=</span><span class="n">session</span><span class="o">.</span><span class="na">beginTransaction</span><span class="o">();</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@After</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">destory</span><span class="o">(){</span>
+		<span class="n">transaction</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+		<span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+		<span class="n">sessionFactory</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@Test</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testOTO</span><span class="o">(){</span>
+		<span class="n">Person</span> <span class="n">p</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">();</span>
+		<span class="n">p</span><span class="o">=(</span><span class="n">Person</span><span class="o">)</span><span class="n">session</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span><span class="c1">//第二个参数为person表中的主键</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getIdcard</span><span class="o">().</span><span class="na">getBirth</span><span class="o">());</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h4 id="1-n">1-N</h4>
+<p>@Course.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">pad</span><span class="o">.</span><span class="na">entity</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Set</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GeneratedValue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GenerationType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.OneToMany</span><span class="o">;</span>
+
+<span class="nd">@Entity</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"course"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Course</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">c_id</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">c_name</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="n">stu</span><span class="o">;</span>
+	
+	<span class="nd">@Id</span>
+	<span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span><span class="o">=</span><span class="n">GenerationType</span><span class="o">.</span><span class="na">AUTO</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getC_id</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">c_id</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setC_id</span><span class="o">(</span><span class="kt">int</span> <span class="n">cId</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">c_id</span> <span class="o">=</span> <span class="n">cId</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">getC_name</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">c_name</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setC_name</span><span class="o">(</span><span class="n">String</span> <span class="n">cName</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">c_name</span> <span class="o">=</span> <span class="n">cName</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span><span class="o">=</span><span class="s">"course"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="nf">getStu</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">stu</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setStu</span><span class="o">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="n">stu</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">stu</span> <span class="o">=</span> <span class="n">stu</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>@Student.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47<br/>48<br/>49<br/>50<br/>51</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">pad</span><span class="o">.</span><span class="na">entity</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GeneratedValue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GenerationType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.JoinColumn</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.ManyToOne</span><span class="o">;</span>
+
+<span class="nd">@Entity</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"student"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Student</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">s_id</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">s_name</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">s_age</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">Course</span> <span class="n">course</span><span class="o">;</span>
+	
+	<span class="nd">@Id</span>
+	<span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span><span class="o">=</span><span class="n">GenerationType</span><span class="o">.</span><span class="na">AUTO</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getS_id</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">s_id</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setS_id</span><span class="o">(</span><span class="kt">int</span> <span class="n">sId</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">s_id</span> <span class="o">=</span> <span class="n">sId</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">getS_name</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">s_name</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setS_name</span><span class="o">(</span><span class="n">String</span> <span class="n">sName</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">s_name</span> <span class="o">=</span> <span class="n">sName</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getS_age</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">s_age</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setS_age</span><span class="o">(</span><span class="kt">int</span> <span class="n">sAge</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">s_age</span> <span class="o">=</span> <span class="n">sAge</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@ManyToOne</span>
+	<span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"c_id"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="n">Course</span> <span class="nf">getCourse</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">course</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCourse</span><span class="o">(</span><span class="n">Course</span> <span class="n">course</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">course</span> <span class="o">=</span> <span class="n">course</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="s">"Student [course="</span> <span class="o">+</span> <span class="n">course</span> <span class="o">+</span> <span class="s">", s_age="</span> <span class="o">+</span> <span class="n">s_age</span> <span class="o">+</span> <span class="s">", s_id="</span>
+				<span class="o">+</span> <span class="n">s_id</span> <span class="o">+</span> <span class="s">", s_name="</span> <span class="o">+</span> <span class="n">s_name</span> <span class="o">+</span> <span class="s">"]"</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>测试代码：</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24</pre></td><td class="code"><pre class="highlight"><code>	<span class="c1">//在运行下面Test之前插入数据，先运行testOTM()</span>
+    <span class="c1">//在这里如果把student放在循环之外new会造成s_id是一样的，所以多个save只是会更新第一条记录。</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testOTM</span><span class="o">(){</span>
+		<span class="n">Course</span> <span class="n">c</span><span class="o">=</span><span class="k">new</span> <span class="n">Course</span><span class="o">();</span>
+		<span class="n">c</span><span class="o">.</span><span class="na">setC_name</span><span class="o">(</span><span class="s">"1A"</span><span class="o">);</span>
+		<span class="n">session</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+		
+		<span class="kt">int</span> <span class="n">count</span><span class="o">=</span><span class="mi">5</span><span class="o">;</span>
+		<span class="k">while</span><span class="o">(</span><span class="n">count</span><span class="o">--&gt;</span><span class="mi">0</span><span class="o">){</span>
+			<span class="n">Student</span> <span class="n">s</span><span class="o">=</span><span class="k">new</span> <span class="n">Student</span><span class="o">();</span>
+			<span class="n">s</span><span class="o">.</span><span class="na">setCourse</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+			<span class="n">s</span><span class="o">.</span><span class="na">setS_name</span><span class="o">(</span><span class="s">"xiaom"</span><span class="o">+</span><span class="n">count</span><span class="o">);</span>
+			<span class="n">s</span><span class="o">.</span><span class="na">setS_age</span><span class="o">(</span><span class="n">count</span><span class="o">);</span>
+			<span class="n">session</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+	<span class="nd">@Test</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testOTMResult</span><span class="o">(){</span>
+		<span class="n">Course</span> <span class="n">c</span><span class="o">=(</span><span class="n">Course</span><span class="o">)</span><span class="n">session</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">Course</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="mi">1</span><span class="o">);</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span><span class="o">);</span> <span class="c1">//当把下面for循环注释掉之后控制台输出的sql语句只select了course表字段，并没有查询student表，验证了懒加载。</span>
+		<span class="k">for</span><span class="o">(</span><span class="n">Student</span> <span class="nl">s:</span><span class="n">c</span><span class="o">.</span><span class="na">getStu</span><span class="o">()){</span>
+			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<h4 id="n-n">N-N</h4>
+<p>@Teacher.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">pad</span><span class="o">.</span><span class="na">entity</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Set</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GeneratedValue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GenerationType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.JoinColumn</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.JoinTable</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.ManyToMany</span><span class="o">;</span>
+
+<span class="nd">@Entity</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"teacher"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Teacher</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">t_id</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">t_name</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Course</span><span class="o">&gt;</span> <span class="n">course</span><span class="o">;</span>
+	
+	<span class="nd">@Id</span>
+	<span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span><span class="o">=</span><span class="n">GenerationType</span><span class="o">.</span><span class="na">AUTO</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getT_id</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">t_id</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setT_id</span><span class="o">(</span><span class="kt">int</span> <span class="n">tId</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">t_id</span> <span class="o">=</span> <span class="n">tId</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getT_name</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">t_name</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setT_name</span><span class="o">(</span><span class="kt">int</span> <span class="n">tName</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">t_name</span> <span class="o">=</span> <span class="n">tName</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@ManyToMany</span>
+	<span class="nd">@JoinTable</span><span class="o">(</span>
+			<span class="n">name</span><span class="o">=</span><span class="s">"t_id_c_id"</span><span class="o">,</span>
+			<span class="n">joinColumns</span><span class="o">=</span><span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"t_id"</span><span class="o">),</span>
+			<span class="n">inverseJoinColumns</span><span class="o">=</span><span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"c_id"</span><span class="o">)</span>
+			<span class="o">)</span>
+	<span class="kd">public</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Course</span><span class="o">&gt;</span> <span class="nf">getCourse</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">course</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCourse</span><span class="o">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Course</span><span class="o">&gt;</span> <span class="n">course</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">course</span> <span class="o">=</span> <span class="n">course</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+<span class="o">}</span>
+
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>@Course.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47<br/>48</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">pad</span><span class="o">.</span><span class="na">entity</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Set</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GeneratedValue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GenerationType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.ManyToMany</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.OneToMany</span><span class="o">;</span>
+
+<span class="nd">@Entity</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"course"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Course</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">c_id</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">c_name</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="n">stu</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Teacher</span><span class="o">&gt;</span> <span class="n">t</span><span class="o">;</span>
+	
+	<span class="nd">@Id</span>
+	<span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span><span class="o">=</span><span class="n">GenerationType</span><span class="o">.</span><span class="na">AUTO</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getC_id</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">c_id</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setC_id</span><span class="o">(</span><span class="kt">int</span> <span class="n">cId</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">c_id</span> <span class="o">=</span> <span class="n">cId</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">getC_name</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">c_name</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setC_name</span><span class="o">(</span><span class="n">String</span> <span class="n">cName</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">c_name</span> <span class="o">=</span> <span class="n">cName</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span><span class="o">=</span><span class="s">"course"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="nf">getStu</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">stu</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setStu</span><span class="o">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="n">stu</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">stu</span> <span class="o">=</span> <span class="n">stu</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@ManyToMany</span><span class="o">(</span><span class="n">mappedBy</span><span class="o">=</span><span class="s">"course"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Teacher</span><span class="o">&gt;</span> <span class="nf">getT</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">t</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setT</span><span class="o">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Teacher</span><span class="o">&gt;</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>运行之后数据库表已经创建，这里如果不把对象创建为set，而只是普通的Teacher运行时会抛异常：
+     org.hibernate.AnnotationException: Illegal attempt to map a non collection as a @OneToMany, @ManyToMany or @CollectionOfElements: com.pad.entity.Course.t
+	at org.hibernate.cfg.annotations.CollectionBinder.getCollectionBinder(CollectionBinder.java:331)
+    ….</p>
+
+<h3 id="hbm方式">hbm方式</h3>
+
+<p>一对多 一方</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6</pre></td><td class="code"><pre class="highlight"><code>	<span class="c">&lt;!--set中设置inverse属性为true则由多方维护关系--&gt;</span>
+    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">"students"</span> <span class="na">table=</span><span class="s">"student"</span> <span class="na">inverse=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">"gid"</span><span class="nt">&gt;&lt;/key&gt;</span>
+        <span class="nt">&lt;one-to-many</span> <span class="na">class=</span><span class="s">"com.imooc.entity.Student"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/set&gt;</span>
+    
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>inverse属性用于指定关联关系的维护，有利于优化性能。</p>
+
+<p>一对多 多方</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;many-to-one</span> <span class="na">name=</span><span class="s">"grade"</span> <span class="na">class=</span><span class="s">"com.imooc.entity.Grade"</span> <span class="na">column=</span><span class="s">"gid"</span><span class="nt">&gt;&lt;/many-to-one&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>当cascade属性不为none时，Hibernate会自动持久化所关联对象。
+cascade属性的设置会带来性能上的变动，需谨慎设置</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>属性值</th>
+      <th>含义和作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>all</td>
+      <td>对所有操作进行级联操作</td>
+    </tr>
+    <tr>
+      <td>save-update</td>
+      <td>执行保存和更新操作时进行级联操作</td>
+    </tr>
+    <tr>
+      <td>delete</td>
+      <td>执行删除操作时进行级联操作</td>
+    </tr>
+    <tr>
+      <td>none</td>
+      <td>对所有操作不进行级联操作</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>	<span class="c">&lt;!--set中设置inverse属性为true则由多方维护关系--&gt;</span>
+    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">"students"</span> <span class="na">table=</span><span class="s">"student"</span> <span class="na">inverse=</span><span class="s">"true"</span> <span class="na">cascade=</span><span class="s">"save-update"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">"gid"</span><span class="nt">&gt;&lt;/key&gt;</span>
+        <span class="nt">&lt;one-to-many</span> <span class="na">class=</span><span class="s">"com.imooc.entity.Student"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/set&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>设置之后班级的save会级联保存学生的信息，不需要手动save学生。</p>
+
+<p>如果学生对应班级没有，需要级联班级，可以在学生那边增加cascade属性 cascade=”all”，这样就能级联增加班级。</p>
+
+<h3 id="总结">总结</h3>
+<h4 id="实现单向一对多">实现单向一对多：</h4>
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code>在one方的实体中添加保存many方的集合
+在one方的配置文件中添加&lt;one-to-many&gt;配置 #### 实现单向多对一：
+ 在many方的实体中添加one方的引用
+ 在many方的配置文件中添加&lt;many-to-one&gt;配置
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h3 id="逆向生成hibernate实体类和配置文件">逆向生成Hibernate实体类和配置文件</h3>
+<ol>
+  <li>Myeclipse添加数据库连接
+ 右上角增加视图-打开数据库视图，新建连接</li>
+  <li>为工程添加hibernate
+ 右键项目-&gt;myeclipse-&gt;add hibernate capicity-&gt;选择之前新建的数据库连接-&gt;create SessionFactory class(可以方便获取sesson)</li>
+  <li>创建包，切换到数据库视图-&gt;选中表右键-&gt;Hibernate Reverse Engineering-&gt;指定位置-&gt;选中Create POJO&lt;&gt; DB Table mapping information和java Data Object（去掉创建抽象类的勾）-&gt;选择主键生成策略-&gt;勾选2个include</li>
+</ol>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/Hibernate" rel="tag"># Hibernate</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/10/HQL/" rel="next" title="HQL以及N+1和缓存问题">
+                <i class="fa fa-chevron-left"></i> HQL以及N+1和缓存问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/08/Hibernate%E5%9F%BA%E7%A1%80%E5%8D%95%E8%A1%A8/" rel="prev" title="Hibernate基础单表">
+                Hibernate基础单表 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="Padcn" />
+          <p class="site-author-name" itemprop="name">Padcn</p>
+           
+              <p class="site-description motion-element" itemprop="description">...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-1"> <a class="nav-link" href="#hibernate映射1-11-nn-n"> <span class="nav-number">1</span> <span class="nav-text">Hibernate映射1-1，1-N，N-N</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#注解方式"> <span class="nav-number">1.1</span> <span class="nav-text">注解方式</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#1-1映射"> <span class="nav-number">1.1.1</span> <span class="nav-text">1-1映射</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#1-n"> <span class="nav-number">1.1.2</span> <span class="nav-text">1-N</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#n-n"> <span class="nav-number">1.1.3</span> <span class="nav-text">N-N</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#hbm方式"> <span class="nav-number">1.2</span> <span class="nav-text">hbm方式</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#总结"> <span class="nav-number">1.3</span> <span class="nav-text">总结</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#实现单向一对多"> <span class="nav-number">1.3.1</span> <span class="nav-text">实现单向一对多：</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#逆向生成hibernate实体类和配置文件"> <span class="nav-number">1.4</span> <span class="nav-text">逆向生成Hibernate实体类和配置文件</span> </a> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Padcn</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://jekyllrb.com">Jekyll</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+

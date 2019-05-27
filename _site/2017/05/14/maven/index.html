@@ -1,0 +1,1154 @@
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="maven," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Padcn" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="maven Maven是基于项目对象模型（POM），可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目的工具">
+<meta name="keywords" content="maven">
+<meta property="og:type" content="article">
+<meta property="og:title" content="maven">
+<meta property="og:url" content="http://localhost:4000/2017/05/14/maven/">
+<meta property="og:site_name" content="Padcn">
+<meta property="og:description" content="maven Maven是基于项目对象模型（POM），可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目的工具">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="maven">
+<meta name="twitter:description" content="maven Maven是基于项目对象模型（POM），可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目的工具">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://localhost:4000/"/>
+
+
+
+
+
+  <title>maven | Padcn</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Padcn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">start now.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2017/05/14/maven/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Padcn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Padcn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            maven
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-14T00:00:00+08:00">
+                2017-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1 id="maven">maven</h1>
+<p>Maven是基于项目对象模型（POM），可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目的工具</p>
+
+<p>下载网站</p>
+
+<p>http://maven.apache.org</p>
+
+<p>配置环境变量</p>
+<ol>
+  <li>新建M2_HOME变量  指向maven的安装目录如 目录\apache-maven-3.3.3</li>
+  <li>加入path最后 %M2_HOME%\bin;</li>
+  <li>验证 mvn -v查看版本号</li>
+</ol>
+
+<p>目录结构</p>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</pre></td><td class="code"><pre class="highlight"><code>项目名
+    src
+        -main
+            -java
+                -package
+        -test
+            -java
+                -package
+        -resources pom.xml在struts2-core-*.jar下META_INF\maven中有模板，可以改造，删除中间部分。修改后放入项目中如maven01目录下 ```xml &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+</code></pre></td></tr></tbody></table></div>
+</div>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+     <groupId>com.imooc.maven01</groupId>
+     <artifactId>maven01-model</artifactId>
+     <version>0.0.1SNAPSHOT</version>
+    <dependencies>
+    	<dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+        </dependency>
+    </dependencies>
+</project>
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><pre class="highlight"><code>
+进入项目路径运行 mvn complie 进行编译，生成文件在target文件夹下
+
+mvn package 生成maven01-model的jar 相当于打包。
+
+&gt; 初次使用compile的时候可能会报“Unknown lifecycle phase”的错误，这个时候需要先执行下面命令
+```bash
+mvn install
+mvn compiler:compile
+mvn org.apache.maven.plugins:maven-compiler-plugin:compile
+mvn org.apache.maven.plugins:maven-compiler-plugin:2.0.2:compile
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>mvn常用构建命令
+	mvn -v 查看maven版本
+    	compile 编译
+        test 测试
+        package 打包
+        clean 删除target
+        install 安装jar包到本地仓库中（进入相关项目目录使用，之后再pom.xml中还需要配置dependency，先从本地查找，如果找不到会去网上maven的中央仓库中找）</p>
+
+<p>mvn archetype:generate
+使用archetype插件自动产生目录骨架。
+mvn archetype:generate -DgroupId=com.imooc.maven04 -DatifactId=maven04-demo -Dversion=1.0.0SNAPSHOT -Dpackage=com.imooc.maven04.demo</p>
+
+<blockquote>
+  <p>使用Maven运行Java main的3种方式 http://www.tuicool.com/articles/UJJvim</p>
+</blockquote>
+
+<h1 id="坐标和仓库">坐标和仓库</h1>
+<p>https://repo.maven.apache.org/maven2 默认全球中央仓库地址，其中可以搜索很多。</p>
+
+<p>修改maven镜像方法</p>
+
+<p>在conf文件下settings.xml找到mirror标签更改</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;mirror&gt;</span>
+<span class="nt">&lt;id&gt;</span>maven.net.cn<span class="nt">&lt;/id&gt;</span>
+<span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>
+<span class="nt">&lt;name&gt;</span>central mirror in china<span class="nt">&lt;/name&gt;</span>
+<span class="nt">&lt;url&gt;</span>http://maven.net.cn/content/groups/public<span class="nt">&lt;/url&gt;</span>
+<span class="nt">&lt;/mirror&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>修改本地仓库路径
+修改setting</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;localRepository&gt;</span>路径<span class="nt">&lt;/localRepository&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h1 id="在eclipse中安装maven插件">在eclipse中安装maven插件</h1>
+<p>将插件放进eclipse安装目录下的drop
+eclipse4.0以上就不需要配置了</p>
+
+<h1 id="maven生命周期">maven生命周期</h1>
+<p>clean 清理项目
+default 构建项目
+site 生成项目站点</p>
+
+<p>clean compile test package install
+执行某个阶段 前面的也会顺序执行
+clean项目 pre-clean
+		clean 清理上一次构建生成的所有文件
+        post-clean 执行清理后的文件</p>
+
+<p>default构建项目 （最核心）
+ 	compile test package install</p>
+
+<p>site生成项目站点
+  	pre-site 生成项目站点前完成工作
+    site 生成项目的站点文档
+    post-site 在生成项目站点后要完成的工作
+    site-deploy 发布生成的站点到服务器上</p>
+
+<p>pom.xml中加入</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15</pre></td><td class="code"><pre class="highlight"><code> <span class="nt">&lt;build&gt;</span>
+ 	<span class="nt">&lt;plugin&gt;</span>
+    	<span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+    	<span class="nt">&lt;artifactId&gt;</span>maven-source-plugin<span class="nt">&lt;/artifactId&gt;</span>
+    	<span class="nt">&lt;version&gt;</span>2.4<span class="nt">&lt;/version&gt;</span>
+    	<span class="nt">&lt;executions&gt;</span>
+        	<span class="nt">&lt;execution&gt;</span>
+            	<span class="nt">&lt;phase&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
+                <span class="nt">&lt;goals&gt;</span>
+                	<span class="nt">&lt;goal&gt;</span>jar-no-fork<span class="nt">&lt;/goal&gt;</span>
+                <span class="nt">&lt;/goals&gt;</span>
+            <span class="nt">&lt;/execution&gt;</span>
+        <span class="nt">&lt;/executions&gt;</span>
+    <span class="nt">&lt;/plugin&gt;</span>
+ <span class="nt">&lt;/build&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h1 id="pomxml常用元素">pom.xml常用元素</h1>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47<br/>48<br/>49<br/>50<br/>51<br/>52<br/>53<br/>54<br/>55<br/>56<br/>57<br/>58<br/>59<br/>60<br/>61<br/>62<br/>63<br/>64<br/>65<br/>66<br/>67<br/>68<br/>69<br/>70<br/>71<br/>72</pre></td><td class="code"><pre class="highlight"><code>  <span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> 
+<span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!--指定了当前pom的版本--&gt;</span>
+    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+    
+    <span class="c">&lt;!--主项目的标识--&gt;</span>
+     <span class="nt">&lt;groupId&gt;</span>反写的公司网址+项目名<span class="nt">&lt;/groupId&gt;</span>
+     <span class="c">&lt;!--模块的标识，项目中的--&gt;</span>
+     <span class="nt">&lt;artifactId&gt;</span>项目名+模块名<span class="nt">&lt;/artifactId&gt;</span>
+     <span class="c">&lt;!--
+     项目版本号 大版本号 分支版本号 小版本号
+     snapshot快照版本 alpha内部测试 beta公测 
+     Release稳定版	GA正式发布
+     --&gt;</span>
+     <span class="nt">&lt;version&gt;</span>0.0.1SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+     <span class="c">&lt;!--maven项目打包方式，默认是jar 还可以是war zip pom等--&gt;</span>
+     <span class="nt">&lt;packaging&gt;&lt;/packaging&gt;</span>
+    <span class="c">&lt;!--项目描述名，一般是项目产生文档时使用--&gt;</span>
+    <span class="nt">&lt;name&gt;&lt;/name&gt;</span>
+    <span class="c">&lt;!--项目地址--&gt;</span>
+    <span class="nt">&lt;url&gt;&lt;/url&gt;</span>
+    <span class="c">&lt;!--项目描述--&gt;</span>
+    <span class="nt">&lt;description&gt;&lt;/description&gt;</span>
+    <span class="c">&lt;!--开发者信息--&gt;</span>
+    <span class="nt">&lt;developers&gt;&lt;/developers&gt;</span>
+    <span class="c">&lt;!--许可证信息--&gt;</span>
+    <span class="nt">&lt;licenses&gt;&lt;/licenses&gt;</span>
+    <span class="c">&lt;!--组织信息--&gt;</span>
+    <span class="nt">&lt;organization&gt;&lt;/organization&gt;</span>
+   <span class="c">&lt;!--依赖列表--&gt;</span>
+   <span class="nt">&lt;dependencies&gt;</span>
+    	<span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>4.10<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;type&gt;&lt;/type&gt;</span>
+            <span class="c">&lt;!--依赖范围--&gt;</span>
+            <span class="nt">&lt;scope&gt;&lt;/scope&gt;</span>
+            <span class="c">&lt;!--设置依赖是否可选，默认为false，如果是false默认继承 ，如果为true则必须显式引入--&gt;</span>
+            <span class="nt">&lt;optional&gt;&lt;/optional&gt;</span>
+            <span class="c">&lt;!--排除依赖传递列表--&gt;</span>
+            <span class="nt">&lt;exclusions&gt;</span>
+            	<span class="nt">&lt;exclusion&gt;&lt;/exclusion&gt;</span>
+            <span class="nt">&lt;/exclusions&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+    <span class="c">&lt;!--依赖管理，这里依赖并不会执行，主要是用来给子模块进行继承--&gt;</span>
+    <span class="nt">&lt;dependencyManagement&gt;</span>
+    	<span class="nt">&lt;dependencies&gt;</span>
+        	<span class="nt">&lt;dependency&gt;&lt;/dependency&gt;</span>
+        <span class="nt">&lt;/dependencies&gt;</span>
+    <span class="nt">&lt;/dependencyManagement&gt;</span>
+	<span class="nt">&lt;build&gt;</span>
+    	<span class="c">&lt;!--插件列表--&gt;</span>
+    	<span class="nt">&lt;plugins&gt;</span>
+        	<span class="nt">&lt;plugin&gt;</span>
+            	<span class="c">&lt;!--依旧要指定坐标--&gt;</span>
+            	<span class="nt">&lt;groupId&gt;&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+           		 <span class="nt">&lt;version&gt;</span>4.10<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/build&gt;</span>
+    <span class="c">&lt;!--用于子模块对于父模块的继承--&gt;</span>
+    <span class="nt">&lt;parent&gt;&lt;/parent&gt;</span>
+    <span class="c">&lt;!--聚合，如果有很多模块需要编译，可以在这里指定多个模块一起运行--&gt;</span>
+    <span class="nt">&lt;modules&gt;</span>
+    	<span class="nt">&lt;module&gt;&lt;/module&gt;</span>
+    <span class="nt">&lt;/modules&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h1 id="依赖">依赖</h1>
+<h2 id="scope标签">scope标签：</h2>
+<p>classpath 编译 测试 运行
+可以有以下值</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>值</th>
+      <th>作用于范围</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>compile</td>
+      <td>默认的范围，编译测试运行都有效</td>
+    </tr>
+    <tr>
+      <td>provided</td>
+      <td>编译和测试时有效，测试时无效</td>
+    </tr>
+    <tr>
+      <td>runtime</td>
+      <td>测试和运行时有效，比如jdbc的驱动在编译时不需要</td>
+    </tr>
+    <tr>
+      <td>test</td>
+      <td>测试时有效，典型应用junit</td>
+    </tr>
+    <tr>
+      <td>system</td>
+      <td>和privided类似，但是与本地系统相关联，可移植性差</td>
+    </tr>
+    <tr>
+      <td>import</td>
+      <td>导入的范围，它只使用在dependencyManagement中，标识从其他的pom中导入dependecy的配置</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="依赖传递">依赖传递</h2>
+<p>依赖会传递，如果不想传递可以使用exclusions标签进行排除</p>
+
+<p>settings.xml中的profile中加入用来设置默认jdk（因为maven默认使用1.5）</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;activation&gt;</span>
+	<span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
+   	<span class="nt">&lt;jdk&gt;</span>1.7<span class="nt">&lt;/jdk&gt;</span>
+<span class="nt">&lt;/activation&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h2 id="依赖冲突">依赖冲突</h2>
+
+<p>依赖中有2个不同版本jar，造成冲突</p>
+<ol>
+  <li>短路优先，路径短的优先</li>
+  <li>先声明先优先（在路径相同情况下，xml中谁先声明谁优先）</li>
+</ol>
+
+<h2 id="聚合和继承">聚合和继承</h2>
+
+<p>使用modules标签进行聚合，可以一起构建</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>	<span class="nt">&lt;modules&gt;</span>
+    	<span class="nt">&lt;module&gt;&lt;/module&gt;</span>
+        <span class="nt">&lt;module&gt;&lt;/module&gt;</span>
+        <span class="nt">&lt;module&gt;&lt;/module&gt;</span>
+    <span class="nt">&lt;/modules&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h1 id="使用maven构建web项目">使用maven构建web项目</h1>
+
+<ol>
+  <li>
+    <p>新建maven项目，选择 maven-archetype-webapp</p>
+  </li>
+  <li>
+    <p>需要配置servlet的api www.mvnrepository.com搜索servlet 复制servlet坐标 增加到pom.xml中的dependency中设定scope为provided</p>
+  </li>
+  <li>
+    <p>按照maven约定创建目录src/main/java和src/test/java 如果无法创建可以在Navigator视图下创建，之后到工程视图update</p>
+  </li>
+  <li>
+    <p>确保buildpath中输出路径为target的class目录中</p>
+  </li>
+  <li>
+    <p>property - project Facets-Dynamic Web Module勾选</p>
+  </li>
+  <li>
+    <p>property-deployment assembly - 去除test相关部署</p>
+  </li>
+  <li>
+    <p>中央仓库搜索jetty maven plugin 复制插件坐标粘贴进plugins中的plugin标签内 （如果要使用tomcat插件可以去tomcat官网-maven plugin复制例子中的坐标）</p>
+  </li>
+  <li>
+    <p>run as maven builder</p>
+  </li>
+  <li>
+    <p>输入 jetty:run 运行</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p>如果想在打包时就运行则使用executions标签
+```xml</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17</pre></td><td class="code"><pre class="highlight"><code>	&lt;plugins&gt;
+    	&lt;plugin&gt;
+        	&lt;!--依旧要指定坐标--&gt;
+        	&lt;groupId&gt;&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+       		 &lt;version&gt;4.10&lt;/version&gt;
+             &lt;executions&gt;
+             	&lt;execution&gt;
+                	&lt;!--打包成功后使用jetty:run来运行jetty服务--&gt;
+                	&lt;phase&gt;package&lt;/phase&gt;
+                    &lt;goals&gt;
+                    	&lt;goal&gt;run&lt;/goal&gt;
+                    &lt;/goals&gt;
+                &lt;/execution&gt;
+             &lt;/executions&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt; ```
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<hr />
+<p>查看本地仓库路径：mvn help:effective-settings</p>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/maven" rel="tag"># maven</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/15/ECS/" rel="next" title="阿里云服务器折腾笔记">
+                <i class="fa fa-chevron-left"></i> 阿里云服务器折腾笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/14/MyBatis%E8%A1%A5%E5%85%85/" rel="prev" title="Mybatis动态sql拼接以及使用log4j">
+                Mybatis动态sql拼接以及使用log4j <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="Padcn" />
+          <p class="site-author-name" itemprop="name">Padcn</p>
+           
+              <p class="site-description motion-element" itemprop="description">...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-1"> <a class="nav-link" href="#maven"> <span class="nav-number">1</span> <span class="nav-text">maven</span> </a> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#坐标和仓库"> <span class="nav-number">2</span> <span class="nav-text">坐标和仓库</span> </a> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#在eclipse中安装maven插件"> <span class="nav-number">3</span> <span class="nav-text">在eclipse中安装maven插件</span> </a> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#maven生命周期"> <span class="nav-number">4</span> <span class="nav-text">maven生命周期</span> </a> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#pomxml常用元素"> <span class="nav-number">5</span> <span class="nav-text">pom.xml常用元素</span> </a> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#依赖"> <span class="nav-number">6</span> <span class="nav-text">依赖</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-2"> <a class="nav-link" href="#scope标签"> <span class="nav-number">6.1</span> <span class="nav-text">scope标签：</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#依赖传递"> <span class="nav-number">6.2</span> <span class="nav-text">依赖传递</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#依赖冲突"> <span class="nav-number">6.3</span> <span class="nav-text">依赖冲突</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#聚合和继承"> <span class="nav-number">6.4</span> <span class="nav-text">聚合和继承</span> </a> </li> </ol> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#使用maven构建web项目"> <span class="nav-number">7</span> <span class="nav-text">使用maven构建web项目</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Padcn</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://jekyllrb.com">Jekyll</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+

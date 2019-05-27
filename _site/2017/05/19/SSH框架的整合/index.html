@@ -1,0 +1,1271 @@
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="整合," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Padcn" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SSH框架的整合 整合的目的是让Spring来控制Hibernate的sessionFactory的创建，以及核心配置文件中数据库配置交给Spring管理。 对于struts2来说是把action交给Spring管理。">
+<meta name="keywords" content="整合">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSH框架整合">
+<meta property="og:url" content="http://localhost:4000/2017/05/19/SSH%E6%A1%86%E6%9E%B6%E7%9A%84%E6%95%B4%E5%90%88/">
+<meta property="og:site_name" content="Padcn">
+<meta property="og:description" content="SSH框架的整合 整合的目的是让Spring来控制Hibernate的sessionFactory的创建，以及核心配置文件中数据库配置交给Spring管理。 对于struts2来说是把action交给Spring管理。">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SSH框架整合">
+<meta name="twitter:description" content="SSH框架的整合 整合的目的是让Spring来控制Hibernate的sessionFactory的创建，以及核心配置文件中数据库配置交给Spring管理。 对于struts2来说是把action交给Spring管理。">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://localhost:4000/"/>
+
+
+
+
+
+  <title>SSH框架整合 | Padcn</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Padcn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">start now.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2017/05/19/SSH%E6%A1%86%E6%9E%B6%E7%9A%84%E6%95%B4%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Padcn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Padcn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            SSH框架整合
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-19T00:00:00+08:00">
+                2017-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1 id="ssh框架的整合">SSH框架的整合</h1>
+<p>整合的目的是让Spring来控制Hibernate的sessionFactory的创建，以及核心配置文件中数据库配置交给Spring管理。
+对于struts2来说是把action交给Spring管理。</p>
+
+<h2 id="导入需要的依赖包">导入需要的依赖包</h2>
+<p>这里使用maven来管理依赖以下是pom.xml文件中的依赖,见文章最下..因为有点长，影响阅读。主要注意的是maven会把资源文件都自动转移到resource文件夹下，导致hibernate映射文件找不到。所以要手动指定转移的文件。还有2个整合需要的jar包 struts-spring-plugin和spring-orm。</p>
+
+<p>完整项目:https://github.com/Padcn/SSHIntegration</p>
+<blockquote>
+  <p>这里我用的IDE是IDEA，如果是其他IDE请自行转换。</p>
+</blockquote>
+
+<p>搭建S+S+H就不多说 开始整合</p>
+
+<h2 id="struts2和spring的整合">Struts2和Spring的整合</h2>
+<p>在web.xml中加入spring的listener</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code>	<span class="nt">&lt;context-param&gt;</span>
+        <span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+        <span class="nt">&lt;param-value&gt;</span>classpath:applicationContext.xml<span class="nt">&lt;/param-value&gt;</span>
+    <span class="nt">&lt;/context-param&gt;</span>
+    
+    <span class="nt">&lt;listener&gt;</span>
+        <span class="nt">&lt;listener-class&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="nt">&lt;/listener-class&gt;</span>
+    <span class="nt">&lt;/listener&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>在struts.xml中加入,其实这句好像可以不加，因为如果导入了struts2-spring-plugin的jar包，版本比较高的struts会默认使用。</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>  <span class="nt">&lt;constant</span> <span class="na">name=</span><span class="s">"struts.objectFactory"</span> <span class="na">value=</span><span class="s">"spring"</span><span class="nt">&gt;&lt;/constant&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>在spring中配置用注解的方式自动扫描注入。（扫描注入产生的bean，id为原类首字母小写。如TestAction产生的bean的id为testAction）。</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code>	<span class="nt">&lt;context:annotation-config/&gt;</span>
+    <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">"com.pad"</span><span class="nt">/&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>以下是action、service和dao</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><pre class="highlight"><code><span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestAction</span> <span class="kd">extends</span> <span class="n">ActionSupport</span> <span class="o">{</span>
+    <span class="nd">@Resource</span>
+    <span class="kd">private</span> <span class="n">TestService</span> <span class="n">testService</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">execute</span><span class="o">(){</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">testService</span><span class="o">.</span><span class="na">test</span><span class="o">());</span>
+
+        <span class="k">return</span> <span class="n">SUCCESS</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10</pre></td><td class="code"><pre class="highlight"><code><span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestService</span> <span class="o">{</span>
+    <span class="nd">@Resource</span>
+    <span class="kd">private</span> <span class="n">TestDao</span> <span class="n">testDao</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">test</span><span class="o">(){</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">testDao</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">testDao</span><span class="o">.</span><span class="na">test</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code><span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestDao</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">test</span><span class="o">(){</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"in test dao"</span><span class="o">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>运行后访问TestAction能看到输出就是配置完毕。</p>
+
+<h2 id="spring整合hibernate">spring整合hibernate</h2>
+<p>为了比较好管理数据库的一些参数把相关信息提取出来
+@datasource.properties</p>
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</pre></td><td class="code"><pre class="highlight"><code>mysql.driverClassName=com.mysql.jdbc.Driver
+mysql.url=jdbc:mysql://localhost:3306/testssh
+mysql.username=root
+mysql.password=123
+
+hibernate.dialect=org.hibernate.dialect.MySQLDialect
+hibernate.hbm2ddl.auto=create
+hibernate.show_sql=true
+hibernate.format_sql=true
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>在spring的配置文件applicationContext.xml中配置数据源。</p>
+<blockquote>
+  <p>这里使用c3p0作为数据源类还可以使用BasicDataSource等,也可以直接使用</p>
+</blockquote>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><pre class="highlight"><code>	<span class="nt">&lt;context:property-placeholder</span> <span class="na">location=</span><span class="s">"classpath:datasource.properties"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"dataSource"</span> <span class="na">class=</span><span class="s">"com.mchange.v2.c3p0.ComboPooledDataSource"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"driverClass"</span> <span class="na">value=</span><span class="s">"${mysql.driverClassName}"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"jdbcUrl"</span> <span class="na">value=</span><span class="s">"${mysql.url}"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"user"</span> <span class="na">value=</span><span class="s">"${mysql.username}"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"password"</span> <span class="na">value=</span><span class="s">"${mysql.password}"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"maxPoolSize"</span> <span class="na">value=</span><span class="s">"40"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"minPoolSize"</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"initialPoolSize"</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"maxIdleTime"</span> <span class="na">value=</span><span class="s">"20"</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>配置sessionFactory的bean</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21</pre></td><td class="code"><pre class="highlight"><code>    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"sessionFactory"</span>
+          <span class="na">class=</span><span class="s">"org.springframework.orm.hibernate4.LocalSessionFactoryBean"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"dataSource"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;ref</span> <span class="na">bean=</span><span class="s">"dataSource"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernateProperties"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;props&gt;</span>
+                <span class="c">&lt;!--这里要打全，比如show_sql不写成hibernate.show_sql好像并不输出--&gt;</span>
+                <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">"hibernate.show_sql"</span><span class="nt">&gt;</span>${hibernate.show_sql}<span class="nt">&lt;/prop&gt;</span>
+                <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">"hibernate.format_sql"</span><span class="nt">&gt;</span>${hibernate.format_sql}<span class="nt">&lt;/prop&gt;</span>
+                <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">"hibernate.hbm2ddl.auto"</span><span class="nt">&gt;</span>${hibernate.hbm2ddl.auto}<span class="nt">&lt;/prop&gt;</span>
+                <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">"hibernate.dialect"</span><span class="nt">&gt;</span>${hibernate.dialect}<span class="nt">&lt;/prop&gt;</span>
+            <span class="nt">&lt;/props&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"mappingLocations"</span> <span class="na">value=</span><span class="s">"classpath:/com/pad/entity/*.hbm.xml"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="c">&lt;!--&lt;property name="mappingResources"&gt;--&gt;</span>
+            <span class="c">&lt;!--&lt;list&gt;--&gt;</span>
+                <span class="c">&lt;!--&lt;value&gt;com/pad/entity/user.hbm.xml&lt;/value&gt;--&gt;</span>
+            <span class="c">&lt;!--&lt;/list&gt;--&gt;</span>
+        <span class="c">&lt;!--&lt;/property&gt;--&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>到这里应该已经可以使用openSession获取session了，然后可以手动开启事务提交事务，但是不能使用getCurrentSession因为我们还没有配置事务管理器，调用getCurrentSession的话会报下面【整合中遇到的异常】中第三条。接下来配置事务管理器</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18</pre></td><td class="code"><pre class="highlight"><code>    <span class="c">&lt;!-- 配置Spring声明式事务 --&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"transactionManager"</span> <span class="na">class=</span><span class="s">"org.springframework.orm.hibernate4.HibernateTransactionManager"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"sessionFactory"</span> <span class="na">ref=</span><span class="s">"sessionFactory"</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+
+    <span class="c">&lt;!-- 配置事务事务属性 --&gt;</span>
+    <span class="nt">&lt;tx:advice</span> <span class="na">id=</span><span class="s">"txAdvice"</span> <span class="na">transaction-manager=</span><span class="s">"transactionManager"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;tx:attributes&gt;</span>
+            <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">"get*"</span> <span class="na">read-only=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">"*"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/tx:attributes&gt;</span>
+    <span class="nt">&lt;/tx:advice&gt;</span>
+
+    <span class="c">&lt;!-- 配置事务切点，并把切点和事务属性关联起来 --&gt;</span>
+    <span class="nt">&lt;aop:config&gt;</span>
+        <span class="nt">&lt;aop:pointcut</span> <span class="na">expression=</span><span class="s">"execution(* com.pad.dao.*.*(..))"</span> <span class="na">id=</span><span class="s">"txPointcut"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;aop:advisor</span> <span class="na">advice-ref=</span><span class="s">"txAdvice"</span> <span class="na">pointcut-ref=</span><span class="s">"txPointcut"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/aop:config&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>这样就可以使用让spring管理事务了。
+测试代码，就是
+@TestDao</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15</pre></td><td class="code"><pre class="highlight"><code><span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestDao</span> <span class="o">{</span>
+    <span class="nd">@Resource</span>
+    <span class="kd">private</span> <span class="n">SessionFactory</span> <span class="n">sessionFactory</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">test</span><span class="o">(){</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sessionFactory</span><span class="o">);</span>
+        <span class="n">Person</span> <span class="n">p</span><span class="o">=</span><span class="k">new</span> <span class="n">Person</span><span class="o">();</span>
+        <span class="n">p</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"110"</span><span class="o">);</span>
+        <span class="n">p</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span><span class="mi">666</span><span class="o">);</span>
+        <span class="n">Session</span> <span class="n">session</span><span class="o">=</span><span class="n">sessionFactory</span><span class="o">.</span><span class="na">getCurrentSession</span><span class="o">();</span>
+        <span class="n">session</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">p</span><span class="o">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>实体类Person.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35</pre></td><td class="code"><pre class="highlight"><code><span class="nd">@Entity</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"Person"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">Serializable</span> <span class="o">{</span>
+
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">Age</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">Name</span><span class="o">;</span>
+
+	<span class="kd">public</span> <span class="nf">Person</span><span class="o">()</span> <span class="o">{</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nf">Person</span><span class="o">(</span><span class="kt">int</span> <span class="n">Age</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">Age</span> <span class="o">=</span> <span class="n">Age</span><span class="o">;</span>
+		
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nf">Person</span><span class="o">(</span><span class="kt">int</span> <span class="n">Age</span><span class="o">,</span> <span class="n">String</span> <span class="n">Name</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">Age</span> <span class="o">=</span> <span class="n">Age</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">Name</span> <span class="o">=</span> <span class="n">Name</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAge</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">Age</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAge</span><span class="o">(</span><span class="kt">int</span> <span class="n">Age</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">Age</span> <span class="o">=</span> <span class="n">Age</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">Name</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">Name</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">Name</span> <span class="o">=</span> <span class="n">Name</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>映射文件</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0"?&gt;</span>
+<span class="cp">&lt;!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"&gt;</span>
+<span class="c">&lt;!-- Generated 2016-7-13 16:07:48 by Hibernate Tools 3.5.0.Final --&gt;</span>
+<span class="nt">&lt;hibernate-mapping&gt;</span>
+    <span class="nt">&lt;class</span> <span class="na">name=</span><span class="s">"com.pad.entity.Person"</span> <span class="na">table=</span><span class="s">"Person"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;id</span> <span class="na">name=</span><span class="s">"Age"</span> <span class="na">type=</span><span class="s">"int"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;generator</span> <span class="na">class=</span><span class="s">"increment"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"Name"</span> <span class="na">type=</span><span class="s">"java.lang.String"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/class&gt;</span>
+<span class="nt">&lt;/hibernate-mapping&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>完整的applicationContext.xml</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47<br/>48<br/>49<br/>50<br/>51<br/>52<br/>53<br/>54<br/>55<br/>56<br/>57<br/>58<br/>59<br/>60<br/>61<br/>62<br/>63<br/>64<br/>65<br/>66<br/>67<br/>68<br/>69<br/>70<br/>71<br/>72<br/>73</pre></td><td class="code"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
+       <span class="na">xmlns:tx=</span><span class="s">"http://www.springframework.org/schema/tx"</span>
+       <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:aop=</span><span class="s">"http://www.springframework.org/schema/aop"</span>
+       <span class="na">xmlns:context=</span><span class="s">"http://www.springframework.org/schema/context"</span>
+       <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans</span>
+       <span class="err">http://www.springframework.org/schema/beans/spring-beans.xsd</span>
+       <span class="err">http://www.springframework.org/schema/aop</span>
+       <span class="err">http://www.springframework.org/schema/aop/spring-aop.xsd</span>
+       <span class="err">http://www.springframework.org/schema/tx</span> <span class="err">http://www.springframework.org/schema/tx/spring-tx-4.1.xsd</span> <span class="err">http://www.springframework.org/schema/context</span> <span class="err">http://www.springframework.org/schema/context/spring-context.xsd"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;context:annotation-config/&gt;</span>
+    <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">"com.pad"</span><span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;context:property-placeholder</span> <span class="na">location=</span><span class="s">"classpath:datasource.properties"</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- 此处的数据源类BasicDataSource可以自己选择c3p0等等 --&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"dataSource"</span> <span class="na">class=</span><span class="s">"com.mchange.v2.c3p0.ComboPooledDataSource"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"driverClass"</span> <span class="na">value=</span><span class="s">"${mysql.driverClassName}"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"jdbcUrl"</span> <span class="na">value=</span><span class="s">"${mysql.url}"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"user"</span> <span class="na">value=</span><span class="s">"${mysql.username}"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"password"</span> <span class="na">value=</span><span class="s">"${mysql.password}"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"maxPoolSize"</span> <span class="na">value=</span><span class="s">"40"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"minPoolSize"</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"initialPoolSize"</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"maxIdleTime"</span> <span class="na">value=</span><span class="s">"20"</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"sessionFactory"</span>
+          <span class="na">class=</span><span class="s">"org.springframework.orm.hibernate4.LocalSessionFactoryBean"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"dataSource"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;ref</span> <span class="na">bean=</span><span class="s">"dataSource"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernateProperties"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;props&gt;</span>
+                <span class="c">&lt;!--这里要打全，比如show_sql不写成hibernate.show_sql好像并不输出--&gt;</span>
+                <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">"hibernate.show_sql"</span><span class="nt">&gt;</span>${hibernate.show_sql}<span class="nt">&lt;/prop&gt;</span>
+                <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">"hibernate.format_sql"</span><span class="nt">&gt;</span>${hibernate.format_sql}<span class="nt">&lt;/prop&gt;</span>
+                <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">"hibernate.hbm2ddl.auto"</span><span class="nt">&gt;</span>${hibernate.hbm2ddl.auto}<span class="nt">&lt;/prop&gt;</span>
+                <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">"hibernate.dialect"</span><span class="nt">&gt;</span>${hibernate.dialect}<span class="nt">&lt;/prop&gt;</span>
+            <span class="nt">&lt;/props&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"mappingLocations"</span> <span class="na">value=</span><span class="s">"classpath:/com/pad/entity/*.hbm.xml"</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="c">&lt;!--&lt;property name="mappingResources"&gt;--&gt;</span>
+            <span class="c">&lt;!--&lt;list&gt;--&gt;</span>
+                <span class="c">&lt;!--&lt;value&gt;com/pad/entity/user.hbm.xml&lt;/value&gt;--&gt;</span>
+            <span class="c">&lt;!--&lt;/list&gt;--&gt;</span>
+        <span class="c">&lt;!--&lt;/property&gt;--&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+
+    <span class="c">&lt;!-- 配置Spring声明式事务 --&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"transactionManager"</span> <span class="na">class=</span><span class="s">"org.springframework.orm.hibernate4.HibernateTransactionManager"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"sessionFactory"</span> <span class="na">ref=</span><span class="s">"sessionFactory"</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+
+    <span class="c">&lt;!-- 配置事务事务属性 --&gt;</span>
+    <span class="nt">&lt;tx:advice</span> <span class="na">id=</span><span class="s">"txAdvice"</span> <span class="na">transaction-manager=</span><span class="s">"transactionManager"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;tx:attributes&gt;</span>
+            <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">"get*"</span> <span class="na">read-only=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">"*"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/tx:attributes&gt;</span>
+    <span class="nt">&lt;/tx:advice&gt;</span>
+
+    <span class="c">&lt;!-- 配置事务切点，并把切点和事务属性关联起来 --&gt;</span>
+    <span class="nt">&lt;aop:config&gt;</span>
+        <span class="nt">&lt;aop:pointcut</span> <span class="na">expression=</span><span class="s">"execution(* com.pad.dao.*.*(..))"</span> <span class="na">id=</span><span class="s">"txPointcut"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;aop:advisor</span> <span class="na">advice-ref=</span><span class="s">"txAdvice"</span> <span class="na">pointcut-ref=</span><span class="s">"txPointcut"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/aop:config&gt;</span>
+    <span class="c">&lt;!--测试aop--&gt;</span>
+    <span class="c">&lt;!--&lt;aop:config&gt;--&gt;</span>
+        <span class="c">&lt;!--&lt;aop:aspect id="testAspect" ref="TestAOP"&gt;--&gt;</span>
+            <span class="c">&lt;!--&lt;aop:pointcut id="testPointcut" expression="execution(* com.pad.entity.*.*(..))"/&gt;--&gt;</span>
+            <span class="c">&lt;!--&lt;aop:before method="before" pointcut-ref="testPointcut"/&gt;--&gt;</span>
+        <span class="c">&lt;!--&lt;/aop:aspect&gt;--&gt;</span>
+    <span class="c">&lt;!--&lt;/aop:config&gt;--&gt;</span>
+<span class="nt">&lt;/beans&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h1 id="整合中遇到的异常">整合中遇到的异常</h1>
+
+<p>Not supported by BasicDataSource
+原因：在hibernate配置文件中配置之后再spring中又配置数据库发生冲突。</p>
+<blockquote>
+  <p>http://sandyxl001.blog.163.com/blog/static/16656410201241851531861/</p>
+</blockquote>
+
+<p>Could not parse mapping document from input stream hibernate
+查看Caused by:说明 一般是配置文件问题。</p>
+
+<p>HibernateException: Could not obtain transaction-synchronized Session for current thread
+原因没有配置事务</p>
+
+<h1 id="pomxml">Pom.xml</h1>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47<br/>48<br/>49<br/>50<br/>51<br/>52<br/>53<br/>54<br/>55<br/>56<br/>57<br/>58<br/>59<br/>60<br/>61<br/>62<br/>63<br/>64<br/>65<br/>66<br/>67<br/>68<br/>69<br/>70<br/>71<br/>72<br/>73<br/>74<br/>75<br/>76<br/>77<br/>78<br/>79<br/>80<br/>81<br/>82<br/>83<br/>84<br/>85<br/>86<br/>87<br/>88<br/>89<br/>90<br/>91<br/>92<br/>93<br/>94<br/>95<br/>96<br/>97<br/>98<br/>99<br/>100<br/>101<br/>102<br/>103<br/>104<br/>105<br/>106<br/>107<br/>108<br/>109<br/>110<br/>111<br/>112<br/>113<br/>114<br/>115<br/>116<br/>117<br/>118<br/>119<br/>120<br/>121<br/>122<br/>123<br/>124<br/>125<br/>126<br/>127<br/>128<br/>129<br/>130<br/>131<br/>132<br/>133<br/>134<br/>135<br/>136<br/>137<br/>138</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span><span class="nt">&gt;</span>
+
+
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.pad.sshIntegration<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>sshIntegration-model<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;packaging&gt;</span>war<span class="nt">&lt;/packaging&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;name&gt;</span>sshIntegration-model Maven Webapp<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;url&gt;</span>http://maven.apache.org<span class="nt">&lt;/url&gt;</span>
+
+  <span class="nt">&lt;properties&gt;</span>
+    <span class="c">&lt;!-- springframe 版本控制 --&gt;</span>
+    <span class="nt">&lt;spring.version&gt;</span>4.2.4.RELEASE<span class="nt">&lt;/spring.version&gt;</span>
+    <span class="nt">&lt;struts2.version&gt;</span>2.3.32<span class="nt">&lt;/struts2.version&gt;</span>
+    <span class="nt">&lt;hibernate.version&gt;</span>4.1.12.Final<span class="nt">&lt;/hibernate.version&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+
+
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+       <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+       <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+       <span class="nt">&lt;version&gt;</span>4.12<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.junit.jupiter<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>junit-jupiter-api<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>RELEASE<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="c">&lt;!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-core --&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.apache.struts<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>struts2-core<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${struts2.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="c">&lt;!-- 用于整合struts2和spring的依赖 --&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.apache.struts<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>struts2-spring-plugin<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${struts2.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+
+    <span class="c">&lt;!--Spring Start--&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>spring-core<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>spring-context-support<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>spring-context<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>spring-aop<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>spring-aspects<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>spring-beans<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>spring-web<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>spring-tx<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="c">&lt;!--spring支持ORM的包--&gt;</span>
+    <span class="c">&lt;!-- https://mvnrepository.com/artifact/org.springframework/spring-orm --&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>spring-orm<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="c">&lt;!--Spring end--&gt;</span>
+
+    <span class="c">&lt;!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core --&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.hibernate<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>hibernate-core<span class="nt">&lt;/artifactId&gt;</span>
+     <span class="nt">&lt;version&gt;</span>${hibernate.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.hibernate<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>hibernate-c3p0<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${hibernate.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+
+    <span class="c">&lt;!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>mysql<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>mysql-connector-java<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>5.0.8<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+  <span class="c">&lt;!--
+  因为maven会把资源文件自动放到classes文件下，
+  导致hibernate的映射文件也被转移后找不到，
+  所以以下可以特别指定哪些文件转移，保证映射文件不被移动--&gt;</span>
+  <span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;finalName&gt;</span>sshIntegration-model<span class="nt">&lt;/finalName&gt;</span>
+    <span class="nt">&lt;resources&gt;</span>
+      <span class="nt">&lt;resource&gt;</span>
+        <span class="nt">&lt;directory&gt;</span>src/main/java<span class="nt">&lt;/directory&gt;</span>
+        <span class="nt">&lt;includes&gt;</span>
+          <span class="nt">&lt;include&gt;</span>**/*.xml<span class="nt">&lt;/include&gt;</span>
+        <span class="nt">&lt;/includes&gt;</span>
+        <span class="nt">&lt;filtering&gt;</span>true<span class="nt">&lt;/filtering&gt;</span>
+      <span class="nt">&lt;/resource&gt;</span>
+      <span class="nt">&lt;resource&gt;</span>
+        <span class="nt">&lt;directory&gt;</span>src/main/resources<span class="nt">&lt;/directory&gt;</span>
+        <span class="nt">&lt;includes&gt;</span>
+          <span class="nt">&lt;include&gt;</span>**/*.xml<span class="nt">&lt;/include&gt;</span>
+          <span class="nt">&lt;include&gt;</span>**/*.properties<span class="nt">&lt;/include&gt;</span>
+        <span class="nt">&lt;/includes&gt;</span>
+      <span class="nt">&lt;/resource&gt;</span>
+    <span class="nt">&lt;/resources&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/%E6%95%B4%E5%90%88" rel="tag"># 整合</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/22/SSM%E6%A1%86%E6%9E%B6%E7%9A%84%E6%95%B4%E5%90%88/" rel="next" title="SSM整合">
+                <i class="fa fa-chevron-left"></i> SSM整合
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/16/SpringAOP/" rel="prev" title="SpringAOP">
+                SpringAOP <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="Padcn" />
+          <p class="site-author-name" itemprop="name">Padcn</p>
+           
+              <p class="site-description motion-element" itemprop="description">...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-1"> <a class="nav-link" href="#ssh框架的整合"> <span class="nav-number">1</span> <span class="nav-text">SSH框架的整合</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-2"> <a class="nav-link" href="#导入需要的依赖包"> <span class="nav-number">1.1</span> <span class="nav-text">导入需要的依赖包</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#struts2和spring的整合"> <span class="nav-number">1.2</span> <span class="nav-text">Struts2和Spring的整合</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#spring整合hibernate"> <span class="nav-number">1.3</span> <span class="nav-text">spring整合hibernate</span> </a> </li> </ol> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#整合中遇到的异常"> <span class="nav-number">2</span> <span class="nav-text">整合中遇到的异常</span> </a> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#pomxml"> <span class="nav-number">3</span> <span class="nav-text">Pom.xml</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Padcn</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://jekyllrb.com">Jekyll</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+

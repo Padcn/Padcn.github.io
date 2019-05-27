@@ -1,0 +1,1118 @@
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java,web,权限," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Padcn" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Shiro的使用 Spring整合Shiro 在springmvc整合的前提下的后续操作 参考 https://www.cnblogs.com/dreamowneryong/p/5610748.html http://jinnianshilongnian.iteye.com/blog/2018936/《跟我学shiro》">
+<meta name="keywords" content="java, web, 权限">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shiro">
+<meta property="og:url" content="http://localhost:4000/2018/03/21/shiro/">
+<meta property="og:site_name" content="Padcn">
+<meta property="og:description" content="Shiro的使用 Spring整合Shiro 在springmvc整合的前提下的后续操作 参考 https://www.cnblogs.com/dreamowneryong/p/5610748.html http://jinnianshilongnian.iteye.com/blog/2018936/《跟我学shiro》">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shiro">
+<meta name="twitter:description" content="Shiro的使用 Spring整合Shiro 在springmvc整合的前提下的后续操作 参考 https://www.cnblogs.com/dreamowneryong/p/5610748.html http://jinnianshilongnian.iteye.com/blog/2018936/《跟我学shiro》">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://localhost:4000/"/>
+
+
+
+
+
+  <title>shiro | Padcn</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Padcn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">start now.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/03/21/shiro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Padcn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Padcn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            shiro
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T00:00:00+08:00">
+                2018-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1 id="shiro的使用">Shiro的使用</h1>
+<h2 id="spring整合shiro">Spring整合Shiro</h2>
+<blockquote>
+  <p>在springmvc整合的前提下的后续操作</p>
+
+  <p>参考 https://www.cnblogs.com/dreamowneryong/p/5610748.html</p>
+
+  <p>http://jinnianshilongnian.iteye.com/blog/2018936/《跟我学shiro》</p>
+</blockquote>
+
+<h2 id="导入maven依赖">导入maven依赖</h2>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.apache.shiro<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>shiro-all<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.3.2<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h2 id="实现rleam">实现Rleam</h2>
+
+<p>继承AuthorizingRealm实现我们自己的rleam</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">pad</span><span class="o">.</span><span class="na">util</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.pad.entity.User</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.shiro.authc.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.shiro.authz.AuthorizationInfo</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.shiro.authz.SimpleAuthorizationInfo</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.shiro.realm.AuthorizingRealm</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.shiro.subject.PrincipalCollection</span><span class="o">;</span>
+
+<span class="cm">/**
+ * @author padcn
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyShrio</span> <span class="kd">extends</span> <span class="n">AuthorizingRealm</span><span class="o">{</span>
+
+    <span class="cm">/**
+     * 用于已登录用户权限认证
+     * @param principalCollection
+     * @return
+     */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="n">AuthorizationInfo</span> <span class="nf">doGetAuthorizationInfo</span><span class="o">(</span><span class="n">PrincipalCollection</span> <span class="n">principalCollection</span><span class="o">){</span>
+        <span class="n">String</span> <span class="n">loginName</span><span class="o">=(</span><span class="n">String</span><span class="o">)</span> <span class="n">principalCollection</span><span class="o">.</span><span class="na">fromRealm</span><span class="o">(</span><span class="n">getName</span><span class="o">()).</span><span class="na">iterator</span><span class="o">().</span><span class="na">next</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">SimpleAuthorizationInfo</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * 登录认证
+     * @param authenticationToken
+     * @return
+     * @throws AuthenticationException
+     */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="n">AuthenticationInfo</span> <span class="nf">doGetAuthenticationInfo</span><span class="o">(</span><span class="n">AuthenticationToken</span> <span class="n">authenticationToken</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">AuthenticationException</span> <span class="o">{</span>
+        <span class="n">UsernamePasswordToken</span> <span class="n">token</span><span class="o">=(</span><span class="n">UsernamePasswordToken</span><span class="o">)</span><span class="n">authenticationToken</span><span class="o">;</span>
+      	<span class="c1">// 这里正式开发数据库中查询，如匹配到则返回，否则返回null,这里为了精简，没有去查询数据库</span>
+      	<span class="n">User</span> <span class="n">user</span><span class="o">=</span><span class="k">new</span> <span class="n">User</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="s">"admin"</span><span class="o">,</span><span class="s">"123"</span><span class="o">);</span>
+        <span class="k">if</span><span class="o">(</span><span class="kc">null</span> <span class="o">!=</span> <span class="n">user</span><span class="o">){</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nf">SimpleAuthenticationInfo</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span><span class="n">user</span><span class="o">.</span><span class="na">getPassword</span><span class="o">(),</span><span class="n">getName</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h2 id="shiro配置文件配置">Shiro配置文件配置</h2>
+
+<p>配置shiro的配置文件，这里单独新建一个，也可以写在总的spring配置中</p>
+
+<p>@shiro.xml</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36</pre></td><td class="code"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
+       <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+       <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"myShiro"</span> <span class="na">class=</span><span class="s">"com.pad.util.MyShrio"</span><span class="nt">&gt;&lt;/bean&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"securityManager"</span> <span class="na">class=</span><span class="s">"org.apache.shiro.web.mgt.DefaultWebSecurityManager"</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!--自定义rleam--&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"realm"</span> <span class="na">ref=</span><span class="s">"myShiro"</span><span class="nt">/&gt;</span>
+        <span class="c">&lt;!--缓存管理器--&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"cacheManager"</span> <span class="na">ref=</span><span class="s">"cacheManager"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="c">&lt;!--过滤规则--&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"shiroFilter"</span> <span class="na">class=</span><span class="s">"org.apache.shiro.spring.web.ShiroFilterFactoryBean"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"securityManager"</span> <span class="na">ref=</span><span class="s">"securityManager"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"loginUrl"</span> <span class="na">value=</span><span class="s">"/login"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"successUrl"</span> <span class="na">value=</span><span class="s">"/index"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"unauthorizedUrl"</span> <span class="na">value=</span><span class="s">"/login"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"filterChainDefinitions"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;value&gt;</span>
+                <span class="c">&lt;!-- annon无权限访问要求 --&gt;</span>
+                /=anon
+                /doLogin=anon
+                /static/**=anon
+                <span class="c">&lt;!--需权限为add的用户才可访问--&gt;</span>
+                /user=perms[user:add]
+                <span class="c">&lt;!--需拥有角色为admin的用户才可访问--&gt;</span>
+                /user/add=roles[admin]
+                <span class="c">&lt;!--拦截非静态资源的所有请求--&gt;</span>
+                /**=authc
+            <span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="c">&lt;!--缓存管理器--&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"cacheManager"</span> <span class="na">class=</span><span class="s">"org.apache.shiro.cache.MemoryConstrainedCacheManager"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"lifecycleBeanPostProcessor"</span> <span class="na">class=</span><span class="s">"org.apache.shiro.spring.LifecycleBeanPostProcessor"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/beans&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h2 id="拦截器配置">拦截器配置</h2>
+
+<p>在web.xml中加入shiro的拦截器配置</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;filter&gt;</span>
+    <span class="nt">&lt;filter-name&gt;</span>shiroFilter<span class="nt">&lt;/filter-name&gt;</span>
+    <span class="nt">&lt;filter-class&gt;</span>org.springframework.web.filter.DelegatingFilterProxy<span class="nt">&lt;/filter-class&gt;</span>
+<span class="nt">&lt;/filter&gt;</span>
+<span class="nt">&lt;filter-mapping&gt;</span>
+    <span class="nt">&lt;filter-name&gt;</span>shiroFilter<span class="nt">&lt;/filter-name&gt;</span>
+    <span class="nt">&lt;url-pattern&gt;</span>/*<span class="nt">&lt;/url-pattern&gt;</span>
+<span class="nt">&lt;/filter-mapping&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>同时别忘了把shiro的spring配置文件配置下。例如:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;servlet&gt;</span>
+  <span class="nt">&lt;servlet-name&gt;</span>seckill-dispatcher<span class="nt">&lt;/servlet-name&gt;</span>
+  <span class="nt">&lt;servlet-class&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="nt">&lt;/servlet-class&gt;</span>
+  <span class="nt">&lt;init-param&gt;</span>
+    <span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+    <span class="nt">&lt;param-value&gt;</span>classpath:spring-*.xml,classpath:shiro.xml<span class="nt">&lt;/param-value&gt;</span>
+  <span class="nt">&lt;/init-param&gt;</span>
+<span class="nt">&lt;/servlet&gt;</span>
+<span class="nt">&lt;servlet-mapping&gt;</span>
+  <span class="nt">&lt;servlet-name&gt;</span>seckill-dispatcher<span class="nt">&lt;/servlet-name&gt;</span>
+  <span class="nt">&lt;url-pattern&gt;</span>/<span class="nt">&lt;/url-pattern&gt;</span>
+<span class="nt">&lt;/servlet-mapping&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h2 id="登录方法">登录方法</h2>
+
+<p>spring-mvc的controller</p>
+
+<p>@TestCtrl.java</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24</pre></td><td class="code"><pre class="highlight"><code><span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestCtrl</span> <span class="o">{</span>
+    <span class="nd">@Resource</span>
+    <span class="n">TestService</span> <span class="n">testService</span><span class="o">;</span>
+
+  	<span class="nd">@ResponseBody</span>
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/doLogin"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">doLogin</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">){</span>
+        <span class="n">Subject</span> <span class="n">subject</span><span class="o">=</span> <span class="n">SecurityUtils</span><span class="o">.</span><span class="na">getSubject</span><span class="o">();</span>
+      	<span class="c1">//登录操作</span>
+        <span class="n">subject</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="k">new</span> <span class="n">UsernamePasswordToken</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span><span class="n">user</span><span class="o">.</span><span class="na">getPassword</span><span class="o">()));</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+        <span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@ResponseBody</span>
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/logout"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">logout</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">){</span>
+        <span class="n">Subject</span> <span class="n">subject</span><span class="o">=</span> <span class="n">SecurityUtils</span><span class="o">.</span><span class="na">getSubject</span><span class="o">();</span>
+      	<span class="c1">//登出操作</span>
+        <span class="n">subject</span><span class="o">.</span><span class="na">logout</span><span class="o">();</span>
+        <span class="k">return</span> <span class="s">"logout"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>完成。</p>
+
+<h2 id="非spring下使用">非Spring下使用</h2>
+
+<p>结合《跟我学shiro》中的第二章中的代码</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16</pre></td><td class="code"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+      <span class="c1">//产生一个SecurityManager的工厂类，获取SecurityManager对象最终获取Subject</span>
+      <span class="n">Factory</span><span class="o">&lt;</span><span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">shiro</span><span class="o">.</span><span class="na">mgt</span><span class="o">.</span><span class="na">SecurityManager</span><span class="o">&gt;</span> <span class="n">factory</span><span class="o">=</span><span class="k">new</span>  <span class="n">IniSecurityManagerFactory</span><span class="o">(</span><span class="s">"classpath:shiro.ini"</span><span class="o">);</span>
+      <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">shiro</span><span class="o">.</span><span class="na">mgt</span><span class="o">.</span><span class="na">SecurityManager</span> <span class="n">manager</span><span class="o">=</span><span class="n">factory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+      <span class="n">SecurityUtils</span><span class="o">.</span><span class="na">setSecurityManager</span><span class="o">(</span><span class="n">manager</span><span class="o">);</span>
+      <span class="n">Subject</span> <span class="n">subject</span><span class="o">=</span><span class="n">SecurityUtils</span><span class="o">.</span><span class="na">getSubject</span><span class="o">();</span>
+      
+      <span class="n">UsernamePasswordToken</span> <span class="n">token</span><span class="o">=</span><span class="k">new</span> <span class="n">UsernamePasswordToken</span><span class="o">(</span><span class="s">"zhang"</span><span class="o">,</span><span class="s">"123"</span><span class="o">);</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">subject</span><span class="o">.</span><span class="na">isAuthenticated</span><span class="o">());</span>
+      <span class="c1">//用户使用都是调用subject对象，但真正的逻辑都是由SecurityManager完成</span>
+      <span class="n">subject</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">subject</span><span class="o">.</span><span class="na">isAuthenticated</span><span class="o">());</span>
+      <span class="n">subject</span><span class="o">.</span><span class="na">logout</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>流程如下：</p>
+
+<ol>
+  <li>首先调用Subject.login(token)进行登录，其会自动委托给Security Manager，调用之前必须通过SecurityUtils. setSecurityManager()设置；</li>
+  <li>
+    <p>SecurityManager负责真正的身份验证逻辑；它会委托给Authenticator进行身份验证；</p>
+  </li>
+  <li>
+    <p>Authenticator才是真正的身份验证者，Shiro API中核心的身份认证入口点，此处可以自定义插入自己的实现；</p>
+  </li>
+  <li>
+    <p>Authenticator可能会委托给相应的AuthenticationStrategy进行多Realm身份验证，默认ModularRealmAuthenticator会调用AuthenticationStrategy进行多Realm身份验证；</p>
+  </li>
+  <li>Authenticator会把相应的token传入Realm，从Realm获取身份验证信息，如果没有返回/抛出异常表示身份验证失败了。此处可以配置多个Realm，将按照相应的顺序及策略进行访问。</li>
+</ol>
+
+<p>自定义Realm，实现Realm接口（也可继承AuthorizingRealm，这样只需要实现验证方法就可以了）</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25</pre></td><td class="code"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyRealm</span> <span class="kd">implements</span> <span class="n">Realm</span><span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="s">"myRealm"</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">supports</span><span class="o">(</span><span class="n">AuthenticationToken</span> <span class="n">token</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">token</span> <span class="k">instanceof</span> <span class="n">UsernamePasswordToken</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="cm">/**
+    *验证账号
+    */</span>
+  <span class="kd">public</span> <span class="n">AuthenticationInfo</span> <span class="nf">getAuthenticationInfo</span><span class="o">(</span><span class="n">AuthenticationToken</span> <span class="n">token</span><span class="o">)</span>
+      <span class="kd">throws</span> <span class="n">AuthenticationException</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">name</span><span class="o">=(</span><span class="n">String</span><span class="o">)</span><span class="n">token</span><span class="o">.</span><span class="na">getPrincipal</span><span class="o">();</span>
+    <span class="n">String</span> <span class="n">pwd</span><span class="o">=</span><span class="k">new</span> <span class="n">String</span><span class="o">((</span><span class="kt">char</span><span class="o">[])</span><span class="n">token</span><span class="o">.</span><span class="na">getCredentials</span><span class="o">());</span>
+    <span class="k">if</span><span class="o">(!</span><span class="s">"张三"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">name</span><span class="o">)){</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nf">UnknownAccountException</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="k">if</span><span class="o">(!</span><span class="s">"123"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">pwd</span><span class="o">)){</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nf">IncorrectCredentialsException</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">SimpleAuthenticationInfo</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">pwd</span><span class="o">,</span> <span class="n">getName</span><span class="o">());</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>在配置文件中指定Realm</p>
+<div class="language-ini highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code><span class="py">myRealm</span><span class="p">=</span><span class="s">org.pad.shiro_test.realm.MyRealm</span>
+<span class="py">securityManager.realms</span><span class="p">=</span><span class="s">$myRealm</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>在有多个Realm的情况下，配置中realm已逗号分隔
+如：
+securityManager.realms=$myRealm1,$myRealm2,$myRealm3</p>
+
+<p>验证时也会根据配置顺序进行验证，所有都会执行一遍</p>
+
+<p>授权：
+check方法，反正boolean值
+subject.checkRole(“rolename”);
+方法注解
+@RequiresRoles(“zzz”)</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31</pre></td><td class="code"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyRealm</span> <span class="kd">extends</span> <span class="n">AuthorizingRealm</span><span class="o">{</span>
+  <span class="cm">/**
+   * 登录验证
+   */</span>
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="n">AuthenticationInfo</span> <span class="nf">doGetAuthenticationInfo</span><span class="o">(</span>
+      <span class="n">AuthenticationToken</span> <span class="n">token</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">AuthenticationException</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">name</span><span class="o">=(</span><span class="n">String</span><span class="o">)</span><span class="n">token</span><span class="o">.</span><span class="na">getPrincipal</span><span class="o">();</span>
+    <span class="n">String</span> <span class="n">pwd</span><span class="o">=</span><span class="k">new</span> <span class="n">String</span><span class="o">((</span><span class="kt">char</span><span class="o">[])</span><span class="n">token</span><span class="o">.</span><span class="na">getCredentials</span><span class="o">());</span>
+    <span class="k">if</span><span class="o">(!</span><span class="s">"zhang"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">name</span><span class="o">)){</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nf">UnknownAccountException</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="k">if</span><span class="o">(!</span><span class="s">"123"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">pwd</span><span class="o">)){</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nf">IncorrectCredentialsException</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="n">AuthenticationInfo</span> <span class="n">info</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleAuthenticationInfo</span><span class="o">(</span><span class="n">name</span><span class="o">,</span><span class="n">pwd</span><span class="o">,</span><span class="n">getName</span><span class="o">());</span>
+    <span class="k">return</span> <span class="n">info</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="cm">/**
+   * 权限验证
+   */</span>
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="n">AuthorizationInfo</span> <span class="nf">doGetAuthorizationInfo</span><span class="o">(</span><span class="n">PrincipalCollection</span> <span class="n">principals</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Object</span> <span class="n">obj</span><span class="o">=</span><span class="kd">super</span><span class="o">.</span><span class="na">getAvailablePrincipal</span><span class="o">(</span><span class="n">principals</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+    <span class="n">SimpleAuthorizationInfo</span> <span class="n">info</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleAuthorizationInfo</span><span class="o">();</span>
+    <span class="n">info</span><span class="o">.</span><span class="na">addRole</span><span class="o">(</span><span class="s">"zzz"</span><span class="o">);</span>
+    <span class="n">info</span><span class="o">.</span><span class="na">addStringPermission</span><span class="o">(</span><span class="s">"111"</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">info</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/java" rel="tag"># java</a>
+          
+            
+            <a href="/tag/#/web" rel="tag"># web</a>
+          
+            
+            <a href="/tag/#/%E6%9D%83%E9%99%90" rel="tag"># 权限</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/29/JAXB-parse-object-to-xml/" rel="next" title="JAXB 进行java对象和xml的转换">
+                <i class="fa fa-chevron-left"></i> JAXB 进行java对象和xml的转换
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/14/RabbitMQ-01/" rel="prev" title="RabbitMQ Start">
+                RabbitMQ Start <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="Padcn" />
+          <p class="site-author-name" itemprop="name">Padcn</p>
+           
+              <p class="site-description motion-element" itemprop="description">...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-1"> <a class="nav-link" href="#shiro的使用"> <span class="nav-number">1</span> <span class="nav-text">Shiro的使用</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-2"> <a class="nav-link" href="#spring整合shiro"> <span class="nav-number">1.1</span> <span class="nav-text">Spring整合Shiro</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#导入maven依赖"> <span class="nav-number">1.2</span> <span class="nav-text">导入maven依赖</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#实现rleam"> <span class="nav-number">1.3</span> <span class="nav-text">实现Rleam</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#shiro配置文件配置"> <span class="nav-number">1.4</span> <span class="nav-text">Shiro配置文件配置</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#拦截器配置"> <span class="nav-number">1.5</span> <span class="nav-text">拦截器配置</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#登录方法"> <span class="nav-number">1.6</span> <span class="nav-text">登录方法</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#非spring下使用"> <span class="nav-number">1.7</span> <span class="nav-text">非Spring下使用</span> </a> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Padcn</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://jekyllrb.com">Jekyll</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+

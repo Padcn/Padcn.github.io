@@ -1,0 +1,965 @@
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaSE," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Padcn" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JavaSE面向对象 java之父曾经说过：万物皆对象。 java语言就是在这个理念上的语言，所有类默认都是继承自Object。">
+<meta name="keywords" content="JavaSE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaSE面向对象">
+<meta property="og:url" content="http://localhost:4000/2017/06/01/JavaSE%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">
+<meta property="og:site_name" content="Padcn">
+<meta property="og:description" content="JavaSE面向对象 java之父曾经说过：万物皆对象。 java语言就是在这个理念上的语言，所有类默认都是继承自Object。">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaSE面向对象">
+<meta name="twitter:description" content="JavaSE面向对象 java之父曾经说过：万物皆对象。 java语言就是在这个理念上的语言，所有类默认都是继承自Object。">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://localhost:4000/"/>
+
+
+
+
+
+  <title>JavaSE面向对象 | Padcn</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Padcn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">start now.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2017/06/01/JavaSE%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Padcn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Padcn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            JavaSE面向对象
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-01T00:00:00+08:00">
+                2017-06-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1 id="javase面向对象">JavaSE面向对象</h1>
+<p>java之父曾经说过：万物皆对象。
+java语言就是在这个理念上的语言，所有类默认都是继承自Object。</p>
+
+<p>类和对象：高级语言使用类这种单元管理数据</p>
+
+<p>面向对象有三种特性：</p>
+<ul>
+  <li>封装</li>
+  <li>继承</li>
+  <li>多态</li>
+</ul>
+
+<h2 id="封装">封装</h2>
+<p>用访问修饰符实现</p>
+
+<p>访问权限表：</p>
+
+<p>|	|本类|同包|继承|所有|
+|–	|–	 |– |–  |– |
+|public|√|√	 |√	  |√|
+|protected|√|√|√  |×|
+|default|√|√ |×   |×|
+|private|√|× |×   |×|
+	为什么要封装？
+    隐藏实现的细节，对外提供公共的方法，优点是增加代码的可维护性，数据的安全性。</p>
+
+<h1 id="继承">继承</h1>
+<p>从一个类中派生出新类，子类具有父类的一般特性及自身的特殊特性。</p>
+
+<p>java中不允许多继承。但是由于单继承的扩展性较差，所以可以通过实现接口来实现多继承。</p>
+
+<p>用处：实现了抽象，增加了代码的可复用性。</p>
+
+<p>由于Object是所有对象的最上层父类，所以都拥有它的一些方法</p>
+<ul>
+  <li>equals() 用来比较对象是否相等，在Object类中是由==实现的，即比较两个对象地址是否相等，在String类中被重写成判断字符串中内容是否相等。一些场合下可以根据需求重写equals方法，但是如果在HashMap中用来作为key则需要更加彻底的重写HashCode()方法。</li>
+  <li>hashCode() 返回一串hash code代表对象在内存中的地址，用来表示对象的地址看源码的时候发现只有一个方法的声明，没有具体实现，原来是使用native关键字调用的非java代码方法。</li>
+  <li>notify()和notifyAll() 唤醒等待中的线程，第一个是唤醒单个，第二个是唤醒所有等待这个对象的monitor的线程。</li>
+  <li>toString() 打印对象名+16进制的代表对象地址的hashCode。</li>
+</ul>
+
+<p>可以用 instanceof来判断对象是否是某个类型或者属于他的子类型的对象。如果是则返回true，否则为false。
+例：</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="k">if</span><span class="o">(</span><span class="n">obj</span> <span class="k">instanceof</span> <span class="n">Object</span><span class="o">)</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<blockquote>
+  <p>注：程序中类关系结构越复杂，性能越低下。</p>
+</blockquote>
+
+<blockquote>
+  <p>如果在子类的构造函数中显示调用父类的构造函数super()则必须是在子类构造函数的第一行。</p>
+</blockquote>
+
+<blockquote>
+  <p>super不是一个指向对象的引用，只是一个特殊的关键字，告诉编译器需要调用父类</p>
+</blockquote>
+
+<blockquote>
+  <p>super和this都不能用在 static块中。原因是类初始化的顺序为:<br /> 
+	 父类&gt;子类&gt;静态属性&gt;静态代码块&gt;静态方法&gt;普通属性&gt;普通方法<br /></p>
+</blockquote>
+
+<h1 id="多态">多态</h1>
+<p>同一个实现接口，使用不同的实例执行不同的操作。</p>
+
+<p>多态分为运行时多态（方法的重写）以及编译时多态（方法的重载）。编译时多态指的是在编译时根据参数类型进行调用对应的方法，生成对应代码。运行时多态则在运行时取决于方法的调用对象来进行动态调用方法。</p>
+
+<p>表现方式：
+使用父类的引用，调用子类的对象。或者接口引用实现类的对象</p>
+
+<p>体现：
+父类（接口）统一管理行为，在方法中不注重实例的具体行为，直接调用父类的统一行为，由重写来调用实现对象的多态。</p>
+<blockquote>
+  <p>父类中的static修饰的方法不能被覆盖。</p>
+</blockquote>
+
+<p>例：</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47<br/>48<br/>49<br/>50<br/>51<br/>52<br/>53<br/>54<br/>55</pre></td><td class="code"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">IA</span><span class="o">{</span>
+	<span class="kt">int</span> <span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+	<span class="kt">void</span> <span class="nf">say</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Base</span><span class="o">{</span>
+	<span class="kt">int</span> <span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+	<span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="kd">class</span> <span class="nc">A</span> <span class="kd">extends</span> <span class="n">Base</span><span class="o">{</span>
+	<span class="kt">int</span> <span class="n">num</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span>
+	<span class="kt">void</span> <span class="nf">say</span><span class="o">(){</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"in A class"</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">B</span> <span class="kd">extends</span> <span class="n">Base</span><span class="o">{</span>
+	<span class="kt">int</span> <span class="n">num</span><span class="o">=</span><span class="mi">2</span><span class="o">;</span>
+	<span class="kt">void</span> <span class="nf">say</span><span class="o">(){</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"in B class"</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+<span class="kd">class</span> <span class="nc">ImpIA1</span> <span class="kd">implements</span> <span class="n">IA</span><span class="o">{</span>
+	<span class="kt">int</span> <span class="n">num</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Imp111"</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+<span class="kd">class</span> <span class="nc">ImpIA2</span> <span class="kd">implements</span> <span class="n">IA</span><span class="o">{</span>
+	<span class="kt">int</span> <span class="n">num</span><span class="o">=</span><span class="mi">2</span><span class="o">;</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Imp222"</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestPlantForm</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">//接口方式</span>
+		<span class="n">runImp</span><span class="o">(</span><span class="k">new</span> <span class="n">ImpIA1</span><span class="o">());</span>
+		<span class="n">runImp</span><span class="o">(</span><span class="k">new</span> <span class="n">ImpIA2</span><span class="o">());</span>
+		<span class="c1">//继承类方式</span>
+		<span class="n">runClass</span><span class="o">(</span><span class="k">new</span> <span class="n">A</span><span class="o">());</span>
+		<span class="n">runClass</span><span class="o">(</span><span class="k">new</span> <span class="n">B</span><span class="o">());</span>
+	<span class="o">}</span>
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">runImp</span><span class="o">(</span><span class="n">IA</span> <span class="n">ia</span><span class="o">){</span>
+		<span class="n">ia</span><span class="o">.</span><span class="na">say</span><span class="o">();</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">ia</span><span class="o">.</span><span class="na">num</span><span class="o">);</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">runClass</span><span class="o">(</span><span class="n">Base</span> <span class="n">base</span><span class="o">){</span>
+		<span class="n">base</span><span class="o">.</span><span class="na">say</span><span class="o">();</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">base</span><span class="o">.</span><span class="na">num</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<p>动态多态是对于方法的概念，对于属性并不使用，如果运行上面的例子，会发现输出的num值都为父类或者接口中的属性值。</p>
+
+<blockquote>
+  <p>在重写父类方法时需要注意</p>
+  <ul>
+    <li>子类中的访问修饰符权限要大于等于父类中的权限。</li>
+    <li>重写方法的返回值可以是父类方法返回值的子类（或者实现的接口的实现类）</li>
+  </ul>
+
+  <p>重写和重载区别：</p>
+  <ul>
+    <li>重载不覆盖重载对象的方法，函数名需要相同，返回值可以不同，参数列表需要不同。调用时根据参数调用相应方法</li>
+    <li>重写需要方法名相同，参数名和返回值也相同或者关系为父子类或者接口与实现类的关系，会覆盖父类方法。调用时根据调用的对象进行调用。</li>
+  </ul>
+</blockquote>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/JavaSE" rel="tag"># JavaSE</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/02/AbstractClassAndInterface/" rel="next" title="抽象类和接口">
+                <i class="fa fa-chevron-left"></i> 抽象类和接口
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/25/Freemarker/" rel="prev" title="FreeMarker">
+                FreeMarker <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="Padcn" />
+          <p class="site-author-name" itemprop="name">Padcn</p>
+           
+              <p class="site-description motion-element" itemprop="description">...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-1"> <a class="nav-link" href="#javase面向对象"> <span class="nav-number">1</span> <span class="nav-text">JavaSE面向对象</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-2"> <a class="nav-link" href="#封装"> <span class="nav-number">1.1</span> <span class="nav-text">封装</span> </a> </li> </ol> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#继承"> <span class="nav-number">2</span> <span class="nav-text">继承</span> </a> </li> <li class="nav-item nav-level-1"> <a class="nav-link" href="#多态"> <span class="nav-number">3</span> <span class="nav-text">多态</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Padcn</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://jekyllrb.com">Jekyll</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+

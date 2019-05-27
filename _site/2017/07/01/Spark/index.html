@@ -1,0 +1,1206 @@
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Spark," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Padcn" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Spark基础学习笔记 http://www.imooc.com/learn/814">
+<meta name="keywords" content="Spark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark基础学习笔记">
+<meta property="og:url" content="http://localhost:4000/2017/07/01/Spark/">
+<meta property="og:site_name" content="Padcn">
+<meta property="og:description" content="Spark基础学习笔记 http://www.imooc.com/learn/814">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://img.mukewang.com/5957493700018e6419201080.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spark基础学习笔记">
+<meta name="twitter:description" content="Spark基础学习笔记 http://www.imooc.com/learn/814">
+<meta name="twitter:image" content="http://img.mukewang.com/5957493700018e6419201080.jpg">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://localhost:4000/"/>
+
+
+
+
+
+  <title>Spark基础学习笔记 | Padcn</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Padcn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">start now.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2017/07/01/Spark/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Padcn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Padcn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            Spark基础学习笔记
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-01T00:00:00+08:00">
+                2017-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1 id="spark基础学习笔记">Spark基础学习笔记</h1>
+<blockquote>
+  <p>http://www.imooc.com/learn/814</p>
+</blockquote>
+
+<p>Spark组件图：
+<img src="http://img.mukewang.com/5957493700018e6419201080.jpg" alt="spark组件" /></p>
+
+<h2 id="spark-core">Spark Core</h2>
+<p>包含基本功能：任务调度，内存管理，容错机制等。
+内部定义了RDDs（弹性分布式数据库集）
+提供了很多APIs来创建和操作这些RDDs。
+作用：为其他组件提供底层的服务。</p>
+
+<h2 id="sparksql">SparkSQL</h2>
+<p>是Spark处理结构化数据的库，像Hive SQL,Mysql一样。
+作用：企业中用来做报表统计。</p>
+
+<h2 id="spark-streaming">Spark Streaming</h2>
+<p>是实时数据流处理组件，类似Storm。
+提供了API来操作实时流数据。
+作用：企业中用来从Kafka或者其他消息队列接受数据做实时统计。</p>
+
+<h2 id="mlib">Mlib</h2>
+<p>一个包含通用机器学习功能的功能，Machine learning lib。
+包含分类，聚类，回归等，还包括模型评估，和数据导入。
+<b>Mlib提供的这些方法，都支持集群上的横向扩展。</b></p>
+
+<p>机器学习</p>
+
+<h2 id="graphx">Graphx</h2>
+<p>是处理图的库(例如，社交网络图)，并进行图的并行计算。
+像Spark Streaming，Spark SQL一样，继承了RDD API。
+提供了各种图的操作和常用图算法，例如PangeRank算法。</p>
+
+<p>作用：图计算</p>
+
+<h2 id="cluster-managers">Cluster Managers</h2>
+<p>集群管理，Spark自带一个集群管理是单独调度器。
+常见的集群管理包括Hadoop YARN，Apache Mesos</p>
+
+<h2 id="紧密集成">紧密集成：</h2>
+<p>Spark底层优化了，基于Spark组件的组件也会得到优化。
+ 紧密集成，节省了各个组件组合使用时的部署，测试等时间。
+ 向Spark增加新的组件时，其他组件，可立即享用新组件的功能。</p>
+
+<p>## 与Hadoop比较
+ hadoop： 离线处理，对时效性要求不高。
+ Spark：对时效性要求高（因为是基于内存的），机器学习等领域。</p>
+
+<p>Spark不具有HDFS的存储能力，要借助HDFS等持久化数据。</p>
+
+<p>## Spark目录文件夹
+ bin：包含Spark交互的可执行文件如Spark shell.
+ core,streaming,python,…包含主要组件的源代码。
+ examples包含单机Spark job，例子</p>
+
+<p>Spark的shell
+ 使得可以处理分布在集群上的数据。
+ Spark巴蜀局加载到节点的内存中，因此分布式处理可在秒级完成。
+ 快速使迭代式计算，实时查询，分析一般在shells中完成。</p>
+
+<p>提供了Python Shell和Scala</p>
+
+<p>修改日志级别
+ conf下的 log4j。properties。template
+ log4j.rootCategory=WARN,console  更改级别可以控制日志的显示。</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code> <span class="k">val</span> <span class="n">rdd</span><span class="k">=</span><span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="o">(</span><span class="nc">Array</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">),</span><span class="mi">4</span><span class="o">)</span>
+ <span class="n">rdd</span><span class="o">.</span><span class="n">count</span><span class="o">()</span>
+ <span class="n">rdd</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span><span class="n">print</span><span class="o">)</span><span class="c1">//遍历打印内容 每次打印顺序随机因为，是分了4个片
+</span></code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>## Scala基础
+ 变量申明 val或者var
+ val 变量值不可修改，一旦分配不能重新指向别的值。
+ var 分配后可以指向类型相同的值</p>
+
+<p>匿名函数和类型推断：
+ lines.filter(line=&gt;line.contains(“world”))
+ 定义一个匿名函数，接受参数line
+ 使用line这个String类型变量的contains方法，返回结果
+ line类型不需要指定，能够推断出来。</p>
+
+<p>## Transformation
+ 	从之前的RDD构建一个新的RDD，像map()和filter()都是。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code>逐元素：
+map()接受函数，把函数应用到RDD的每一个元素，返回新RDD。
+```  //使用数组生成lines的rdd  val lines=sc.parallelize(Array("hell","ssps","hello","sss"));  val lines2=lines.map(word=&gt;(word,1))
+```
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>filter接受一个函数，返回满足函数要求的</p>
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code>val liens3=lines.filter(word=&gt;word.contains("hello"));
+lines3.foreach(println);
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>flatMap()
+对每个输入元素，输出多个输出元素。将RDD中元素压扁后返回一个新的RDD。</p>
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code> val input=sc.textFIle("/home/xxx.txt");
+ val lines=input.flatMap(line=&gt;line.split(" "));
+ lines.foreach(println)
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>集合运算
+ （并集交集）</p>
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code>  val rdd1=sc.paralelize(Array("coffe","coffe","panda","monkey","tea"))
+  val rdd2=sc.paralelize(Array("coffe","kitty","monkey"))
+ 
+ val rdd_distinct=rdd1.distinct() //去除重复。
+ val rdd_union=rdd1.union(rdd2) //并集
+ val rdd_inter=rdd1.intersection(rdd2)//交集
+ val rdd_sub=rdd1.subtract(rdd2)//差集
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>## Action
+ 在RDD上计算出一个结果。
+ 把结果返回给driver program或者保存在文件系统上，比如：count()，save</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>函数名</th>
+      <th>功能</th>
+      <th>例子</th>
+      <th>结果</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>collect()</td>
+      <td>返回RDD的所有元素</td>
+      <td>rdd.collect()</td>
+      <td>{1,2,3,3}</td>
+    </tr>
+    <tr>
+      <td>count()</td>
+      <td>计数</td>
+      <td>rdd.count()</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>countByValue()</td>
+      <td>返回一个map表示唯一元素出现的个数</td>
+      <td>rdd.countByValue()</td>
+      <td>{(1,1),(2,1),(3,2)}</td>
+    </tr>
+    <tr>
+      <td>take(num)</td>
+      <td>返回几个元素</td>
+      <td>rdd.take(2)</td>
+      <td>{1,2}</td>
+    </tr>
+    <tr>
+      <td>top(num)</td>
+      <td>返回前几个元素</td>
+      <td>rdd.top(2)</td>
+      <td>{3,3}</td>
+    </tr>
+    <tr>
+      <td>takeOrdered(num)(ordering)</td>
+      <td>返回基于提供的排序算法的前几个元素</td>
+      <td>rdd.takeOrderd(2)(myOrdering)</td>
+      <td>{3,3}</td>
+    </tr>
+    <tr>
+      <td>takeSample(withReplacement,num,[sedd])</td>
+      <td>取样例</td>
+      <td>rdd.takeSample(false,1)</td>
+      <td>不确定</td>
+    </tr>
+    <tr>
+      <td>reduce(func)</td>
+      <td>合并RDD中元素</td>
+      <td>rdd.reduce((x,y)=&gt;x+y)</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>fold(zero)(func)</td>
+      <td>与reduce()相似提供zero value</td>
+      <td>rdd.fold(0)((x,y)=&gt;x+y)</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>aggregate(zeroValue)(seqOp,combOp)</td>
+      <td>与fold()相似,返回不同类型</td>
+      <td>rdd.aggregate((0,0))(x,y)=&gt;(x._1+y,x._2+1),(x,y)=&gt;(x._1+y._1,x_2+y._2)</td>
+      <td>(9,4)</td>
+    </tr>
+    <tr>
+      <td>foreach(func)</td>
+      <td>对每个RDD的元素作用函数</td>
+      <td>rdd.foreach</td>
+      <td>无</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>常用：
+  reduce():可以实现RDD中元素的累加，计数，和其他类型的聚集操作。</p>
+<div class="language-scala highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>  <span class="k">val</span> <span class="n">rdd</span><span class="k">=</span><span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="o">(</span><span class="nc">Array</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">3</span><span class="o">))</span>
+  <span class="n">rdd</span><span class="o">.</span><span class="n">collect</span><span class="o">()</span>
+  <span class="n">rdd</span><span class="o">.</span><span class="n">reduce</span><span class="o">((</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">)</span><span class="k">=&gt;</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">)</span> <span class="c1">//得出结果9 1+2+3+3
+</span></code></pre></td></tr></tbody></table></div>
+</div>
+<p>Collect()遍历整个RDD，向driver program返回RDD的内容。
+  需要单机内存能够容纳下(因为数据要靠被给driver，一般情况下测试的时候使用)</p>
+
+<p>数据大的时候一般使用saveAsTextFile()</p>
+
+<p>take(n)
+返回RDD的n个元素（同时尝试访问最少的partitions）
+返回的结果是无序的，测试的时候使用。</p>
+
+<p>top()</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="n">rdd</span><span class="o">.</span><span class="n">top</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>foreach()
+计算RDD中每个元素，但不返回到本地。可以配合println()友好的打印数据。</p>
+
+<p>## RDDs的特性
+ ### 血统关系图
+ Spark维护者RDDs之间的以来关系和创建关系，叫做血统关系图。
+ Spark使用血统关系图来计算每个RDD的需求和恢复丢失的数据。</p>
+
+<p>### 延迟计算（Lazy Evaluation）
+ Spark对RDDs的计算是第一次使用action操作的时候。这种方式可以减少数据的传输，Spark内部记录metadata表名transformations操作已经被响应。</p>
+
+<p>数据加载也是延迟计算，数据只有在必要的时候才会被加载。</p>
+
+<p>### RDD.persists()
+ 默认每次在RDDs上面进行action操作时，Spark都重新计算RDDs如果想要重复利用一个RDD，可以使用RDD.persist().
+ unpersist()从缓存中移除。
+ 可以加入参数</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>级别</th>
+      <th>空间占用</th>
+      <th>cpu消耗</th>
+      <th>是否在内存中</th>
+      <th>是否在硬盘上</th>
+      <th>备注</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MEMORY_ONLY</td>
+      <td>High</td>
+      <td>Low</td>
+      <td>Y</td>
+      <td>N</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>MEMORY_ONLY_SER</td>
+      <td>Low</td>
+      <td>High</td>
+      <td>Y</td>
+      <td>N</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DISK_ONLY</td>
+      <td>Low</td>
+      <td>High</td>
+      <td>N</td>
+      <td>Y</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>MEMORY_AND_DISK</td>
+      <td>High</td>
+      <td>Medium</td>
+      <td>Some</td>
+      <td>Some</td>
+      <td>内存放不下时，往硬盘上放</td>
+    </tr>
+    <tr>
+      <td>MEMORY_AND_DISK_SER</td>
+      <td>Low</td>
+      <td>High</td>
+      <td>Some</td>
+      <td>Some</td>
+      <td>内存放不下时往硬盘上放，内存中数据时序列化</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>## KeyValue对RDDs
+ 创建：
+ map函数</p>
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code> val rdd=sc.textFile("/home/xxx.txt");
+ //以第一个元素作为key，整行为value
+ val rdd2=rdd.map(line=&gt;(line.split(" ")(0),line))
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>常见操作</p>
+
+<p>|函数名|作用|例子|结果|
+ |—|—|—|—|
+ |reduceByKey(func)|把相同key结合|rdd.reduceByKey(x,y)=&gt;x+y|{(1,2),(3,10)}|
+ |groupByKey()|把相同key的values分组|rdd.groupByKey()|{(1,[2]),(3,[4,6])}|
+  |combineByKey(createCOmbiner,mergeValue,mergeCombiners,partitioner)|把相同key的结合，使用不同的返回类型|||
+sc.parallelize(Array((1,2),(3,4),(3,6)))</p>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>  val rdd3=sc.parallelize(Array((1,2),(3,4),(3,6)))
+  val rdd4=rdd3.reduceByKey((x,y)=&gt;x+y)//按key相同则相加结果为（1,2）（3,10）
+  val rdd5=rdd3.groupByKey()//根据key分组结果为(1,[2]),(3,[4,6])
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>函数名</th>
+      <th>作用</th>
+      <th>例子</th>
+      <th>结果</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>mapValues(func)</td>
+      <td>函数作用于pairRDD的每个元素，key不变</td>
+      <td>rdd.mapValues(x=&gt;x+1)</td>
+      <td>{(1,3),(3,5),(3,7)}</td>
+    </tr>
+    <tr>
+      <td>flatMapValues(func)</td>
+      <td>符号化的时候使用</td>
+      <td>rdd.flatMapValues(x=&gt;(xto 5))</td>
+      <td>{(1,2),(1,3),(1,4),(1,5),(3,4),(3,5)}</td>
+    </tr>
+    <tr>
+      <td>keys</td>
+      <td>仅返回keys</td>
+      <td>rdd.keys</td>
+      <td>{1,3,3}</td>
+    </tr>
+    <tr>
+      <td>values</td>
+      <td>仅返回value</td>
+      <td>rdd.values</td>
+      <td>{2,4,6}</td>
+    </tr>
+    <tr>
+      <td>sortByKey()</td>
+      <td>按照key排序</td>
+      <td>rdd.sortByKey()</td>
+      <td>{(1,2),(3,4),(3,6)}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>## combineByKey():
+ 参数列表（createCombiner,mergeValue,mergeCombiners,partitioner）
+ 最常用的基于key的聚合函数，返回类型可以与输入类型不一样。
+ 许多基于key的聚合函数都用到了它，如groupByKey().</p>
+
+<p>遍历partition中元素，元素的key，要么见过，要么不是。
+ 新元素使用createCombiner()函数，
+ 如果是已经存在的key则使用mergeValue()函数
+ 合计每个partition的结果时，使用mergeCOmbiners()函数</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</pre></td><td class="code"><pre class="highlight"><code> <span class="c1">//求平均值
+</span> <span class="k">val</span> <span class="n">scores</span><span class="k">=</span><span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="o">(</span><span class="nc">Array</span><span class="o">((</span><span class="s">"na"</span><span class="o">,</span><span class="mi">111</span><span class="o">),(</span><span class="s">"na"</span><span class="o">,</span><span class="mi">101</span><span class="o">),(</span><span class="s">"na"</span><span class="o">,</span><span class="mi">110</span><span class="o">),(</span><span class="s">"ml"</span><span class="o">,</span><span class="mi">81</span><span class="o">),(</span><span class="s">"ml"</span><span class="o">,</span><span class="mi">97</span><span class="o">),(</span><span class="s">"ml"</span><span class="o">,</span><span class="mi">90</span><span class="o">)))</span>
+ <span class="c1">//score代表值分数
+</span> <span class="k">val</span> <span class="n">score2</span><span class="k">=</span><span class="n">scores</span><span class="o">.</span><span class="n">combineByKey</span><span class="o">(</span>
+ <span class="n">score</span><span class="o">=&gt;(</span><span class="mi">1</span><span class="o">,</span><span class="n">score</span><span class="o">),(</span><span class="n">c1</span><span class="k">:</span><span class="o">(</span><span class="kt">Int</span><span class="o">,</span><span class="kt">Double</span><span class="o">),</span>
+ <span class="n">newScore</span><span class="o">)=&gt;(</span><span class="n">c1</span><span class="o">.</span><span class="n">_1</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span><span class="n">c1</span><span class="o">.</span><span class="n">_2</span><span class="o">+</span><span class="n">newScore</span><span class="o">),</span>
+ <span class="o">(</span><span class="n">c1</span><span class="k">:</span><span class="o">(</span><span class="kt">Int</span><span class="o">,</span><span class="kt">Double</span><span class="o">),</span><span class="n">c2</span><span class="k">:</span><span class="o">(</span><span class="kt">Int</span><span class="o">,</span><span class="kt">Double</span><span class="o">)=&gt;(</span><span class="n">c1</span><span class="o">.</span><span class="n">_1</span><span class="o">+</span><span class="n">c2</span><span class="o">.</span><span class="n">_1</span><span class="o">,</span><span class="n">c1</span><span class="o">.</span><span class="n">_2</span><span class="o">+</span><span class="n">c2</span><span class="o">.</span><span class="n">_2</span><span class="o">)))</span>
+ 
+ <span class="k">val</span> <span class="n">average</span><span class="k">=</span><span class="n">score2</span><span class="o">.</span><span class="n">map</span><span class="o">{</span><span class="k">case</span><span class="o">(</span><span class="n">name</span><span class="o">,(</span><span class="n">num</span><span class="o">,</span><span class="n">score</span><span class="o">))=&gt;(</span><span class="n">name</span><span class="o">,</span><span class="n">score</span><span class="o">/</span><span class="n">num</span><span class="o">)}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+<blockquote>
+  <p>http://www.cnblogs.com/rigid/p/5563205.html</p>
+</blockquote>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/Spark" rel="tag"># Spark</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/21/js-validate/" rel="next" title="JQuery validate">
+                <i class="fa fa-chevron-left"></i> JQuery validate
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/30/Echarts/" rel="prev" title="ECharts">
+                ECharts <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="Padcn" />
+          <p class="site-author-name" itemprop="name">Padcn</p>
+           
+              <p class="site-description motion-element" itemprop="description">...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-1"> <a class="nav-link" href="#spark基础学习笔记"> <span class="nav-number">1</span> <span class="nav-text">Spark基础学习笔记</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-2"> <a class="nav-link" href="#spark-core"> <span class="nav-number">1.1</span> <span class="nav-text">Spark Core</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#sparksql"> <span class="nav-number">1.2</span> <span class="nav-text">SparkSQL</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#spark-streaming"> <span class="nav-number">1.3</span> <span class="nav-text">Spark Streaming</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#mlib"> <span class="nav-number">1.4</span> <span class="nav-text">Mlib</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#graphx"> <span class="nav-number">1.5</span> <span class="nav-text">Graphx</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#cluster-managers"> <span class="nav-number">1.6</span> <span class="nav-text">Cluster Managers</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#紧密集成"> <span class="nav-number">1.7</span> <span class="nav-text">紧密集成：</span> </a> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Padcn</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://jekyllrb.com">Jekyll</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+

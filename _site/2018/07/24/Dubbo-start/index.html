@@ -1,0 +1,1189 @@
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="RPC,Dubbo,分布式," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Padcn" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Dubbo Start">
+<meta name="keywords" content="RPC, Dubbo, 分布式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dubbo Start">
+<meta property="og:url" content="http://localhost:4000/2018/07/24/Dubbo-start/">
+<meta property="og:site_name" content="Padcn">
+<meta property="og:description" content="Dubbo Start">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://dubbo.apache.org/docs/zh-cn/user/sources/images/dubbo-architecture.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dubbo Start">
+<meta name="twitter:description" content="Dubbo Start">
+<meta name="twitter:image" content="http://dubbo.apache.org/docs/zh-cn/user/sources/images/dubbo-architecture.jpg">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://localhost:4000/"/>
+
+
+
+
+
+  <title>Dubbo Start | Padcn</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Padcn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">start now.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2018/07/24/Dubbo-start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Padcn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Padcn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            Dubbo Start
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-24T00:00:00+08:00">
+                2018-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1 id="dubbo-start">Dubbo Start</h1>
+
+<blockquote>
+  <p>官网 http://dubbo.apache.org/</p>
+</blockquote>
+
+<p>Dubbo是是一款高性能Java RPC框架。 开始由阿里开源，后来捐献给了apache基金会。</p>
+
+<p>Dubbo既然定义就是RPC框架，主要功能也是实现服务的远程调用，remote procedure call即远程服务调用。其中几部分是：服务提供者，服务消费者，注册中心。</p>
+
+<p>服务提供者将开放的服务注册到注册中心，服务消费者通过注册中心查询所需要的服务，再根据查询到的信息到服务提供者处调取服务。 图中还多了一个Monitor用来监视调用情况。</p>
+
+<p><img src="http://dubbo.apache.org/docs/zh-cn/user/sources/images/dubbo-architecture.jpg" alt="" title="dubbo流程" /></p>
+
+<p>Dubbo Maven坐标为</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.alibaba<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>dubbo<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.6.2<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>注册中心可以是zookeeper或者redis。dubbo推荐zookeeper。这里使用zookeeper，Curator框架的使用是为了更方便的操作zookeeper，其中提供了丰富的操作。</p>
+
+<blockquote>
+  <p>Apache Curator is a Java/JVM client library for <a href="https://zookeeper.apache.org/">Apache ZooKeeper</a>, a distributed coordination service. It includes a highlevel API framework and utilities to make using Apache ZooKeeper much easier and more reliable. It also includes recipes for common use cases and extensions such as service discovery and a Java 8 asynchronous DSL.</p>
+</blockquote>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache.zookeeper<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>zookeeper<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>3.4.11<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;type&gt;</span>pom<span class="nt">&lt;/type&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.101tec<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>zkclient<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>0.10<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache.curator<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>curator-framework<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.8.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache.curator<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>curator-recipes<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.8.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h2 id="基于xml配置方式">基于XML配置方式</h2>
+
+<p>这里的项目结构采用maven的多模块结构</p>
+
+<p>demo-parent				父模块，打包方式为pom</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>​</td>
+      <td>——demo-api			api定义模块，实体类的定义，以及服务接口方法定义。</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>​</td>
+      <td>——demo-provider		服务提供方，依赖于demo-api，对demo-api中接口方法进行实现，提供服务</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>​</td>
+      <td>——demo-consumer		服务消费放，依赖于demo-api, 调用demo-provider提供的服务。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="服务方法定义">服务方法定义</h3>
+
+<p>demo-api中进行服务方法的定义，如这里定义一个DemoService</p>
+
+<p>@org.padcn.dubbo.demo.service.DemoService</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">padcn</span><span class="o">.</span><span class="na">dubbo</span><span class="o">.</span><span class="na">demo</span><span class="o">.</span><span class="na">service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">DemoService</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">getPermissions</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h3 id="对服务方法的实现">对服务方法的实现</h3>
+
+<p>demo-provider中对demo-api中定义的方法进行实现,并注册到注册中心。</p>
+
+<p>@org.padcn.dubbo.demo.service.impl</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">padcn</span><span class="o">.</span><span class="na">dubbo</span><span class="o">.</span><span class="na">demo</span><span class="o">.</span><span class="na">service</span><span class="o">.</span><span class="na">impl</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.pad.dubbo.demo.service.DemoService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoServiceImpl</span> <span class="kd">implements</span> <span class="n">DemoService</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">getPermissions</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">=</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;(</span><span class="mi">10</span><span class="o">);</span>
+        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"demo1"</span><span class="o">);</span>
+        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"demo2"</span><span class="o">);</span>
+        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"demo3"</span><span class="o">);</span>
+        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"demo4"</span><span class="o">);</span>
+        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"demo5"</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>注册服务到注册中心</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15</pre></td><td class="code"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
+       <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:dubbo=</span><span class="s">"http://code.alibabatech.com/schema/dubbo"</span>
+       <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd"</span><span class="nt">&gt;</span>
+	<span class="c">&lt;!--声明本应用一些信息--&gt;</span>
+    <span class="nt">&lt;dubbo:application</span> <span class="na">name=</span><span class="s">"demotest-provider"</span> <span class="na">owner=</span><span class="s">"programer"</span> <span class="na">organization=</span><span class="s">"dubbox"</span><span class="nt">/&gt;</span>
+	<span class="c">&lt;!--注册中心配置--&gt;</span>
+    <span class="nt">&lt;dubbo:registry</span> <span class="na">address=</span><span class="s">"zookeeper://localhost:2181"</span><span class="nt">/&gt;</span>
+	<span class="c">&lt;!--开放调用端口--&gt;</span>
+    <span class="nt">&lt;dubbo:protocol</span> <span class="na">name=</span><span class="s">"dubbo"</span> <span class="na">port=</span><span class="s">"20880"</span><span class="nt">/&gt;</span>
+	<span class="c">&lt;!--spring的bean配置--&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"demoService"</span> <span class="na">class=</span><span class="s">"org.pad.dubbo.demo.service.impl.DemoServiceImpl"</span><span class="nt">/&gt;</span>
+    <span class="c">&lt;!--服务注册--&gt;</span>
+    <span class="nt">&lt;dubbo:service</span> <span class="na">interface=</span><span class="s">"org.pad.dubbo.demo.service.DemoService"</span> <span class="na">ref=</span><span class="s">"demoService"</span> <span class="na">protocol=</span><span class="s">"dubbo"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/beans&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h3 id="消费者对服务调用">消费者对服务调用</h3>
+
+<p>demo-consumer 调用服务，这里就直接使用main方法调用了，主要还是配置文件的定义，其他都和普通程序一样使用。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">padcn</span><span class="o">.</span><span class="na">dubbo</span><span class="o">.</span><span class="na">consumer</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.pad.dubbo.demo.service.DemoService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.support.ClassPathXmlApplicationContext</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Consumer</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">ClassPathXmlApplicationContext</span> <span class="n">context</span><span class="o">=</span><span class="k">new</span> <span class="n">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="s">"consumer.xml"</span><span class="o">);</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"consumer start"</span><span class="o">);</span>
+        <span class="n">DemoService</span> <span class="n">demoService</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="n">DemoService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"consumer"</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">demoService</span><span class="o">.</span><span class="na">getPermissions</span><span class="o">(</span><span class="mi">1L</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>配置文件</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
+       <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:dubbo=</span><span class="s">"http://code.alibabatech.com/schema/dubbo"</span>
+       <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!--声明应用信息--&gt;</span>
+    <span class="nt">&lt;dubbo:application</span> <span class="na">name=</span><span class="s">"demotest-consumer"</span> <span class="na">owner=</span><span class="s">"programer"</span> <span class="na">organization=</span><span class="s">"dubbox"</span><span class="nt">/&gt;</span>
+    <span class="c">&lt;!--配置注册中心--&gt;</span>
+    <span class="nt">&lt;dubbo:registry</span> <span class="na">address=</span><span class="s">"zookeeper://localhost:2181"</span><span class="nt">/&gt;</span>
+    <span class="c">&lt;!--声明服务--&gt;</span>
+    <span class="nt">&lt;dubbo:reference</span> <span class="na">id=</span><span class="s">"permissionService"</span> <span class="na">interface=</span><span class="s">"org.pad.dubbo.demo.DemoService"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/beans&gt;</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>到此就完成了一个示例demo</p>
+
+<h2 id="基于注解方式配置">基于注解方式配置</h2>
+
+<p>注解方式需要dubbo版本 <code class="highlighter-rouge">2.5.7</code> 及以上版本支持 。</p>
+
+<p>注解相比xml配置方式更简洁清晰。</p>
+
+<blockquote>
+  <p>官方文档: http://dubbo.apache.org/#!/docs/user/configuration/annotation.md?lang=zh-cn</p>
+</blockquote>
+
+<p>这里使用了SpringBoot+dubbo的形式，项目结构和基于xml没有变化。</p>
+
+<h3 id="服务提供方">服务提供方</h3>
+
+<p>配置bean</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">padcn</span><span class="o">.</span><span class="na">demo</span><span class="o">.</span><span class="na">provider</span><span class="o">.</span><span class="na">config</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.alibaba.dubbo.config.ApplicationConfig</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.alibaba.dubbo.config.ProtocolConfig</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.alibaba.dubbo.config.RegistryConfig</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DubboConfiguration</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">ApplicationConfig</span> <span class="nf">applicationConfig</span><span class="o">(){</span>
+        <span class="n">ApplicationConfig</span> <span class="n">config</span><span class="o">=</span><span class="k">new</span> <span class="n">ApplicationConfig</span><span class="o">();</span>
+        <span class="n">config</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"demo-provider"</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">config</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">RegistryConfig</span> <span class="nf">registryConfig</span><span class="o">(){</span>
+        <span class="n">RegistryConfig</span> <span class="n">config</span><span class="o">=</span><span class="k">new</span> <span class="n">RegistryConfig</span><span class="o">();</span>
+        <span class="n">config</span><span class="o">.</span><span class="na">setAddress</span><span class="o">(</span><span class="s">"zookeeper://127.0.0.1:2181"</span><span class="o">);</span>
+        <span class="c1">//config.setAddress("redis://127.0.0.1:6379");</span>
+        <span class="n">config</span><span class="o">.</span><span class="na">setClient</span><span class="o">(</span><span class="s">"curator"</span><span class="o">);</span>
+        <span class="n">config</span><span class="o">.</span><span class="na">setPort</span><span class="o">(</span><span class="mi">12349</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">config</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">ProtocolConfig</span> <span class="nf">protocolConfig</span><span class="o">(){</span>
+        <span class="n">ProtocolConfig</span> <span class="n">protocolConfig</span><span class="o">=</span><span class="k">new</span> <span class="n">ProtocolConfig</span><span class="o">();</span>
+        <span class="n">protocolConfig</span><span class="o">.</span><span class="na">setPort</span><span class="o">(</span><span class="mi">12345</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">protocolConfig</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>服务实现</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">padcn</span><span class="o">.</span><span class="na">demo</span><span class="o">.</span><span class="na">provider</span><span class="o">.</span><span class="na">service</span><span class="o">.</span><span class="na">impl</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.alibaba.dubbo.config.annotation.Service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.padcn.demo.api.DemoService</span><span class="o">;</span>
+<span class="c1">// 这里的Service注解不是Spring的注解，是dubbo的服务暴露注解</span>
+<span class="nd">@Service</span><span class="o">(</span><span class="n">version</span> <span class="o">=</span> <span class="s">"2.0"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoServiceImpl</span> <span class="kd">implements</span> <span class="n">DemoService</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">sayHi</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"hello?"</span><span class="o">+</span><span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>在springboot启动类上配置注解扫描</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">padcn</span><span class="o">.</span><span class="na">demo</span><span class="o">.</span><span class="na">provider</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.SpringApplication</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.SpringBootApplication</span><span class="o">;</span>
+
+<span class="nd">@SpringBootApplication</span>
+<span class="nd">@DubboComponentScan</span><span class="o">(</span><span class="n">basePackages</span> <span class="o">=</span> <span class="s">"org.padcn.demo.provider.service.impl"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoProviderApplication</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">DemoProviderApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h3 id="服务消费方配置">服务消费方配置</h3>
+
+<p>配置类</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">padcn</span><span class="o">.</span><span class="na">demo</span><span class="o">.</span><span class="na">consumer</span><span class="o">.</span><span class="na">config</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.alibaba.dubbo.config.ApplicationConfig</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.alibaba.dubbo.config.ConsumerConfig</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.alibaba.dubbo.config.ProtocolConfig</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.alibaba.dubbo.config.RegistryConfig</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DubboConfiguration</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">ApplicationConfig</span> <span class="nf">applicationConfig</span><span class="o">(){</span>
+        <span class="n">ApplicationConfig</span> <span class="n">config</span><span class="o">=</span><span class="k">new</span> <span class="n">ApplicationConfig</span><span class="o">();</span>
+        <span class="n">config</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"demo-consumer"</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">config</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">RegistryConfig</span> <span class="nf">registryConfig</span><span class="o">(){</span>
+        <span class="n">RegistryConfig</span> <span class="n">registryConfig</span><span class="o">=</span><span class="k">new</span> <span class="n">RegistryConfig</span><span class="o">();</span>
+        <span class="n">registryConfig</span><span class="o">.</span><span class="na">setAddress</span><span class="o">(</span><span class="s">"zookeeper://127.0.0.1:2181"</span><span class="o">);</span>
+        <span class="c1">//registryConfig.setAddress("redis://127.0.0.1:6379");</span>
+        <span class="n">registryConfig</span><span class="o">.</span><span class="na">setClient</span><span class="o">(</span><span class="s">"curator"</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">registryConfig</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">ConsumerConfig</span> <span class="nf">consumerConfig</span><span class="o">(){</span>
+        <span class="n">ConsumerConfig</span> <span class="n">consumerConfig</span><span class="o">=</span><span class="k">new</span> <span class="n">ConsumerConfig</span><span class="o">();</span>
+        <span class="n">consumerConfig</span><span class="o">.</span><span class="na">setTimeout</span><span class="o">(</span><span class="mi">3000</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">consumerConfig</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>服务调用</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">padcn</span><span class="o">.</span><span class="na">demo</span><span class="o">.</span><span class="na">consumer</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.alibaba.dubbo.config.annotation.Reference</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.padcn.demo.api.DemoService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoController</span> <span class="o">{</span>
+	<span class="c1">//这里用dubbo的reference替换了注入的注解</span>
+    <span class="c1">// 确定一个服务主要是3个要素： 版本号，以及接口，服务分组。不过这里没有写分组，属性是group</span>
+    <span class="nd">@Reference</span><span class="o">(</span><span class="n">version</span> <span class="o">=</span> <span class="s">"2.0"</span><span class="o">,</span><span class="n">application</span> <span class="o">=</span> <span class="s">"demo-consumer"</span><span class="o">,</span><span class="n">url</span><span class="o">=</span><span class="s">"dubbo://localhost:12345"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">DemoService</span> <span class="n">demoService</span><span class="o">;</span>
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/test"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">test</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">){</span>
+
+        <span class="k">return</span> <span class="n">demoService</span><span class="o">.</span><span class="na">sayHi</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>同样在springboot启动类上配置注解扫描</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">padcn</span><span class="o">.</span><span class="na">demo</span><span class="o">.</span><span class="na">consumer</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.SpringApplication</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.SpringBootApplication</span><span class="o">;</span>
+
+<span class="nd">@SpringBootApplication</span>
+<span class="nd">@DubboComponentScan</span><span class="o">(</span><span class="n">basePackages</span> <span class="o">=</span> <span class="s">"org.padcn.demo.api"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoConsumerApplication</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">DemoConsumerApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>完事，之后启动zookeeper/redis后启动provider和consumer就可以了。</p>
+
+<blockquote>
+  <p>如果需要更加深入可以看这里 http://ifeve.com/dubbo-learn-book/</p>
+</blockquote>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/RPC" rel="tag"># RPC</a>
+          
+            
+            <a href="/tag/#/Dubbo" rel="tag"># Dubbo</a>
+          
+            
+            <a href="/tag/#/%E5%88%86%E5%B8%83%E5%BC%8F" rel="tag"># 分布式</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/20/HashMapSourceCodeV1_7/" rel="next" title="JDK1.7中的 HashMap">
+                <i class="fa fa-chevron-left"></i> JDK1.7中的 HashMap
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/18/wildfly-deploy/" rel="prev" title="wildfly部署war包">
+                wildfly部署war包 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/avatar.gif"
+               alt="Padcn" />
+          <p class="site-author-name" itemprop="name">Padcn</p>
+           
+              <p class="site-description motion-element" itemprop="description">...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/Padcn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-1"> <a class="nav-link" href="#dubbo-start"> <span class="nav-number">1</span> <span class="nav-text">Dubbo Start</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-2"> <a class="nav-link" href="#基于xml配置方式"> <span class="nav-number">1.1</span> <span class="nav-text">基于XML配置方式</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#服务方法定义"> <span class="nav-number">1.1.1</span> <span class="nav-text">服务方法定义</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#对服务方法的实现"> <span class="nav-number">1.1.2</span> <span class="nav-text">对服务方法的实现</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#消费者对服务调用"> <span class="nav-number">1.1.3</span> <span class="nav-text">消费者对服务调用</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#基于注解方式配置"> <span class="nav-number">1.2</span> <span class="nav-text">基于注解方式配置</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#服务提供方"> <span class="nav-number">1.2.1</span> <span class="nav-text">服务提供方</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#服务消费方配置"> <span class="nav-number">1.2.2</span> <span class="nav-text">服务消费方配置</span> </a> </li> </ol> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Padcn</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://jekyllrb.com">Jekyll</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+

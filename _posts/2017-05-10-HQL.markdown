@@ -1,0 +1,75 @@
+---
+title:  HQL以及N+1和缓存问题
+date: 2017-05-10 
+tags: Hibernate 
+---
+# HQL以及N+1和缓存问题
+Hibernate Query Language，Hibernate查询语言
+是面向对象的查询语言，对java类与熟悉大小写敏感 对关键字不区分大小写
+
+Query接口
+1. Query接口定义有执行查询的方法
+2. Query接口支持方法链编程风格，使得程序代码更为简洁
+
+list()方法返回的结果为java.util.list
+
+### from子句
+1.HQL语句最简形式
+2.from指定了HQL语句查询主体-持久化类及其属性
+from 类名
+
+```java
+String hql="from Student"
+List result=session.createQuery(hql).list();
+```
+
+1.不需要引用全限定名，直接使用类名
+2.由于auto-import
+
+### select子句
+1.select子句中未指定返回数据类型，默认为Object[]
+
+#### select子句中指定new list
+```java
+String hql="select new list(u.name,u.tel) from User u";
+List<List> lists=session.createQuery(hql);
+```
+
+#### select子句中指定new Map
+```java
+String hql="select new map(u.name,u.tel) from User u";
+List<Map> maps=session.createQuery(hql);
+```
+获取时是键值时索引，有别名则是别名
+
+> 还可以指定自定义类
+
+### where子句
+比较运算
+1.=、<>、<、>、>=、<=
+2.null值判断-is[not] null
+
+范围
+[not] in、between .. and ..
+
+集合运算
+is [not] empty
+
+
+> 大体上和sql一样,只是表替换成了对象，字段名换成了对象的属性，就不多赘述了。
+
+查询单个对象 uniqueResult()如果查询条件有问题返回多个则会抛出异常。
+
+## 链接
+hibernate的hql查询语句总结http://www.cnblogs.com/xiaoluo501395377/p/3376256.html
+
+hibernate缓存机制详细分析（N+1和一二级缓存）
+http://www.cnblogs.com/xiaoluo501395377/p/3377604.html
+一级缓存是session级别的缓存hibernate提供，二级缓存hibernate不提供，需要第三方jar包，比较契合的是ehcache
+
+
+
+
+
+
+

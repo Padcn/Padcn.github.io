@@ -1,0 +1,374 @@
+---
+title:  数据库索引存储过程视图
+date: 2017-04-17 
+tags: 数据库 db 
+---
+# 数据库总结（索引，存储过程，函数等）
+
+- **索引（index）**
+	
+    给某个列，或者某些列的组合，进行添加加快查询的效率的标记。
+    
+	作用：索引在一定条件下可以提高查询效率，但是在某些情况下可能会拖慢运行效率
+    
+    适用场景：
+    		- 在数据量大的情况下，数据量大于10万行+的情况下比较适用。
+			- 因为创建索引开销不小，所以在数据需要频繁更改的情况下不适用。比较适合在数据不经常更改的情况。
+			- 在字段需要经常查询或者排序的情况下
+			- 查询出来结果占表的15%
+	索引分为唯一索引，集簇索引，非集簇索引。
+    
+    索引的创建和删除
+    ```sql
+    --创建索引
+    create [unique] index index_name on table_name(colum_name[,cloumn_name2]);
+    
+    --删除索引
+    drop index table_name.index_name;
+    ```
+    
+  > 创建索引开销比较大，所以尽量不要多建索引
+  > 有索引就尽量使用，用explain plan for (sql语句)可以解析sql执行，查看索引是否使用了索引。  where关键字后的索引字段不能使用函数进行处理否则不使用索引。
+        
+<br>
+- **视图（view）**
+    
+    本质上是子查询，把子查询结果看成新表。
+    
+    定义：是一张虚表，数据来自于表，并可对原来数据进行操作，可能包含一些实际不存在的数据
+    
+	作用：
+    	1.作为表使用。
+    	2.隐藏一些重要数据，提升数据的安全性。
+    	3.简化数据操作的过程。
+    
+    适用场景：
+    		- 当数据要进行复杂操作的情况下
+			- 数据比较重要且需要转换
+
+    视图的创建和删除
+    ```sql
+    --创建视图
+    create view view_name as (select 结果);
+    
+    --删除视图
+    drop view view_name;
+    ```
+    
+  > 在视图中可以对数据进行直接插入，但是要在特定条件下，比如单表的视图，而且插入的数据受到实体表的约束影响。
+  > 但是一般约定俗成，不在视图中进行数据的修改操作。
+  
+  
+- **存储过程（procedure）** 
+    
+    定义：存在数据库中，比较独立的对象。主要是对数据进行复杂的过程化处理，供外部调用。
+    
+	作用：
+    	1.封装数据库的操作，在数据库内部进行数据处理，提高数据安全性。
+    	2.在数据处理比较复杂的情况下，提高程序的性能。
+    	3.处理过程中可以结合事务，进一步提高数据的安全性。
+    
+    适用场景：
+    		- 供外部程序直接调用
+			- 数据需要进行繁杂的处理结合事务
+			- 不适合数据库之间的移植（geshujuku）
+
+    存储过程的创建、使用和删除
+    ```sql
+    --创建存储过程
+    create procedure procedure_name([param1 in paramtype,[param2 out paramtpe]])
+    is[|as]
+    [delare]
+    begin
+    	[sql]
+    end;
+    /
+    --调用存储过程
+    exec procedure_name([param1[,param2]]); --sqlplus独有exec
+    call procedure_name([param1[,param2]]); --其他程序可以调用
+    --删除存储过程
+    drop procedure procedure_name;
+    ```
+    
+  >在存储过程中可以进行commit和rollback，但是一般不再之中进行commit和rollback。
+  
+- **函数（function）**
+
+	定义：定义在数据库中。主要是对数据进行复杂的过程化处理，供sql调用。
+    
+	作用：
+    	1.封装数据库的操作，在数据库内部进行数据处理，提高数据安全性。
+    	2.有返回值，供sql语句调用
+    
+    适用场景：
+    		- 需要对数据进行处理，并有结果返回，这个结果用于其他sql语句中。
+
+    函数的创建、使用和删除
+    ```sql
+    --创建函数
+    create functio function_name([param1 paramtype,[param2 paramtpe]])
+    return paramtype
+    is[|as]
+    [delare]
+    begin
+    	[sql-有return]
+    end;
+    /
+    --调用函数
+    select  function_name([param1[,param2]]) from table_name; --其他程序可以调用
+    --删除函数
+    drop function function_name;
+    ```
+  
+- **游标（cursor）**
+
+	定义：只存在于函数或者存储过程中，类似于一个独特的变量
+    
+	作用：
+    	内存中的一块区域,存放的是select 的结果。
+    
+    游标的使用：
+    1.声明	2.打开	3.循环	4.关闭
+    
+    ```sql
+    --创建函数
+    create procedure function_name
+    is[|as]
+    v_record emp%rowtype;
+    cursor c_query is select * from emp;	--声明游标
+    begin
+    	if not c_query%ISOPEN then	--打开游标
+        	open c_query;
+        end if;
+        loop
+        	fetch c_query into v_record;	--将游标中数据存入v_record中
+            exit when c_query%NOTFOUND;
+            dbms_output.put_line(v_record.ename);
+            dbms_output.put_line(v_record.deptno);
+            dbms_output.put_line(v_record.sal);
+        end loop;
+        close c_query;	--关闭游标
+    end;
+    /
+    ```
+- **序列（sequence）**
+
+使用场景：可以实现类似mysql的auto_increment
+
+序列的创建
+```sql
+Create 创建
+Sequence 序列 seqEmop 序列名称
+Increment by 步长
+Stat with 1 开始值
+Maxvalue  最大值
+Minvalue  最小值
+ 
+Cycle 循环 nocycle 不循环
+Cache 缓存   Cache<maxvalue-minvalue/increment by//一般不采用缓存
+Nextvalue 下一个
+Currval 当前值
+```
+>序列一般不能清零，只能重新删除后新建。
+
+- **触发器（trigger）**
+
+定义:当某表中数据发生改变（insert、delete、update）时，出发相应触发器。
+
+场景：用来记录用户操作数据的日志表。也可以和序列组合使用实现自动递增。
+
+使用
+```sql
+create sequence seq_userInfo_usid start with 1001;
+
+create or replace triggle tri_userInfo_usid --创建或替换触发器tri_userInfo_usid
+before insert on userInfo	--在向userInfo表中添加 记录之前的触发
+for each row	--每次影响一行出发一次
+begin	--触发之后执行下面的语句 
+select seq_userInfo_usid.nextval into :new.usid from dual;	--:new新值 :old老值
+end;
+```
+
+- **索引（index）**
+	
+    给某个列，或者某些列的组合，进行添加加快查询的效率的标记。
+    
+	作用：索引在一定条件下可以提高查询效率，但是在某些情况下可能会拖慢运行效率
+    
+    适用场景：
+    		- 在数据量大的情况下，数据量大于10万行+的情况下比较适用。
+			- 因为创建索引开销不小，所以在数据需要频繁更改的情况下不适用。比较适合在数据不经常更改的情况。
+			- 在字段需要经常查询或者排序的情况下
+			- 查询出来结果占表的15%
+	索引分为唯一索引，集簇索引，非集簇索引。
+    
+    索引的创建和删除
+    ```sql
+    --创建索引
+    create [unique] index index_name on table_name(colum_name[,cloumn_name2]);
+    
+    --删除索引
+    drop index table_name.index_name;
+    ```
+    
+  > 创建索引开销比较大，所以尽量不要多建索引
+  > 有索引就尽量使用，用explain plan for (sql语句)可以解析sql执行，查看索引是否使用了索引。  where关键字后的索引字段不能使用函数进行处理否则不使用索引。
+        
+<br>
+- **视图（view）**
+    
+    本质上是子查询，把子查询结果看成新表。
+    
+    定义：是一张虚表，数据来自于表，并可对原来数据进行操作，可能包含一些实际不存在的数据
+    
+	作用：
+    	1.作为表使用。
+    	2.隐藏一些重要数据，提升数据的安全性。
+    	3.简化数据操作的过程。
+    
+    适用场景：
+    		- 当数据要进行复杂操作的情况下
+			- 数据比较重要且需要转换
+
+    视图的创建和删除
+    ```sql
+    --创建视图
+    create view view_name as (select 结果);
+    
+    --删除视图
+    drop view view_name;
+    ```
+    
+  > 在视图中可以对数据进行直接插入，但是要在特定条件下，比如单表的视图，而且插入的数据受到实体表的约束影响。
+  > 但是一般约定俗成，不在视图中进行数据的修改操作。
+  
+  
+- **存储过程（procedure）** 
+    
+    定义：存在数据库中，比较独立的对象。主要是对数据进行复杂的过程化处理，供外部调用。
+    
+	作用：
+    	1.封装数据库的操作，在数据库内部进行数据处理，提高数据安全性。
+    	2.在数据处理比较复杂的情况下，提高程序的性能。
+    	3.处理过程中可以结合事务，进一步提高数据的安全性。
+    
+    适用场景：
+    		- 供外部程序直接调用
+			- 数据需要进行繁杂的处理结合事务
+			- 不适合数据库之间的移植（geshujuku）
+
+    存储过程的创建、使用和删除
+    ```sql
+    --创建存储过程
+    create procedure procedure_name([param1 in paramtype,[param2 out paramtpe]])
+    is[|as]
+    [delare]
+    begin
+    	[sql]
+    end;
+    /
+    --调用存储过程
+    exec procedure_name([param1[,param2]]); --sqlplus独有exec
+    call procedure_name([param1[,param2]]); --其他程序可以调用
+    --删除存储过程
+    drop procedure procedure_name;
+    ```
+    
+  >在存储过程中可以进行commit和rollback，但是一般不再之中进行commit和rollback。
+  
+- **函数（function）**
+
+	定义：定义在数据库中。主要是对数据进行复杂的过程化处理，供sql调用。
+    
+	作用：
+    	1.封装数据库的操作，在数据库内部进行数据处理，提高数据安全性。
+    	2.有返回值，供sql语句调用
+    
+    适用场景：
+    		- 需要对数据进行处理，并有结果返回，这个结果用于其他sql语句中。
+
+    函数的创建、使用和删除
+    ```sql
+    --创建函数
+    create functio function_name([param1 paramtype,[param2 paramtpe]])
+    return paramtype
+    is[|as]
+    [delare]
+    begin
+    	[sql-有return]
+    end;
+    /
+    --调用函数
+    select  function_name([param1[,param2]]) from table_name; --其他程序可以调用
+    --删除函数
+    drop function function_name;
+    ```
+  
+- **游标（cursor）**
+
+	定义：只存在于函数或者存储过程中，类似于一个独特的变量
+    
+	作用：
+    	内存中的一块区域,存放的是select 的结果。
+    
+    游标的使用：
+    1.声明	2.打开	3.循环	4.关闭
+    
+    ```sql
+    --创建函数
+    create procedure function_name
+    is[|as]
+    v_record emp%rowtype;
+    cursor c_query is select * from emp;	--声明游标
+    begin
+    	if not c_query%ISOPEN then	--打开游标
+        	open c_query;
+        end if;
+        loop
+        	fetch c_query into v_record;	--将游标中数据存入v_record中
+            exit when c_query%NOTFOUND;
+            dbms_output.put_line(v_record.ename);
+            dbms_output.put_line(v_record.deptno);
+            dbms_output.put_line(v_record.sal);
+        end loop;
+        close c_query;	--关闭游标
+    end;
+    /
+    ```
+- **序列（sequence）**
+
+使用场景：可以实现类似mysql的auto_increment
+
+序列的创建
+```sql
+Create 创建
+Sequence 序列 seqEmop 序列名称
+Increment by 步长
+Stat with 1 开始值
+Maxvalue  最大值
+Minvalue  最小值
+ 
+Cycle 循环 nocycle 不循环
+Cache 缓存   Cache<maxvalue-minvalue/increment by//一般不采用缓存
+Nextvalue 下一个
+Currval 当前值
+```
+>序列一般不能清零，只能重新删除后新建。
+
+- **触发器（trigger）**
+
+定义:当某表中数据发生改变（insert、delete、update）时，出发相应触发器。
+
+场景：用来记录用户操作数据的日志表。也可以和序列组合使用实现自动递增。
+
+使用
+```sql
+create sequence seq_userInfo_usid start with 1001;
+
+create or replace triggle tri_userInfo_usid --创建或替换触发器tri_userInfo_usid
+before insert on userInfo	--在向userInfo表中添加 记录之前的触发
+for each row	--每次影响一行出发一次
+begin	--触发之后执行下面的语句 
+select seq_userInfo_usid.nextval into :new.usid from dual;	--:new新值 :old老值
+end;
+```
