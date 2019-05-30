@@ -195,7 +195,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -285,7 +285,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -384,8 +384,7 @@ list 方法可以接受一个FilenameFilter的实现类作为参数，用于过�
 		return pattern.matcher(name).matches();
 	}
 }
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>常用方法：</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23</pre></td><td class="code"><pre class="highlight"><code><span class="n">String</span> <span class="nf">getName</span><span class="o">()</span><span class="c1">//获取文件名字</span>
 <span class="n">String</span> <span class="nf">getParent</span><span class="o">()</span> <span class="c1">//获取上一级文件名.要注意的是获取是根据new 文件时传入的文件路径字符串，如"./test.txt" 返回值为"."</span>
@@ -410,8 +409,7 @@ list 方法可以接受一个FilenameFilter的实现类作为参数，用于过�
 <span class="kt">boolean</span> <span class="nf">renameTo</span><span class="o">(</span><span class="n">File</span> <span class="n">dest</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">static</span> <span class="n">File</span> <span class="nf">createTempFile</span><span class="o">(</span><span class="n">String</span> <span class="n">prefix</span><span class="o">,</span> <span class="n">String</span> <span class="n">suffix</span><span class="o">,</span><span class="n">File</span> <span class="n">directory</span><span class="o">)</span>
 		<span class="kd">throws</span> <span class="n">IOException</span><span class="c1">//使用给定前缀和后缀创建空的临时文件。</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h2 id="输入输出">输入输出</h2>
 <p>FilterInputStream和FilterOutputStream是用来提供装饰器类接口以控制特定输入流和输出流的两个类。分别由InputStream和OutputStream派生而来，是装饰器的必要条件（以便能为所有正在被修饰的对象提供通用接口）。</p>
@@ -595,8 +593,7 @@ RandomAccessFile不是InputStream或者OutputStream继承层次结构的一部�
   <span class="n">getFilePointer</span><span class="o">()</span> <span class="c1">//查找当前所处文件位置</span>
   <span class="n">seek</span><span class="o">()</span> <span class="c1">//在文件内移至新位置</span>
   <span class="n">length</span><span class="o">()</span> <span class="c1">//判断文件最大尺寸</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>jdk1.4中大多数功能由nio存储映射文件所取代。</p>
 
 <h2 id="io-流常用方式">I/O 流常用方式</h2>
@@ -627,8 +624,7 @@ RandomAccessFile不是InputStream或者OutputStream继承层次结构的一部�
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10</pre></td><td class="code"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestEOF</span><span class="o">{</span>
@@ -639,14 +635,12 @@ RandomAccessFile不是InputStream或者OutputStream继承层次结构的一部�
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <h2 id="标准io重定向">标准IO重定向</h2>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code><span class="n">System</span><span class="o">.</span><span class="na">setIn</span><span class="o">(</span><span class="k">new</span> <span class="n">BufferedInputStream</span><span class="o">(</span><span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="s">"name.txt"</span><span class="o">)));</span>
 <span class="n">System</span><span class="o">.</span><span class="na">setOut</span><span class="o">(</span><span class="k">new</span> <span class="n">PrintStream</span><span class="o">(</span><span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="s">"test.out"</span><span class="o">)));</span>
 <span class="n">System</span><span class="o">.</span><span class="na">setErr</span><span class="o">(</span><span class="k">new</span> <span class="n">PrintStream</span><span class="o">(</span><span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="s">"test.out"</span><span class="o">)));</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>运行系统命令</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span> <span class="o">{</span>
 	 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
@@ -661,8 +655,7 @@ RandomAccessFile不是InputStream或者OutputStream继承层次结构的一部�
 		 	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
 	<span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <h2 id="nio">NIO</h2>
 <p>JDK 1.4的java.nio.* 包中引入了新的java io类库，目的在于提高速度，实际上，旧的I/O包已经使用nio重新实现过了，以便充分利用这种速度提高。</p>
 
@@ -796,7 +789,7 @@ RandomAccessFile不是InputStream或者OutputStream继承层次结构的一部�
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -913,7 +906,7 @@ RandomAccessFile不是InputStream或者OutputStream继承层次结构的一部�
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1080,6 +1073,8 @@ RandomAccessFile不是InputStream或者OutputStream继承层次结构的一部�
     
 
   
+
+
 
 
 

@@ -197,7 +197,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -287,7 +287,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -386,8 +386,7 @@
   	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"running"</span><span class="o">);</span>
   <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></div>    </div>
   </li>
   <li>实现Runnable</li>
 </ul>
@@ -403,8 +402,7 @@
 		<span class="k">new</span> <span class="nf">MyThread</span><span class="o">(</span><span class="k">new</span> <span class="n">MyRunnable</span><span class="o">()).</span><span class="na">start</span><span class="o">();</span>
 <span class="o">}</span>
 
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <ul>
   <li>实现Callable</li>
@@ -435,8 +433,7 @@
 		<span class="n">service</span><span class="o">.</span><span class="na">shutdown</span><span class="o">();</span>
 	<span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>生命周期</p>
 <ol>
@@ -480,8 +477,7 @@
     <span class="kd">synchronized</span><span class="o">(</span><span class="n">lock</span><span class="o">){</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h1 id="一个简单的死锁示例">一个简单的死锁示例</h1>
 
@@ -547,8 +543,7 @@
 		
 	<span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>程序中，来个线程，主线程先执行a对象的waitB方法，进入sleep，副线程以非常小的时间差距进入waitA方法，也进入sleep，这个时候主线程sleep结束之后想要调用B类的加锁方法，但是这个时候副线程正持有b对象，需要等副线程的waitA方法执行完毕释放锁，但是副线程sleep结束后也会去想要获取正在被主线程持有的a对象的锁，所以这个时候两边都在等待对面释放锁，以至于发生了死锁。</p>
 
 
@@ -678,7 +673,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -795,7 +790,7 @@
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -962,6 +957,8 @@
     
 
   
+
+
 
 
 

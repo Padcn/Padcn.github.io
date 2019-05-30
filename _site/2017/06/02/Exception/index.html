@@ -195,7 +195,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -285,7 +285,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -420,8 +420,7 @@ try{
 	...
 }finally{
 }
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>try和catch必须是一起出现，finally则不是必须的，catch可以有多个，如果有多个catch则其中的异常大小应该是范围比较小的在前面，范围大的在后面，如例子中ArithmeticException是在Exception的范围内，所以这样如果发生算数异常则捕获算数异常，运行第一个catch中的语句块，否则如果范围大的在前面那么总是不会运行到后面范围小的catch，这样不利于精确定位错误。</p>
 
 <p>finally语句块主要是为了抛出异常时进行资源的回收和销毁，如数据库操作时，因为某些原因执行到中间发生异常，这个时候会中断程序，也就可能不会运行到关闭数据库连接的语句块。为了避免这种情况就使用finally语句块，finally块中的语句保证会执行。</p>
@@ -439,8 +438,7 @@ try{
 		<span class="kd">super</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
 	<span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 
       
@@ -569,7 +567,7 @@ try{
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -686,7 +684,7 @@ try{
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -853,6 +851,8 @@ try{
     
 
   
+
+
 
 
 

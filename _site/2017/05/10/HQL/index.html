@@ -195,7 +195,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -285,7 +285,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -389,8 +389,7 @@ from 类名</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code><span class="n">String</span> <span class="n">hql</span><span class="o">=</span><span class="s">"from Student"</span>
 <span class="n">List</span> <span class="n">result</span><span class="o">=</span><span class="n">session</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">hql</span><span class="o">).</span><span class="na">list</span><span class="o">();</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>1.不需要引用全限定名，直接使用类名
 2.由于auto-import</p>
@@ -401,14 +400,12 @@ from 类名</p>
 <h4 id="select子句中指定new-list">select子句中指定new list</h4>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code><span class="n">String</span> <span class="n">hql</span><span class="o">=</span><span class="s">"select new list(u.name,u.tel) from User u"</span><span class="o">;</span>
 <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&gt;</span> <span class="n">lists</span><span class="o">=</span><span class="n">session</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">hql</span><span class="o">);</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h4 id="select子句中指定new-map">select子句中指定new Map</h4>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code><span class="n">String</span> <span class="n">hql</span><span class="o">=</span><span class="s">"select new map(u.name,u.tel) from User u"</span><span class="o">;</span>
 <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&gt;</span> <span class="n">maps</span><span class="o">=</span><span class="n">session</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">hql</span><span class="o">);</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>获取时是键值时索引，有别名则是别名</p>
 
 <blockquote>
@@ -567,7 +564,7 @@ http://www.cnblogs.com/xiaoluo501395377/p/3377604.html
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -684,7 +681,7 @@ http://www.cnblogs.com/xiaoluo501395377/p/3377604.html
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -851,6 +848,8 @@ http://www.cnblogs.com/xiaoluo501395377/p/3377604.html
     
 
   
+
+
 
 
 

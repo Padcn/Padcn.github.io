@@ -195,7 +195,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -285,7 +285,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -377,7 +377,7 @@
 </blockquote>
 
 <p>父组件传递给子组件变量是通过this.props.value获取:</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21</pre></td><td class="code"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Child</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21</pre></td><td class="code"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Child</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
 	<span class="nx">render</span><span class="p">(){</span>
     	<span class="k">return</span> <span class="p">(</span>
         	<span class="o">&lt;</span><span class="nx">button</span> 
@@ -388,7 +388,7 @@
 </span>        <span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-<span class="kr">class</span> <span class="nx">Parent</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
+<span class="kd">class</span> <span class="nx">Parent</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
 	<span class="nx">handleClick</span><span class="p">(</span><span class="nx">i</span><span class="p">){</span>
     	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
     <span class="p">}</span>
@@ -398,8 +398,7 @@
 </span>        <span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>如果该组件只有一个render方法，那么可以考虑使用函数式定义</p>
 <div class="language-js highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Square</span><span class="p">(</span><span class="nx">props</span><span class="p">){</span>
@@ -407,8 +406,7 @@
     	<span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">onClick</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">value</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
 </span>    <span class="p">);</span>
 <span class="p">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <blockquote>
   <p>这里onClick={proprs.onClick}不能写成onClick={proprs.onClick()}因为这种写法会在页面渲染时触发。</p>
 </blockquote>
@@ -535,7 +533,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -652,7 +650,7 @@
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -819,6 +817,8 @@
     
 
   
+
+
 
 
 

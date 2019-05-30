@@ -197,7 +197,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -287,7 +287,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -393,8 +393,7 @@
     <span class="nt">&lt;artifactId&gt;</span>dubbo<span class="nt">&lt;/artifactId&gt;</span>
     <span class="nt">&lt;version&gt;</span>2.6.2<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>注册中心可以是zookeeper或者redis。dubbo推荐zookeeper。这里使用zookeeper，Curator框架的使用是为了更方便的操作zookeeper，其中提供了丰富的操作。</p>
 
@@ -423,8 +422,7 @@
     <span class="nt">&lt;artifactId&gt;</span>curator-recipes<span class="nt">&lt;/artifactId&gt;</span>
     <span class="nt">&lt;version&gt;</span>2.8.0<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h2 id="基于xml配置方式">基于XML配置方式</h2>
 
@@ -470,8 +468,7 @@
 <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">DemoService</span> <span class="o">{</span>
     <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">getPermissions</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h3 id="对服务方法的实现">对服务方法的实现</h3>
 
@@ -497,8 +494,7 @@
         <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>注册服务到注册中心</p>
 
@@ -517,8 +513,7 @@
     <span class="c">&lt;!--服务注册--&gt;</span>
     <span class="nt">&lt;dubbo:service</span> <span class="na">interface=</span><span class="s">"org.pad.dubbo.demo.service.DemoService"</span> <span class="na">ref=</span><span class="s">"demoService"</span> <span class="na">protocol=</span><span class="s">"dubbo"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/beans&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h3 id="消费者对服务调用">消费者对服务调用</h3>
 
@@ -539,8 +534,7 @@
         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">demoService</span><span class="o">.</span><span class="na">getPermissions</span><span class="o">(</span><span class="mi">1L</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>配置文件</p>
 
@@ -555,8 +549,7 @@
     <span class="c">&lt;!--声明服务--&gt;</span>
     <span class="nt">&lt;dubbo:reference</span> <span class="na">id=</span><span class="s">"permissionService"</span> <span class="na">interface=</span><span class="s">"org.pad.dubbo.demo.DemoService"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/beans&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>到此就完成了一个示例demo</p>
 
@@ -611,8 +604,7 @@
         <span class="k">return</span> <span class="n">protocolConfig</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>服务实现</p>
 
@@ -628,8 +620,7 @@
         <span class="k">return</span> <span class="s">"hello?"</span><span class="o">+</span><span class="n">name</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>在springboot启动类上配置注解扫描</p>
 
@@ -647,8 +638,7 @@
 		<span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">DemoProviderApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
 	<span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h3 id="服务消费方配置">服务消费方配置</h3>
 
@@ -689,8 +679,7 @@
         <span class="k">return</span> <span class="n">consumerConfig</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>服务调用</p>
 
@@ -714,8 +703,7 @@
         <span class="k">return</span> <span class="n">demoService</span><span class="o">.</span><span class="na">sayHi</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>同样在springboot启动类上配置注解扫描</p>
 
@@ -732,8 +720,7 @@
 		<span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">DemoConsumerApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
 	<span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>完事，之后启动zookeeper/redis后启动provider和consumer就可以了。</p>
 
@@ -874,7 +861,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -991,7 +978,7 @@
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1158,6 +1145,8 @@
     
 
   
+
+
 
 
 

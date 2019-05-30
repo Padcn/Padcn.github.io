@@ -195,7 +195,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -285,7 +285,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -398,27 +398,27 @@ redux提供createStore这个函数来生成Store</p>
   <li>state完全可以预测</li>
 </ol>
 
-<pre><code class="language-jsx">import {createStore} from 'redux';
-const store=createStore(fn);
-</code></pre>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">createStore</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'redux'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">store</span><span class="o">=</span><span class="nx">createStore</span><span class="p">(</span><span class="nx">fn</span><span class="p">);</span>
+</code></pre></td></tr></tbody></table></div></div>
 <h1 id="state">State</h1>
 <p>一个State对应以额View。只要State相同，view就相同，反之亦然。 
 某个时间点Store的快照，的数据集合叫做state</p>
 
-<pre><code class="language-jsx">import {createStore} from 'redux';
-const store=createStore(fn);
+<div class="language-jsx highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">createStore</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'redux'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">store</span><span class="o">=</span><span class="nx">createStore</span><span class="p">(</span><span class="nx">fn</span><span class="p">);</span>
 
-const state=store.getState();
-</code></pre>
+<span class="kd">const</span> <span class="nx">state</span><span class="o">=</span><span class="nx">store</span><span class="p">.</span><span class="nx">getState</span><span class="p">();</span>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h1 id="action">Action</h1>
 <p>Action就是View发出的通知，通知State发生变化</p>
 
-<pre><code class="language-jsx">const action={
-	type:'ADD_TODO',
-    payload:'Learn Redux'
-}
-</code></pre>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">action</span><span class="o">=</span><span class="p">{</span>
+	<span class="na">type</span><span class="p">:</span><span class="s1">'ADD_TODO'</span><span class="p">,</span>
+    <span class="na">payload</span><span class="p">:</span><span class="s1">'Learn Redux'</span>
+<span class="p">}</span>
+</code></pre></td></tr></tbody></table></div></div>
 <p>Action描述当前发生的事情，改变State的唯一办法，就是使用Action.他会运送数据到Store。</p>
 <h2 id="container和componenet">container和componenet</h2>
 
@@ -580,7 +580,7 @@ const state=store.getState();
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -697,7 +697,7 @@ const state=store.getState();
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -864,6 +864,8 @@ const state=store.getState();
     
 
   
+
+
 
 
 

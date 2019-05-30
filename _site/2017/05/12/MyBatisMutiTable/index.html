@@ -195,7 +195,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -285,7 +285,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -398,8 +398,7 @@
 <span class="k">insert</span> <span class="k">into</span> <span class="n">idcard</span> <span class="k">values</span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">'678686'</span><span class="p">);</span>
 <span class="k">insert</span> <span class="k">into</span> <span class="n">idcard</span> <span class="k">values</span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">'6789792'</span><span class="p">);</span>
 <span class="k">insert</span> <span class="k">into</span> <span class="n">idcard</span> <span class="k">values</span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s1">'9635224'</span><span class="p">);</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>实体类people包含3个属性p_id,p_name,p_info和一个toString方法
 @Idcard.java</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29</pre></td><td class="code"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Idcard</span> <span class="o">{</span>
@@ -431,8 +430,7 @@
 				<span class="o">+</span> <span class="s">", people="</span> <span class="o">+</span> <span class="n">people</span> <span class="o">+</span> <span class="s">"]"</span><span class="o">;</span>
 	<span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>映射文件@idcardMapper.xml</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12</pre></td><td class="code"><pre class="highlight"><code>	<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"getICard"</span> <span class="na">parameterType=</span><span class="s">"int"</span> <span class="na">resultMap=</span><span class="s">"IdcardResultMap"</span><span class="nt">&gt;</span>
@@ -447,12 +445,10 @@
      		<span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">"p_info"</span> <span class="na">column=</span><span class="s">"p_info"</span><span class="nt">/&gt;</span>
      	<span class="nt">&lt;/association&gt;</span>
      <span class="nt">&lt;/resultMap&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>在conf.xml中引入关联</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">"com/pad/mapping/idcardMapper.xml"</span><span class="nt">/&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>测试代码</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMuti</span><span class="o">(){</span>
@@ -461,8 +457,7 @@
 	<span class="n">Idcard</span> <span class="n">ic</span><span class="o">=</span><span class="n">session</span><span class="o">.</span><span class="na">selectOne</span><span class="o">(</span><span class="n">statement</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
 	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">ic</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>以上是嵌套结果方式，另一种为嵌套查询，是分别用2个select查询后进行关联。</p>
 
@@ -478,8 +473,7 @@
      	<span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">"ic_number"</span> <span class="na">column=</span><span class="s">"ic_number"</span><span class="nt">/&gt;</span>
      	<span class="nt">&lt;association</span> <span class="na">property=</span><span class="s">"people"</span> <span class="na">column=</span><span class="s">"p_id"</span> <span class="na">select=</span><span class="s">"getPeople2"</span> <span class="nt">/&gt;</span>
      <span class="nt">&lt;/resultMap&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h2 id="一对多关联">一对多关联</h2>
 <p>MyBatis中使用collection标签进行一对多的关联，ofType属性指的是元素的对象类型。
@@ -497,8 +491,7 @@
      		<span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">"it_info"</span> <span class="na">column=</span><span class="s">"it_info"</span><span class="nt">/&gt;</span>
      	<span class="nt">&lt;/collection&gt;</span>
      <span class="nt">&lt;/resultMap&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>嵌套查询方式也是类似配置</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14</pre></td><td class="code"><pre class="highlight"><code><span class="c">&lt;!--方式二：嵌套查询：通过执行另外一个SQL映射语句来返回预期的复杂类型--&gt;</span>
@@ -515,8 +508,7 @@
      	<span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">"p_info"</span> <span class="na">column=</span><span class="s">"p_info"</span><span class="nt">/&gt;</span>
      	<span class="nt">&lt;collection</span> <span class="na">property=</span><span class="s">"items"</span> <span class="na">column=</span><span class="s">"p_id"</span> <span class="na">ofType=</span><span class="s">"com.pad.entity.Items"</span> <span class="na">select=</span><span class="s">"getItem2"</span><span class="nt">/&gt;</span>
      <span class="nt">&lt;/resultMap&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <blockquote>
   <p>有一点需要注意的是使用了resultMap之后再resultMap中未声明的属性将不会获取，无论字段名和属性名是否一致。</p>
@@ -546,8 +538,7 @@
     <span class="o">})</span>  
     <span class="n">Student</span> <span class="nf">selectStudentWithAddress</span><span class="o">(</span><span class="kt">int</span> <span class="n">studId</span><span class="o">);</span>  
 <span class="o">}</span>  
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31</pre></td><td class="code"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TutorMapper</span>  
 <span class="o">{</span>  
@@ -580,8 +571,7 @@
     <span class="o">})</span>  
     <span class="n">Tutor</span> <span class="nf">findTutorById</span><span class="o">(</span><span class="kt">int</span> <span class="n">tutorId</span><span class="o">);</span>  
 <span class="o">}</span>  
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h1 id="调用存储过程">调用存储过程</h1>
 
@@ -597,8 +587,7 @@
     <span class="nt">&lt;parameter</span> <span class="na">property=</span><span class="s">"sexid"</span> <span class="na">mode=</span><span class="s">"IN"</span> <span class="na">jdbcType=</span><span class="s">"INTEGER"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;parameter</span> <span class="na">property=</span><span class="s">"usercount"</span> <span class="na">mode=</span><span class="s">"OUT"</span> <span class="na">jdbcType=</span><span class="s">"INTEGER"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/parameterMap&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 
 
@@ -728,7 +717,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -845,7 +834,7 @@
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1012,6 +1001,8 @@
     
 
   
+
+
 
 
 

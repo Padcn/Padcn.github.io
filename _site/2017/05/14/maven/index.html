@@ -195,7 +195,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -285,7 +285,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -395,8 +395,7 @@
             -java
                 -package
         -resources pom.xml在struts2-core-*.jar下META_INF\maven中有模板，可以改造，删除中间部分。修改后放入项目中如maven01目录下 ```xml &lt;?xml version="1.0" encoding="UTF-8"?&gt;
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
@@ -422,8 +421,7 @@ mvn install
 mvn compiler:compile
 mvn org.apache.maven.plugins:maven-compiler-plugin:compile
 mvn org.apache.maven.plugins:maven-compiler-plugin:2.0.2:compile
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>mvn常用构建命令
 	mvn -v 查看maven版本
@@ -453,13 +451,11 @@ mvn archetype:generate -DgroupId=com.imooc.maven04 -DatifactId=maven04-demo -Dve
 <span class="nt">&lt;name&gt;</span>central mirror in china<span class="nt">&lt;/name&gt;</span>
 <span class="nt">&lt;url&gt;</span>http://maven.net.cn/content/groups/public<span class="nt">&lt;/url&gt;</span>
 <span class="nt">&lt;/mirror&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>修改本地仓库路径
 修改setting</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;localRepository&gt;</span>路径<span class="nt">&lt;/localRepository&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h1 id="在eclipse中安装maven插件">在eclipse中安装maven插件</h1>
 <p>将插件放进eclipse安装目录下的drop
@@ -501,8 +497,7 @@ clean项目 pre-clean
         <span class="nt">&lt;/executions&gt;</span>
     <span class="nt">&lt;/plugin&gt;</span>
  <span class="nt">&lt;/build&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h1 id="pomxml常用元素">pom.xml常用元素</h1>
 
@@ -578,8 +573,7 @@ clean项目 pre-clean
     	<span class="nt">&lt;module&gt;&lt;/module&gt;</span>
     <span class="nt">&lt;/modules&gt;</span>
 <span class="nt">&lt;/project&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h1 id="依赖">依赖</h1>
 <h2 id="scope标签">scope标签：</h2>
@@ -629,8 +623,7 @@ clean项目 pre-clean
 	<span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
    	<span class="nt">&lt;jdk&gt;</span>1.7<span class="nt">&lt;/jdk&gt;</span>
 <span class="nt">&lt;/activation&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h2 id="依赖冲突">依赖冲突</h2>
 
@@ -648,8 +641,7 @@ clean项目 pre-clean
         <span class="nt">&lt;module&gt;&lt;/module&gt;</span>
         <span class="nt">&lt;module&gt;&lt;/module&gt;</span>
     <span class="nt">&lt;/modules&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h1 id="使用maven构建web项目">使用maven构建web项目</h1>
 
@@ -705,8 +697,7 @@ clean项目 pre-clean
              &lt;/executions&gt;
         &lt;/plugin&gt;
     &lt;/plugins&gt; ```
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <hr />
 <p>查看本地仓库路径：mvn help:effective-settings</p>
@@ -839,7 +830,7 @@ clean项目 pre-clean
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -956,7 +947,7 @@ clean项目 pre-clean
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1123,6 +1114,8 @@ clean项目 pre-clean
     
 
   
+
+
 
 
 

@@ -198,7 +198,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -288,7 +288,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -421,8 +421,7 @@ Spring所有切面和通知器都必须放在一个<aop:config>内(可以配置�
     <span class="nt">&lt;/aop:aspect&gt;</span>
 <span class="nt">&lt;/aop:config&gt;</span>
 <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"aspcetBean"</span> <span class="na">class=</span><span class="s">"com.pad.s"</span><span class="nt">&gt;&lt;/bean&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h2 id="pointcut">pointcut</h2>
 
@@ -442,8 +441,7 @@ this（com.xyz.service.AccountService）</p>
 	<span class="c">&lt;!--这里是只执行特定方法--&gt;</span>
 	<span class="nt">&lt;aop:pointcut</span> <span class="na">id=</span><span class="s">"businnessService"</span> <span class="na">expression=</span><span class="s">"com.xyz.myapp.SystemArchitecture.businessService()"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/aop:config&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h2 id="advice通知">advice通知</h2>
 <p>使用切面需要的maven依赖</p>
@@ -452,24 +450,20 @@ this（com.xyz.service.AccountService）</p>
    <span class="nt">&lt;artifactId&gt;</span>spring-aspects<span class="nt">&lt;/artifactId&gt;</span>
    <span class="nt">&lt;version&gt;</span>4.1.1.RELEASE<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>不然会抛异常</p>
 <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.aop.aspectj.AspectJPointcutAdvisor#0':
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <h3 id="before-advice">Before advice</h3>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>	<span class="nt">&lt;aop:before</span> <span class="na">pointcut-ref=</span><span class="s">"dataAccessOperation"</span> <span class="na">method=</span><span class="s">"doAccessCheck"</span><span class="nt">/&gt;</span>
     <span class="c">&lt;!--两种方式--&gt;</span>
     <span class="nt">&lt;aop:before</span> <span class="na">pointcut=</span><span class="s">"execution(* com.pad.service..*(..))"</span> <span class="na">method=</span><span class="s">"doAccessCheck"</span><span class="nt">/&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <h3 id="after-returning-advice">After returning advice</h3>
 <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>	&lt;aop:after-returing pointcut-ref="dataAccessOperation" method="doAccessCheck"/&gt;
     &lt;!--或者--&gt;
     &lt;aop:after-returing pointcut-ref="dataAccessOperation" returning="retVal" method="doAccessCheck"/&gt;	
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>Around advice 第一个参数必须是ProceedingJoinPoint类型，不调用他的proceed()方法的话原函数就不执行了。</p>
 
@@ -486,12 +480,11 @@ this（com.xyz.service.AccountService）</p>
 			<span class="nt">&lt;aop:after-throwing</span> <span class="na">method=</span><span class="s">"afterThrow"</span> <span class="na">pointcut-ref=</span><span class="s">"moocPointcut"</span><span class="nt">/&gt;</span>
 			<span class="nt">&lt;aop:around</span> <span class="na">method=</span><span class="s">"around"</span> <span class="na">pointcut-ref=</span><span class="s">"moocPointcut"</span><span class="nt">/&gt;</span>
 
-			<span class="nt">&lt;aop:around</span> <span class="na">method=</span><span class="s">"aroundInit"</span> <span class="na">pointcut=</span><span class="s">"execution(*</span> <span class="err">com.imooc.biz.AspectBiz</span>
-			<span class="err">.init(String,int))</span> <span class="err">and</span> <span class="err">args(name,time)"</span><span class="nt">/&gt;</span>
+			<span class="nt">&lt;aop:around</span> <span class="na">method=</span><span class="s">"aroundInit"</span> <span class="na">pointcut=</span><span class="s">"execution(* com.imooc.biz.AspectBiz
+			.init(String,int)) and args(name,time)"</span><span class="nt">/&gt;</span>
 		<span class="nt">&lt;/aop:aspect&gt;</span>
     <span class="nt">&lt;/aop:config&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>切面</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31</pre></td><td class="code"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MoocAspect</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">before</span><span class="o">(){</span>
@@ -524,8 +517,7 @@ this（com.xyz.service.AccountService）</p>
         <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>测试代码：</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17</pre></td><td class="code"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AspectBiz</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
@@ -544,8 +536,7 @@ this（com.xyz.service.AccountService）</p>
         <span class="n">biz</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="s">"iii"</span><span class="o">,</span><span class="mi">2</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h2 id="introductions">Introductions</h2>
 <p>为在types-maching中匹配的类增加新的parent，使得可以getBean后强制转换成父类接口，实现接口实现方式为default-impl中指定的类</p>
@@ -556,8 +547,7 @@ this（com.xyz.service.AccountService）</p>
 <span class="na">default-impl=</span><span class="s">"com.xyz.service.tracking.DefaultUsageTracked"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;aop:before</span>
 	<span class="na">pointcut=</span><span class="s">"com.xyz.SystemArchitecture.businessService() and this (usageTracked)"</span> <span class="na">method=</span><span class="s">"recordUsage"</span><span class="nt">/&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>UsageTracked usageTracked=(UsageTracked)context.getBean(“myService”);</p>
 
@@ -700,7 +690,7 @@ this（com.xyz.service.AccountService）</p>
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -817,7 +807,7 @@ this（com.xyz.service.AccountService）</p>
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -984,6 +974,8 @@ this（com.xyz.service.AccountService）</p>
     
 
   
+
+
 
 
 

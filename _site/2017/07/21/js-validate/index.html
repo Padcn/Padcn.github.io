@@ -195,7 +195,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -285,7 +285,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -380,8 +380,7 @@ http://blog.csdn.net/xh16319/article/details/9987847</p>
 <p>引入validate文件</p>
 <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code>&lt;script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"&gt;&lt;/script&gt;
 &lt;script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"&gt;&lt;/script&gt;
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>需要注意的是引入文件时如果有其他jquery文件可能会有冲突，导致不起效，报的错为validate不能被识别。</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47<br/>48<br/>49<br/>50</pre></td><td class="code"><pre class="highlight"><code><span class="nx">$</span><span class="p">().</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -434,22 +433,20 @@ http://blog.csdn.net/xh16319/article/details/9987847</p>
       <span class="na">topic</span><span class="p">:</span> <span class="s2">"请选择两个主题"</span>
     <span class="p">}</span>
 <span class="p">});</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <h2 id="远程验证">远程验证</h2>
 <p>在一些情况下需要将数据与服务器端进行对比验证，比如注册用户时一些信息不能为系统中已经存在的数据，这个时候就需要将数据发送到服务器进行验证，服务器再返回验证结果。</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10</pre></td><td class="code"><pre class="highlight"><code><span class="nx">remote</span><span class="err">:</span><span class="p">{</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10</pre></td><td class="code"><pre class="highlight"><code><span class="nx">remote</span><span class="p">:{</span>
 	<span class="nl">url</span><span class="p">:</span><span class="s2">"&lt;IPAddress:Port&gt;/isExists"</span><span class="p">,</span>
-    <span class="nx">type</span><span class="err">:</span><span class="s2">"post"</span><span class="p">,</span>
-    <span class="nx">dataType</span><span class="err">:</span><span class="s2">"json"</span><span class="p">,</span>
-    <span class="nx">data</span><span class="err">:</span><span class="p">{</span>
+    <span class="nx">type</span><span class="p">:</span><span class="s2">"post"</span><span class="p">,</span>
+    <span class="nx">dataType</span><span class="p">:</span><span class="s2">"json"</span><span class="p">,</span>
+    <span class="nx">data</span><span class="p">:{</span>
     	<span class="nl">username</span><span class="p">:</span><span class="kd">function</span><span class="p">(){</span>
         	<span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#username"</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>服务器端只能返回true或者false。使用方式与required等一样。</p>
 
 <h1 id="自定义验证规则">自定义验证规则</h1>
@@ -461,8 +458,7 @@ http://blog.csdn.net/xh16319/article/details/9987847</p>
 	<span class="kd">var</span> <span class="nx">pattern</span><span class="o">=</span><span class="sr">/</span><span class="se">[^\u</span><span class="sr">4e00-</span><span class="se">\u</span><span class="sr">9fa5</span><span class="se">]</span><span class="sr">/</span><span class="p">;</span>
 	<span class="k">return</span> <span class="nx">pattern</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
 <span class="p">},</span><span class="nx">$</span><span class="p">.</span><span class="nx">validator</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s2">"error messages here..."</span><span class="p">));</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>在使用的时候就可以和系统默认的规则required,digits等一样使用。</p>
 
 <p>在这里function中参数只用到了value就是组件的值，element为组件本身，param是使用规则时可以传入的参数值。如 myValidate:[“1”,”2”]，则param[0]为1,param[1]为2</p>
@@ -598,7 +594,7 @@ http://blog.csdn.net/xh16319/article/details/9987847</p>
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -715,7 +711,7 @@ http://blog.csdn.net/xh16319/article/details/9987847</p>
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -882,6 +878,8 @@ http://blog.csdn.net/xh16319/article/details/9987847</p>
     
 
   
+
+
 
 
 

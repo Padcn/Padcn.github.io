@@ -195,7 +195,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -285,7 +285,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -388,8 +388,7 @@
 <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">listArrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="kc">null</span><span class="o">,</span><span class="kc">null</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">);</span>
 <span class="kt">long</span> <span class="n">count</span><span class="o">=</span><span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span><span class="n">num</span><span class="o">-&gt;</span><span class="n">num</span><span class="o">!=</span><span class="kc">null</span><span class="o">).</span><span class="na">count</span><span class="o">();</span>
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">count</span><span class="o">);</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>这里是一个计算list中不为空元素的数量的代码。</p>
 
@@ -411,8 +410,7 @@
 <span class="o">});</span>
 <span class="c1">//iterate方法，直接使用iterate方法以获取的也是无限长的</span>
 <span class="n">Stream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">item</span> <span class="o">-&gt;</span> <span class="n">item</span> <span class="o">+</span> <span class="mi">1</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="mi">10</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>对于原先有的容器</p>
 
@@ -421,15 +419,13 @@
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code><span class="k">default</span> <span class="n">Stream</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">parallelStream</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">StreamSupport</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">spliterator</span><span class="o">(),</span> <span class="kc">true</span><span class="o">);</span>
     <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>可以直接使用接口的这个方法获取如：</p>
 
 <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code>List list=new ArrayList&lt;String&gt;();
 Stream&lt;String&gt; stream=list.stream();
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h3 id="转换">转换</h3>
 
@@ -450,8 +446,7 @@ Stream&lt;String&gt; stream=list.stream();
    			<span class="n">distinct</span><span class="o">().</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">num</span> <span class="o">-&gt;</span> <span class="n">num</span> <span class="o">*</span> <span class="mi">2</span><span class="o">).</span>
                <span class="n">peek</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">).</span><span class="na">skip</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="mi">4</span><span class="o">).</span><span class="na">sum</span><span class="o">());</span>
    
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>值得注意的是这里转换看似经历了很多次，其实只会在最终聚合时一起进行。并不是一次一次分开转换的。</p>
 
@@ -473,15 +468,13 @@ Stream&lt;String&gt; stream=list.stream();
 <span class="c1">//这里还有一种更加简便的方式</span>
 <span class="c1">//传入Collector&lt;? super T, A, R&gt; collector</span>
 <span class="n">List</span> <span class="n">result</span><span class="o">=</span><span class="n">strStream</span><span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">str</span><span class="o">-&gt;</span><span class="n">str</span><span class="o">!=</span><span class="kc">null</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">strStream</span><span class="o">=</span><span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"a"</span><span class="o">,</span><span class="kc">null</span><span class="o">,</span><span class="s">"b"</span><span class="o">,</span><span class="s">"d"</span><span class="o">,</span><span class="kc">null</span><span class="o">,</span><span class="s">"c"</span><span class="o">);</span>
 <span class="c1">//reduce有两种实现，一种是直接提供BinaryOperator 前一个参数为返回参数，后一个参数为遍历Stream中的元素。</span>
 <span class="c1">//这里reduce函数是第二种，接受两个参数，的第一个参数是可选的，为返回值的初始值。</span>
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">strStream</span><span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="s">"rua"</span><span class="o">,(</span><span class="n">sum</span><span class="o">,</span><span class="n">item</span><span class="o">)-&gt;</span><span class="n">sum</span><span class="o">+</span><span class="n">item</span><span class="o">));</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 
 
@@ -611,7 +604,7 @@ Stream&lt;String&gt; stream=list.stream();
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -728,7 +721,7 @@ Stream&lt;String&gt; stream=list.stream();
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -895,6 +888,8 @@ Stream&lt;String&gt; stream=list.stream();
     
 
   
+
+
 
 
 

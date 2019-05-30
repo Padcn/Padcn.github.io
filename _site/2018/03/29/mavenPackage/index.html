@@ -195,7 +195,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -285,7 +285,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -409,8 +409,7 @@
 	<span class="nt">&lt;/build&gt;</span>
 
 <span class="nt">&lt;/project&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <blockquote>
   <p>标签不整齐有可能在打包时出现pom.xml: expected START_TAG or END_TAG not TEXT</p>
@@ -422,9 +421,8 @@
 
 <h3 id="运行">运行：</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>java -jar server.jar &amp;
-</code></pre></td></tr></tbody></table></div>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>java <span class="nt">-jar</span> server.jar &amp;
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>后面加个&amp;就可以 （使用的是linux的nohup命令）</p>
 
@@ -436,15 +434,13 @@
 
 <p>列出java后台进程</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>ps -ef | grep java
-</code></pre></td></tr></tbody></table></div>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>ps <span class="nt">-ef</span> | <span class="nb">grep </span>java
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>查看后用kill -9 加pid，直接关闭</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="nb">kill</span> -9 <span class="o">[</span>pid]
-</code></pre></td></tr></tbody></table></div>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="nb">kill</span> <span class="nt">-9</span> <span class="o">[</span>pid]
+</code></pre></td></tr></tbody></table></div></div>
 
 
 
@@ -577,7 +573,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -694,7 +690,7 @@
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -861,6 +857,8 @@
     
 
   
+
+
 
 
 

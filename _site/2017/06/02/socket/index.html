@@ -197,7 +197,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -287,7 +287,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -386,13 +386,11 @@
 <p>首先创建服务端的ServerSocket,构造函数最多可接受3个参数 ServerSocket(int port, int backlog, InetAddress bindAddr)，依次为绑定的端口、对连接的请求队列最大长度、指定服务器绑定打ip地址。默认baklog为50，bindAddr为null。在ServerSocket类中可以看到上图中打一些关键字，在源码中可以看到如果在构造ServerSocket时给定类端口，则会自动绑定并且监听端口。</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code><span class="c1">//服务端</span>
 <span class="n">ServerSocket</span> <span class="n">ss</span><span class="o">=</span><span class="k">new</span> <span class="n">ServerSocket</span><span class="o">(</span><span class="mi">5858</span><span class="o">);</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>监听之后需要接受来自客户端打请求使用accept()进行接收，accept()函数会阻塞当前线程直到连接建立，返回一个Socket对象。</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="n">ss</span><span class="o">.</span><span class="na">accpet</span><span class="o">();</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>之后就可以对于这个返回打Socket对象进行读写操作了。</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6</pre></td><td class="code"><pre class="highlight"><code><span class="c1">//读取客户端发送打数据，这里给定字符编码，防止中文乱码，socket就是之前accept函数返回打socket。</span>
 <span class="n">BufferedReader</span> <span class="n">br</span><span class="o">=</span><span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">socket</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">(),</span> <span class="s">"UTF-8"</span><span class="o">));</span>
@@ -400,21 +398,18 @@
 <span class="c1">//发送给客户端数据，PrintWriter打boolean值表示是否自动flush。</span>
 <span class="n">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PrintWriter</span><span class="o">(</span><span class="k">new</span> <span class="n">OutputStreamWriter</span><span class="o">(</span><span class="n">socket</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">(),</span> <span class="s">"UTF-8"</span><span class="o">),</span> <span class="kc">true</span><span class="o">);</span>
 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"say something to client."</span><span class="o">);</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>读写操作完毕后记得关闭相关资源，调用close方法。这里服务端基本完成，这样可以实现单客户端进行交互，如果需要实现多客户端则需要借助线程的知识，可以参考最下面打demo。</p>
 
 <p>接下来时客户端部分，客户端部分：
 客户端部分也是需要先创建Socket</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code><span class="c1">//接收两个参数，第一个为服务器ip地址，第二个为相应服务端监听的端口号</span>
 <span class="n">Socket</span> <span class="n">s</span><span class="o">=</span><span class="k">new</span> <span class="n">Socket</span><span class="o">(</span><span class="s">"127.0.0.1"</span><span class="o">,</span><span class="mi">5858</span><span class="o">);</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>构造函数的注释表明构造函数会创建Socket并且连接到指定打端口，所以之后可以向服务端发送数据了。</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code> <span class="n">PrintWriter</span> <span class="n">pw</span><span class="o">=</span><span class="k">new</span> <span class="n">PrintWriter</span><span class="o">(</span><span class="k">new</span> <span class="n">OutputStreamWriter</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">(),</span><span class="s">"UTF-8"</span><span class="o">),</span><span class="kc">true</span><span class="o">);</span>
  <span class="n">pw</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"hello,I`m client."</span><span class="o">);</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>如果连接顺利则服务端将会收到数据。结束后使用close()函数进行关闭操作。</p>
 
 <p>这样一个简单的socket交互程序，就完成了，但是并没有什么好玩的，很无聊。那我们要实现一个比较有趣的，好用的程序应该怎么改造呢？先从客户端改造起，前面我们的客户端只能发送固定打字符串，写死了在程序中，希望能够自定义想发什么发什么，那就用熟悉的Scanner吧！那么问题来了，输入之后回车发送，只能发送一次？好办，套个循环，ok，现在实现类自定义向服务端发送数据了，但是只有客户端自嗨也不行啊，需要服务端的反馈啊。有道理那么我们套了循环之后一直是输入状态，这样不行吧，所以需要一个线程，专门来听服务端的反馈。这样就比较完善了。</p>
@@ -577,8 +572,7 @@
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>@SimpleClient.java</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47<br/>48<br/>49<br/>50<br/>51<br/>52<br/>53<br/>54<br/>55<br/>56<br/>57<br/>58<br/>59<br/>60<br/>61<br/>62<br/>63<br/>64<br/>65<br/>66<br/>67<br/>68<br/>69<br/>70</pre></td><td class="code"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
@@ -651,8 +645,7 @@
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 
       
@@ -781,7 +774,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -898,7 +891,7 @@
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1065,6 +1058,8 @@
     
 
   
+
+
 
 
 

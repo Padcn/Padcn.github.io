@@ -195,7 +195,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -285,7 +285,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -394,8 +394,7 @@
     <span class="p">});</span>
 <span class="p">}</span>
 <span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span></code></pre></td></tr></tbody></table></div>
-</div>
+</span></code></pre></td></tr></tbody></table></div></div>
 
 <p>@TestAajaxAction</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23</pre></td><td class="code"><pre class="highlight"><code>
@@ -421,13 +420,11 @@
 	<span class="o">}</span>
 	
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>@struts.xml</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;action</span> <span class="na">name=</span><span class="s">"testAjax"</span> <span class="na">method=</span><span class="s">"testAjax"</span> <span class="na">class=</span><span class="s">"com.pad.action.AjaxTestAction"</span><span class="nt">/&gt;</span>   
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h3 id="2采用stream形式与ajax交互">2.采用stream形式与ajax交互</h3>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;action</span> <span class="na">name=</span><span class="s">"testStream"</span> <span class="na">class=</span><span class="s">"com.pad.action.AjaxTestAction"</span> <span class="na">method=</span><span class="s">"testAjaxStream"</span><span class="nt">&gt;</span>
@@ -435,8 +432,7 @@
    			<span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputName"</span><span class="nt">&gt;</span>result<span class="nt">&lt;/param&gt;</span>
    		<span class="nt">&lt;/result&gt;</span>
    	<span class="nt">&lt;/action&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27</pre></td><td class="code"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AjaxTestAction</span> <span class="kd">extends</span> <span class="n">ActionSupport</span><span class="o">{</span>
 	<span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
@@ -465,8 +461,7 @@
 	<span class="o">}</span>
 
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h3 id="3使用struts2提供的jar包">3.使用Struts2提供的jar包</h3>
 
@@ -481,8 +476,7 @@
  		<span class="nt">&lt;/result&gt;</span>
  	<span class="nt">&lt;/action&gt;</span>
  <span class="nt">&lt;/package&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>@AjaxTestAction</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23</pre></td><td class="code"><pre class="highlight"><code> 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">AjaxTestAction</span> <span class="kd">extends</span> <span class="n">ActionSupport</span><span class="o">{</span>
@@ -507,14 +501,12 @@
 
 <span class="o">}</span>
 
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>直接访问后页面返回：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="nt">"list"</span><span class="p">:[</span><span class="s2">"abc1"</span><span class="p">,</span><span class="s2">"abc2"</span><span class="p">,</span><span class="s2">"abc3"</span><span class="p">,</span><span class="s2">"abc4"</span><span class="p">,</span><span class="s2">"abc5"</span><span class="p">]}</span><span class="w">
-</span></code></pre></td></tr></tbody></table></div>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code> {"list":["abc1","abc2","abc3","abc4","abc5"]}
+</code></pre></td></tr></tbody></table></div></div>
 
 
       
@@ -643,7 +635,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -760,7 +752,7 @@
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -927,6 +919,8 @@
     
 
   
+
+
 
 
 

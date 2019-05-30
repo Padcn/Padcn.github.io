@@ -197,7 +197,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -287,7 +287,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -399,8 +399,7 @@ http://blog.csdn.net/u014136713/article/details/52089156</p>
   <span class="kt">void</span> <span class="nf">removeAll</span><span class="o">(</span><span class="n">Collection</span> <span class="n">c</span><span class="o">)</span> <span class="err">去除集合</span><span class="n">c</span><span class="err">中包含的元素</span>
   <span class="kt">void</span> <span class="nf">retainAll</span><span class="o">(</span><span class="n">Collection</span> <span class="n">c</span><span class="o">)</span> <span class="err">去除集合</span><span class="n">c</span><span class="err">中不包含的元素</span>
   <span class="n">Object</span><span class="o">[]</span> <span class="nf">toArray</span><span class="o">()</span> <span class="err">将集合转换为</span><span class="n">array</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>Collection中不提供get方法，如果要遍历Collection中的元素则需要使用iterator。</p>
 
 <p>Collection的Iterator方法返回一个Iterator，Iterator接口以迭代的方式逐一的访问元素，与c++中的iterator不同的时这里的iterator并不是指向元素的，而是类似于处在两个元素之间的位置，调用next()方法越过下一个元素，并且返回那个元素。hasNext()返回是否存在下一个元素，remove()方法删除上一次访问的元素。</p>
@@ -423,8 +422,7 @@ ConcurrentModificationException （另一种 RuntimeException异常）异常并�
  <span class="n">ListIterator</span> <span class="nf">listIterator</span><span class="o">()</span>
  <span class="n">ListIterator</span> <span class="nf">listIterator</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="err">返回列表迭代器，从</span><span class="n">index</span><span class="err">位置开始访问</span>
  <span class="n">List</span> <span class="nf">subList</span><span class="o">(</span><span class="kt">int</span> <span class="n">form</span> <span class="n">Index</span><span class="o">,</span><span class="kt">int</span> <span class="n">toIndex</span><span class="o">)</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>以及一些从Collection中继承的方法。
 其中listIterator()方法返回的是ListIterator，继承自Iterator，对比Iterator不同在于可以双向移动，Iterator只能使用next()进行向后遍历，ListIterator中可以使用perivious()方法进行向前遍历。相应的hasPervious()判断是否到达头部，previousIndex()返回下次调用previous()的索引。add(Object o)添加元素和set(Object o)设置元素。</p>
 
@@ -441,16 +439,14 @@ ConcurrentModificationException （另一种 RuntimeException异常）异常并�
  <span class="n">Object</span> <span class="nf">getLast</span><span class="o">()</span>
  <span class="n">Object</span> <span class="nf">removeFirst</span><span class="o">()</span>
  <span class="n">Object</span> <span class="nf">removeLast</span><span class="o">()</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <h3 id="arraylist">ArrayList</h3>
 
 <p>动态数组ArrayList类封装了一个动态分配的Object[]数组，每个ArrayList对象有一个capacity。这个capacity表示存储列表中元素的容器打容量。当元素添加到ArrayList时，其capacity在常量时间内自动增加。</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">ensureCapacity</span><span class="o">(</span><span class="kt">int</span> <span class="n">minCapacity</span><span class="o">)</span> <span class="err">将</span><span class="n">ArrayList</span><span class="err">对象容量增加</span><span class="n">minCapacity</span>
 <span class="kt">void</span> <span class="nf">trimToSize</span><span class="o">()</span><span class="err">整理</span><span class="n">ArrayList</span><span class="err">对象容量为当前列表大小，减少对象存储空间。</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <h3 id="vector">Vector</h3>
 <p>Vector是一种老的动态数组，是线程同步的，效率很低，一般不赞成使用。</p>
 
@@ -489,8 +485,7 @@ http://blog.csdn.net/u014136713/article/details/52089156</p>
   <span class="n">E</span> <span class="nf">poll</span><span class="o">();</span><span class="c1">//检索并且删除队列头部，如果队列是空返回null</span>
   <span class="n">E</span> <span class="nf">element</span><span class="o">();</span><span class="c1">//检索但不删除队列头部，如果队列是空抛出异常</span>
   <span class="n">E</span> <span class="nf">peek</span><span class="o">();</span> <span class="c1">//检索但不删除队列头部，如果队列是空返回null</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>### PriorityQueue</p>
 <blockquote>
   <p>http://blog.csdn.net/hiphopmattshi/article/details/7334487</p>
@@ -525,8 +520,7 @@ Set keySet() // 返回映像中所有关键字的视图集
 Collection values()//返回映像中所有值的视图集 
  
 Set entrySet() //返回Map.Entry对象的视图集，即映像中的关键字/值对 
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <blockquote>
   <p>键和值都可以是null，但是不能把map作为键或者值添加给自身。</p>
 </blockquote>
@@ -538,8 +532,7 @@ Set entrySet() //返回Map.Entry对象的视图集，即映像中的关键字/�
  <span class="n">Object</span> <span class="nf">getValue</span><span class="o">()</span> <span class="c1">//返回条目的值 </span>
  
  <span class="n">Object</span> <span class="nf">setValue</span><span class="o">(</span><span class="n">Object</span> <span class="n">value</span><span class="o">)</span> <span class="c1">//将相关映像中的值改为value，并且返回旧值 </span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>## HashMap
 构造函数如下：</p>
@@ -552,8 +545,7 @@ Set entrySet() //返回Map.Entry对象的视图集，即映像中的关键字/�
  
 <span class="n">HashMap</span><span class="o">(</span><span class="kt">int</span> <span class="n">initialCapacity</span><span class="o">,</span> <span class="kt">float</span> <span class="n">loadFactor</span><span class="o">)</span><span class="c1">//构建一个拥有特定容量和加载因子</span>
 <span class="err">的空的哈希映像</span> 
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <blockquote>
   <p>HashMap和Hashtable的区别：Hashtable是个过时的集合类，在java4中被重写，实现类Map接口。</p>
   <ol>
@@ -566,8 +558,7 @@ Set entrySet() //返回Map.Entry对象的视图集，即映像中的关键字/�
 
 <p>如果需要让HashMap同步可以使用</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="n">Map</span> <span class="n">m</span><span class="o">=</span><span class="n">Collections</span><span class="o">.</span><span class="na">synchronizeMap</span><span class="o">(</span><span class="n">hashMap</span><span class="o">);</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>## TreeMap
  对比HashMap，TreeMap是有序的，实现了SortedMap接口。</p>
@@ -585,8 +576,7 @@ equals()的实现。</p>
 <span class="n">TreeMap</span><span class="o">(</span><span class="n">Comparator</span> <span class="n">c</span><span class="o">)</span> <span class="c1">//构建一个映像树，并且使用特定的比较器对关键字进行排序 </span>
  
 <span class="n">TreeMap</span><span class="o">(</span><span class="n">SortedMap</span> <span class="n">s</span><span class="o">)</span> <span class="c1">//构建一个映像树，添加映像树s中所有映射，并且使用与有序映像s相同的比较器排序 </span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p># Collections和Arrays</p>
 
@@ -664,8 +654,7 @@ equals()的实现。</p>
 		<span class="o">}</span>
 		<span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
 	<span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>Arrays类主要提供了一些排序，查找，比较的方法，主要针对数组。</p>
 
 <p>Arrays.asList()和Collections.toArray()可以互相转换。</p>
@@ -798,7 +787,7 @@ equals()的实现。</p>
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -915,7 +904,7 @@ equals()的实现。</p>
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1082,6 +1071,8 @@ equals()的实现。</p>
     
 
   
+
+
 
 
 

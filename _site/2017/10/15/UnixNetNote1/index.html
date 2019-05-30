@@ -195,7 +195,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -285,7 +285,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -377,26 +377,22 @@
   <li>在官网下载make所需要的库文件
 http://www.unpbook.com/
 下载后解压unpv13e.tar.gz文件
-    <div class="language-bash highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>tar -zxvf unpv13e.tar.gz
-</code></pre></td></tr></tbody></table></div>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-zxvf</span> unpv13e.tar.gz
+</code></pre></td></tr></tbody></table></div>    </div>
   </li>
   <li>进入解压出的unpv13e目录根据README文件提示，进行make
     <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>./configure
 cd lib
 make
-</code></pre></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></div>    </div>
   </li>
   <li>在unp13e目录下生成了libunp.a文件复制到/usr/lib和/usr/lib32目录下</li>
   <li>将unpv13e目录下的unp.h的
     <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>#include "../config.h"
-</code></pre></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></div>    </div>
     <p>更改为</p>
     <div class="language-c highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="cp">#include "config.h"
-</span></code></pre></td></tr></tbody></table></div>
-    </div>
+</span></code></pre></td></tr></tbody></table></div>    </div>
     <p>然后将修改后的unp.h以及 unpv13e目录下的config.h复制进/usr/include目录中。</p>
   </li>
   <li>测试编译：
@@ -404,8 +400,7 @@ make
 解压后的unpv13e/intro中有第一章的获取时间程序可以编译试试。-l参数链接静态连接库。
     <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code>cd .intro
 gcc daytimetcpcli.c -o daytimetcpcli -lunp
-</code></pre></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></div>    </div>
     <p>编译通过则表示配置成功。</p>
     <blockquote>
       <p>参考 http://blog.csdn.net/chenhanzhun/article/details/41827241</p>
@@ -452,14 +447,12 @@ gcc daytimetcpcli.c -o daytimetcpcli -lunp
 
     <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>下面的Sokect函数以及Listen函数这些以大写字母开头的函数为作者自己封装进行处理的函数只是原函数进行了错误处理，如</p>
 <div class="language-c highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code> <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="n">sockfd</span><span class="o">=</span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="n">SOCK_STREAM</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">)</span>
         <span class="n">err_sys</span><span class="p">(</span><span class="s">"socket error"</span><span class="p">);</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>直接被定义成了</p>
 <div class="language-c highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6</pre></td><td class="code"><pre class="highlight"><code><span class="kt">int</span> <span class="n">Socket</span><span class="p">(</span><span class="kt">int</span> <span class="n">family</span><span class="p">,</span><span class="kt">int</span> <span class="n">type</span><span class="p">,</span><span class="kt">int</span> <span class="n">protocol</span><span class="p">){</span>
 	<span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
@@ -467,8 +460,7 @@ gcc daytimetcpcli.c -o daytimetcpcli -lunp
         <span class="n">err_sys</span><span class="p">(</span><span class="s">"socket error"</span><span class="p">);</span>
     <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>书中称为包裹函数。</p>
 
 <p>/intro/daytimetcpsrv.c</p>
@@ -503,8 +495,7 @@ gcc daytimetcpcli.c -o daytimetcpcli -lunp
         <span class="n">Close</span><span class="p">(</span><span class="n">connfd</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <h2 id="查看网络接口信息">查看网络接口信息</h2>
 <p>netstat -ni 显示网络接口的信息，-n标志以输出数值地址，而不是反向解析成名字。 lo为loopback环回接口，以太网接口称为eth0,</p>
 
@@ -646,7 +637,7 @@ POSIX 标准为 Portable Operating System Interface的首字母的缩写，可�
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -763,7 +754,7 @@ POSIX 标准为 Portable Operating System Interface的首字母的缩写，可�
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -930,6 +921,8 @@ POSIX 标准为 Portable Operating System Interface的首字母的缩写，可�
     
 
   
+
+
 
 
 

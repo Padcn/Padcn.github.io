@@ -197,7 +197,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -287,7 +287,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -443,8 +443,7 @@
 <div class="language-scala highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code> <span class="k">val</span> <span class="n">rdd</span><span class="k">=</span><span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="o">(</span><span class="nc">Array</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">),</span><span class="mi">4</span><span class="o">)</span>
  <span class="n">rdd</span><span class="o">.</span><span class="n">count</span><span class="o">()</span>
  <span class="n">rdd</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span><span class="n">print</span><span class="o">)</span><span class="c1">//遍历打印内容 每次打印顺序随机因为，是分了4个片
-</span></code></pre></td></tr></tbody></table></div>
-</div>
+</span></code></pre></td></tr></tbody></table></div></div>
 
 <p>## Scala基础
  变量申明 val或者var
@@ -464,22 +463,19 @@
 map()接受函数，把函数应用到RDD的每一个元素，返回新RDD。
 ```  //使用数组生成lines的rdd  val lines=sc.parallelize(Array("hell","ssps","hello","sss"));  val lines2=lines.map(word=&gt;(word,1))
 ```
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>filter接受一个函数，返回满足函数要求的</p>
 <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code>val liens3=lines.filter(word=&gt;word.contains("hello"));
 lines3.foreach(println);
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>flatMap()
 对每个输入元素，输出多个输出元素。将RDD中元素压扁后返回一个新的RDD。</p>
 <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code> val input=sc.textFIle("/home/xxx.txt");
  val lines=input.flatMap(line=&gt;line.split(" "));
  lines.foreach(println)
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>集合运算
  （并集交集）</p>
@@ -490,8 +486,7 @@ lines3.foreach(println);
  val rdd_union=rdd1.union(rdd2) //并集
  val rdd_inter=rdd1.intersection(rdd2)//交集
  val rdd_sub=rdd1.subtract(rdd2)//差集
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>## Action
  在RDD上计算出一个结果。
@@ -581,8 +576,7 @@ lines3.foreach(println);
 <div class="language-scala highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>  <span class="k">val</span> <span class="n">rdd</span><span class="k">=</span><span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="o">(</span><span class="nc">Array</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">3</span><span class="o">))</span>
   <span class="n">rdd</span><span class="o">.</span><span class="n">collect</span><span class="o">()</span>
   <span class="n">rdd</span><span class="o">.</span><span class="n">reduce</span><span class="o">((</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">)</span><span class="k">=&gt;</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">)</span> <span class="c1">//得出结果9 1+2+3+3
-</span></code></pre></td></tr></tbody></table></div>
-</div>
+</span></code></pre></td></tr></tbody></table></div></div>
 <p>Collect()遍历整个RDD，向driver program返回RDD的内容。
   需要单机内存能够容纳下(因为数据要靠被给driver，一般情况下测试的时候使用)</p>
 
@@ -595,8 +589,7 @@ lines3.foreach(println);
 <p>top()</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code><span class="n">rdd</span><span class="o">.</span><span class="n">top</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>foreach()
 计算RDD中每个元素，但不返回到本地。可以配合println()友好的打印数据。</p>
@@ -677,8 +670,7 @@ lines3.foreach(println);
 <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code> val rdd=sc.textFile("/home/xxx.txt");
  //以第一个元素作为key，整行为value
  val rdd2=rdd.map(line=&gt;(line.split(" ")(0),line))
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>常见操作</p>
 
@@ -692,8 +684,7 @@ sc.parallelize(Array((1,2),(3,4),(3,6)))</p>
 <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>  val rdd3=sc.parallelize(Array((1,2),(3,4),(3,6)))
   val rdd4=rdd3.reduceByKey((x,y)=&gt;x+y)//按key相同则相加结果为（1,2）（3,10）
   val rdd5=rdd3.groupByKey()//根据key分组结果为(1,[2]),(3,[4,6])
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <table>
   <thead>
@@ -757,8 +748,7 @@ sc.parallelize(Array((1,2),(3,4),(3,6)))</p>
  <span class="o">(</span><span class="n">c1</span><span class="k">:</span><span class="o">(</span><span class="kt">Int</span><span class="o">,</span><span class="kt">Double</span><span class="o">),</span><span class="n">c2</span><span class="k">:</span><span class="o">(</span><span class="kt">Int</span><span class="o">,</span><span class="kt">Double</span><span class="o">)=&gt;(</span><span class="n">c1</span><span class="o">.</span><span class="n">_1</span><span class="o">+</span><span class="n">c2</span><span class="o">.</span><span class="n">_1</span><span class="o">,</span><span class="n">c1</span><span class="o">.</span><span class="n">_2</span><span class="o">+</span><span class="n">c2</span><span class="o">.</span><span class="n">_2</span><span class="o">)))</span>
  
  <span class="k">val</span> <span class="n">average</span><span class="k">=</span><span class="n">score2</span><span class="o">.</span><span class="n">map</span><span class="o">{</span><span class="k">case</span><span class="o">(</span><span class="n">name</span><span class="o">,(</span><span class="n">num</span><span class="o">,</span><span class="n">score</span><span class="o">))=&gt;(</span><span class="n">name</span><span class="o">,</span><span class="n">score</span><span class="o">/</span><span class="n">num</span><span class="o">)}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <blockquote>
   <p>http://www.cnblogs.com/rigid/p/5563205.html</p>
 </blockquote>
@@ -891,7 +881,7 @@ sc.parallelize(Array((1,2),(3,4),(3,6)))</p>
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -1008,7 +998,7 @@ sc.parallelize(Array((1,2),(3,4),(3,6)))</p>
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1175,6 +1165,8 @@ sc.parallelize(Array((1,2),(3,4),(3,6)))</p>
     
 
   
+
+
 
 
 

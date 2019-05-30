@@ -195,7 +195,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -285,7 +285,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -411,8 +411,7 @@
     <span class="c1">// 走到这就是新的值了，加入获取到entry的链表节点中</span>
     <span class="n">addEntry</span><span class="o">(</span><span class="n">hash</span><span class="o">,</span><span class="n">key</span><span class="o">,</span><span class="n">value</span><span class="o">,</span><span class="n">i</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>inflateTable方法是map的初始化方法，当map初始化时调用</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">inflateTable</span><span class="o">(</span><span class="kt">int</span> <span class="n">toSize</span><span class="o">){</span>
@@ -423,8 +422,7 @@
     <span class="n">table</span><span class="o">=</span><span class="k">new</span> <span class="n">Entry</span><span class="o">[</span><span class="n">capicity</span><span class="o">];</span>
     <span class="n">initHashSeedAsNeeded</span><span class="o">(</span><span class="n">capacity</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>这里为什么要保证容量是2的n次方？</p>
 
 <p>因为indexFor方法是 key的hash值与容量减一进行与操作，即(hash&amp;(table.length-1))。如果非2的n次方，可能length-1就是的二进制最后一位为0,那么与任何值进行与操作后最后一位都为0,也就是最终得到的值为偶数，所以put的时候只会将entry存放进偶数的下标内，奇数下标的位置永远不会被存入值，等于浪费了另一半的容量。而如果是2的n次方就可以保证length-1为奇数，也就是最终得到的下标为奇数和偶数。就会相对均匀分布一些。</p>
@@ -452,8 +450,7 @@
     <span class="n">table</span><span class="o">[</span><span class="n">buketIndex</span><span class="o">]=</span><span class="k">new</span> <span class="n">Entry</span><span class="o">&lt;&gt;(</span><span class="n">hash</span><span class="o">,</span><span class="n">key</span><span class="o">,</span><span class="n">value</span><span class="o">,</span><span class="n">e</span><span class="o">);</span>
     <span class="n">size</span><span class="o">++;</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>接下来是具体的扩容方法</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">resize</span><span class="o">(</span><span class="kt">int</span> <span class="n">newCapacity</span><span class="o">){</span>
 	<span class="n">Entry</span><span class="o">[]</span> <span class="n">oldTable</span><span class="o">=</span><span class="n">table</span><span class="o">;</span>
@@ -468,8 +465,7 @@
     <span class="n">table</span><span class="o">=</span><span class="n">newTable</span><span class="o">;</span>
     <span class="n">threhold</span><span class="o">=(</span><span class="kt">int</span><span class="o">)</span><span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">newCapacity</span> <span class="o">*</span> <span class="n">loadFactory</span><span class="o">,</span><span class="n">MAXIMUM_CAPACITY</span> <span class="o">+</span><span class="mi">1</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>由于是双倍扩容，所以原先table[i]中的节点会分拆到newTable[i]和newTable[i+oldLength]位置上。</p>
 
 <h2 id="get方法">get方法</h2>
@@ -501,8 +497,7 @@
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 
 
@@ -638,7 +633,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -755,7 +750,7 @@
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -922,6 +917,8 @@
     
 
   
+
+
 
 
 

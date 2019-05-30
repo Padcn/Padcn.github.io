@@ -197,7 +197,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -287,7 +287,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -407,8 +407,7 @@
 - xwork-core-xx.jar (struts2有些类是关联xwork的)
 
 - javassist-xxx.jar (可以理解为解析java类文件的包)
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>3.创建完善配置文件
 	配置web.xml
@@ -424,8 +423,7 @@
 	  <span class="nt">&lt;filter-name&gt;</span>struts2<span class="nt">&lt;/filter-name&gt;</span>
 	  <span class="nt">&lt;url-pattern&gt;</span>/*<span class="nt">&lt;/url-pattern&gt;</span>
   <span class="nt">&lt;/filter-mapping&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>在src中创建struts.xml文件（在struts-2.5.10.1\src\apps\rest-showcase\src\main\resources中有示例）</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
 <span class="cp">&lt;!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
@@ -438,8 +436,7 @@
         <span class="nt">&lt;/action&gt;</span>
     <span class="nt">&lt;/package&gt;</span>
 <span class="nt">&lt;/struts&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>4.创建Action并测试启动</p>
 
@@ -453,8 +450,7 @@
         	<span class="k">return</span> <span class="n">SUCESS</span><span class="o">;</span><span class="c1">//返回的string是视图的路径</span>
     	<span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <blockquote>
   <p>myeclipse可以直接右键项目-&gt;myeclipse-&gt;add Struts Cpibilities 添加</p>
@@ -472,8 +468,7 @@
 4.各种拦截器的配置</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code><span class="c">&lt;!--引用其他struts.xml--&gt;</span>
 <span class="nt">&lt;include</span> <span class="na">file=</span><span class="s">"struts-default.xml"</span><span class="nt">&gt;&lt;/include&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>package提供了将多个Action组织为一个模块的方式</p>
 
 <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6</pre></td><td class="code"><pre class="highlight"><code>package的名字必须是唯一的package可以扩展,当package扩展自另一个package时,
@@ -482,8 +477,7 @@ name：package名称
 extends：继承的父package名称
 abstract：设置package的属性为抽象， 抽象的package不能定义action 值true：false
 namespace:定义package命名空间，该命名空间影响到url的地址，例如此命名空间为/testname访问的地址为http:xxx:8080/proname/test/xx.action
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>定义拦截器</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17</pre></td><td class="code"><pre class="highlight"><code><span class="nt">&lt;interceptors&gt;</span>
@@ -503,8 +497,7 @@ namespace:定义package命名空间，该命名空间影响到url的地址，例
     <span class="c">&lt;!--name：对应get/set--&gt;</span>
 	<span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"url"</span><span class="nt">&gt;</span>http://www.sina.com<span class="nt">&lt;/param&gt;</span>
 <span class="nt">&lt;/action&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>struts.properties</p>
 
@@ -523,8 +516,7 @@ http://localhost:8080/struts2/path1/path2/path3/xxx.action</p>
 第二步： 存在：判断action是否存在，如果不存在则去默认的namespace的package里面寻找action  
     	不存在：检查上一级路径的package是否存在（直到默认namespace）重复第一步。
 第三步：如果没有则报错。
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h4 id="动态方法调用">动态方法调用：</h4>
 <p>解决一个action对应多个请求，防止action过多。</p>
@@ -535,8 +527,7 @@ http://localhost:8080/struts2/path1/path2/path3/xxx.action</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>    <span class="nt">&lt;action</span> <span class="na">name=</span><span class="s">"addAction"</span> <span class="na">method=</span><span class="s">"add"</span> <span class="na">class=</span><span class="s">"xxx.xx.xx"</span><span class="nt">&gt;</span>
     	<span class="nt">&lt;result&gt;</span>xxx.jsp<span class="nt">&lt;/result&gt;</span>
     <span class="nt">&lt;/action&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>2.感叹号方式(官方不推荐这种方法)
     对应方法返回对应 return “add”;</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code>     <span class="nt">&lt;action</span> <span class="na">name=</span><span class="s">"addAction"</span>  <span class="na">class=</span><span class="s">"xxx.xx.xx"</span><span class="nt">&gt;</span>
@@ -546,8 +537,7 @@ http://localhost:8080/struts2/path1/path2/path3/xxx.action</p>
     <span class="nt">&lt;/action&gt;</span>
     
     <span class="nt">&lt;constant</span> <span class="na">name=</span><span class="s">"struts.enable.DynamicMethodInvocation"</span> <span class="na">value=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/constant&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>访问方式：localhost:8080/xxx/helloworld!add.action</p>
 
 <p>3.通配符方式(官方推荐)</p>
@@ -556,11 +546,9 @@ http://localhost:8080/struts2/path1/path2/path3/xxx.action</p>
         <span class="nt">&lt;result</span> <span class="na">name=</span><span class="s">"add"</span><span class="nt">&gt;</span>{1}.jsp<span class="nt">&lt;/result&gt;</span>
         <span class="nt">&lt;result</span> <span class="na">name=</span><span class="s">"del"</span><span class="nt">&gt;</span>{1}.jsp<span class="nt">&lt;/result&gt;</span>
     <span class="nt">&lt;/action&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code> 访问方式：localhost:8080/xxx/helloworld_add.action
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>更加简洁，可以一个项目中只配置一个action</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>      <span class="nt">&lt;action</span> <span class="na">name=</span><span class="s">"*_*"</span>  <span class="na">method=</span><span class="s">"{2}"</span> <span class="na">class=</span><span class="s">"xxx.xx.{1}Action"</span><span class="nt">&gt;</span>
@@ -568,29 +556,25 @@ http://localhost:8080/struts2/path1/path2/path3/xxx.action</p>
         <span class="nt">&lt;result</span> <span class="na">name=</span><span class="s">"add"</span><span class="nt">&gt;</span>{2}.jsp<span class="nt">&lt;/result&gt;</span>
         <span class="nt">&lt;result</span> <span class="na">name=</span><span class="s">"del"</span><span class="nt">&gt;</span>{2}.jsp<span class="nt">&lt;/result&gt;</span>
       <span class="nt">&lt;/action&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>指定多个配置文件</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>    <span class="nt">&lt;include</span> <span class="na">file=</span><span class="s">"login1.xml"</span><span class="nt">&gt;&lt;/include&gt;</span>
     <span class="nt">&lt;include</span> <span class="na">file=</span><span class="s">"login2.xml"</span><span class="nt">&gt;&lt;/include&gt;</span>
         
          <span class="c">&lt;!--在每个配置文件中加入解决编码问题--&gt;</span>
         <span class="nt">&lt;constant</span> <span class="na">name=</span><span class="s">"struts.i18n.encoding"</span> <span class="na">value=</span><span class="s">"UTF-8"</span><span class="nt">&gt;&lt;/constant&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>默认action</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code>        <span class="nt">&lt;default-action-ref</span> <span class="na">name=</span><span class="s">"notfound"</span><span class="nt">&gt;&lt;/default-action-ref&gt;</span>
         <span class="nt">&lt;action</span> <span class="na">name=</span><span class="s">"notfound"</span><span class="nt">&gt;</span>
         	<span class="nt">&lt;result&gt;</span>404page.jsp<span class="nt">&lt;/result&gt;</span>
         <span class="nt">&lt;/action&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code> 		<span class="c">&lt;!--struts2后缀 --&gt;</span>
         <span class="nt">&lt;constant</span> <span class="na">name=</span><span class="s">"struts.action.extension"</span> <span class="na">value=</span><span class="s">"html"</span><span class="nt">&gt;&lt;/constant&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <blockquote>
   <p>为空则去掉后缀，或者直接不设置这个属性
    可配置地点：web.xml,struts.properties,struts.xml</p>
@@ -608,8 +592,7 @@ http://localhost:8080/struts2/path1/path2/path3/xxx.action</p>
     
     对于List类型from表单中的name为属性名【下标】
     如果List中是对象类型则表单中未属性名[下标].属性名
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>处理结果类型：</p>
 
@@ -628,8 +611,7 @@ com.opensymphony.xwork2.Action 类中
  
  INPUT 唯一有特殊意义的，Action的执行，需要从前端界面获取参数，INPUT就是代表这个参数输入的界面，
 在一般应用中，会对这些参数进行验证，如果验证没有通过，将自动返回到该视图。
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>在result中name换成input，当在action中数据类型转换错误的情况下会自动触发。第二种在action的方法中</p>
 
@@ -638,13 +620,11 @@ com.opensymphony.xwork2.Action 类中
        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">validate</span><span class="o">(){</span>
         <span class="k">this</span><span class="o">.</span><span class="na">addFieldError</span><span class="o">(</span><span class="s">"username"</span><span class="o">,</span><span class="s">"用户名不能为空"</span><span class="o">);</span>
        <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>jsp页面中添加struts标签</p>
 <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code>       &lt;%@ taglib prefix="s" uri="/struts-tags" %&gt;
        &lt;input type="text" name="username"/&gt;&lt;s:fielderror name="username"&gt;&lt;/s:fielderror&gt;
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h4 id="处理结果类型">处理结果类型</h4>
 
@@ -656,8 +636,7 @@ com.opensymphony.xwork2.Action 类中
       <span class="nt">&lt;result</span> <span class="na">name=</span><span class="s">"add"</span><span class="nt">&gt;</span>
       	<span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"location"</span><span class="nt">&gt;</span>/$(#requst.path).jsp<span class="nt">&lt;/param&gt;</span>
       <span class="nt">&lt;/result&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <blockquote>
   <p>这里为ognl表达式 表示从request中获取path属性值同requst.getAttribute(“path”).</p>
 </blockquote>
@@ -671,8 +650,7 @@ com.opensymphony.xwork2.Action 类中
   plainText
   
 freemarker
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>拦截器的执行过程是一个递归的过程
  从ActionProxy出来后先依次执行intercpt1，2，3执行Action之后得到result到template（jsp，freemarker…）又执行 3 ，2 ，1 intercpt，之后给HttpServletResponse,响应客户端。</p>
@@ -686,8 +664,7 @@ String intercept(ActionInvocation ai)throws Exception;
 - 实现拦截功能
 - 利用ActionInvocation参数获取Action状态
 - 返回result字符串作为逻辑视图
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>继承AbstractInterceptor类</p>
 <ul>
@@ -712,20 +689,17 @@ String intercept(ActionInvocation ai)throws Exception;
  <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
  <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></div>    </div>
   </li>
   <li>配置注册拦截器
  在package标签中注册拦截器
     <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code> <span class="nt">&lt;interceptors&gt;</span>
  		<span class="nt">&lt;interceptor</span> <span class="na">name=</span><span class="s">"mytimer"</span> <span class="na">class=</span><span class="s">"xxx.xxx.xx.classname"</span><span class="nt">&gt;&lt;/interceptor&gt;</span>
  <span class="nt">&lt;/interceptors&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></div>    </div>
     <p>在相应action标签中引用拦截器</p>
     <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code> <span class="nt">&lt;interceptor-ref</span> <span class="na">name=</span><span class="s">"mytimer"</span><span class="nt">&gt;&lt;/interceptor-ref&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></div>    </div>
   </li>
 </ol>
 
@@ -775,8 +749,7 @@ String intercept(ActionInvocation ai)throws Exception;
     <span class="nt">&lt;constant</span> <span class="na">name=</span><span class="s">"struts.configuration.xml.reload"</span> <span class="na">value=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
     <span class="c">&lt;!-- 指定XSLT Result使用样式表缓存 --&gt;</span>
     <span class="nt">&lt;constant</span> <span class="na">name=</span><span class="s">"struts.xslt.nocache"</span> <span class="na">value=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 
 
@@ -906,7 +879,7 @@ String intercept(ActionInvocation ai)throws Exception;
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -1023,7 +996,7 @@ String intercept(ActionInvocation ai)throws Exception;
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1190,6 +1163,8 @@ String intercept(ActionInvocation ai)throws Exception;
     
 
   
+
+
 
 
 

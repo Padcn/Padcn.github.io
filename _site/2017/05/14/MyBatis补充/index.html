@@ -198,7 +198,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -288,7 +288,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -392,8 +392,7 @@
     and description like '%' #{description} '%'
     <span class="nt">&lt;/if&gt;</span>
  <span class="nt">&lt;/select&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>## 使用log4j调试动态SQL
  引用相应jar(log4j-*.jar)和configuration.xml
@@ -413,8 +412,7 @@ log4j.appender.Console.layout=org.apache.log4j.PatternLayout
 log4j.appender.Console.layout.ConversionPattern=%d[%t]%-5p[%c]-%m%n
 //org.apache是自己写的包名，个性化 第一行是整个工程的
 log4j.logger.org.apache=INFO
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>mybatis本身定义了调用log工具的借口，导入哪种jar就用哪种日志，org.apache.ibatis.logging下源码。</p>
 
@@ -432,8 +430,7 @@ log4j.logger.org.apache=INFO
     )
 &lt;/delete&gt;
 ```
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>## where标签</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code>  <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"queryData"</span> <span class="na">parameter=</span><span class="s">"com.imooc.bean.Message"</span> <span class="na">resultMap=</span><span class="s">""</span><span class="nt">&gt;</span>
@@ -444,8 +441,7 @@ log4j.logger.org.apache=INFO
     <span class="nt">&lt;/if&gt;</span>
    <span class="nt">&lt;/where&gt;</span>
  <span class="nt">&lt;/select&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>## sql标签</p>
 
 <p>可以重复引用sql片段。</p>
@@ -459,8 +455,7 @@ log4j.logger.org.apache=INFO
  <span class="nt">&lt;/select&gt;</span>
  
  <span class="nt">&lt;sql</span> <span class="na">id=</span><span class="s">"colums"</span><span class="nt">&gt;</span> ID,COMMADN<span class="nt">&lt;/sql&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>## set标签
   主要解决拼接时分隔符</p>
@@ -472,16 +467,14 @@ log4j.logger.org.apache=INFO
     <span class="nt">&lt;/if&gt;</span>
         <span class="nt">&lt;/set&gt;</span>
    <span class="nt">&lt;/update&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>## trim标签
    可以代替where和set</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>   <span class="c">&lt;!--prefix 如果内有内容加入where  suffix如果有内容输出则加上  如果有会在最后切掉prefixOverrides="and/or"  suffixOverrides=","--&gt;</span>
    <span class="nt">&lt;trim</span> <span class="na">prefix=</span><span class="s">"where"</span><span class="nt">&gt;</span>
    <span class="nt">&lt;/trim&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <p>## choose标签</p>
 
@@ -495,12 +488,10 @@ log4j.logger.org.apache=INFO
         <span class="nt">&lt;/when&gt;</span>
     	<span class="nt">&lt;otherwise&gt;&lt;/otherwise&gt;</span>
    <span class="nt">&lt;/choose&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>## association用于一对一映射</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>   <span class="nt">&lt;association</span> <span class="na">property=</span><span class="s">""</span> <span class="na">resultMap=</span><span class="s">"sss.resultid"</span><span class="nt">/&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 
 
@@ -630,7 +621,7 @@ log4j.logger.org.apache=INFO
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -747,7 +738,7 @@ log4j.logger.org.apache=INFO
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -914,6 +905,8 @@ log4j.logger.org.apache=INFO
     
 
   
+
+
 
 
 

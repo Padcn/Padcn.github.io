@@ -195,7 +195,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -285,7 +285,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -388,13 +388,12 @@
   索引分为唯一索引，集簇索引，非集簇索引。</p>
 
     <p>索引的创建和删除</p>
-    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建索引</span>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建索引</span>
   <span class="k">create</span> <span class="p">[</span><span class="k">unique</span><span class="p">]</span> <span class="k">index</span> <span class="n">index_name</span> <span class="k">on</span> <span class="k">table_name</span><span class="p">(</span><span class="n">colum_name</span><span class="p">[,</span><span class="n">cloumn_name2</span><span class="p">]);</span>
     
   <span class="c1">--删除索引</span>
   <span class="k">drop</span> <span class="k">index</span> <span class="k">table_name</span><span class="p">.</span><span class="n">index_name</span><span class="p">;</span>
-</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></td></tr></tbody></table></div>    </div>
 
     <blockquote>
       <p>创建索引开销比较大，所以尽量不要多建索引
@@ -422,13 +421,12 @@
           - 数据比较重要且需要转换</p>
 
     <p>视图的创建和删除</p>
-    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建视图</span>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建视图</span>
   <span class="k">create</span> <span class="k">view</span> <span class="n">view_name</span> <span class="k">as</span> <span class="p">(</span><span class="k">select</span> <span class="err">结果</span><span class="p">);</span>
     
   <span class="c1">--删除视图</span>
   <span class="k">drop</span> <span class="k">view</span> <span class="n">view_name</span><span class="p">;</span>
-</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></td></tr></tbody></table></div>    </div>
 
     <blockquote>
       <p>在视图中可以对数据进行直接插入，但是要在特定条件下，比如单表的视图，而且插入的数据受到实体表的约束影响。
@@ -451,7 +449,7 @@
           - 不适合数据库之间的移植（geshujuku）</p>
 
     <p>存储过程的创建、使用和删除</p>
-    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建存储过程</span>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建存储过程</span>
   <span class="k">create</span> <span class="k">procedure</span> <span class="n">procedure_name</span><span class="p">([</span><span class="n">param1</span> <span class="k">in</span> <span class="n">paramtype</span><span class="p">,[</span><span class="n">param2</span> <span class="k">out</span> <span class="n">paramtpe</span><span class="p">]])</span>
   <span class="k">is</span><span class="p">[</span><span class="o">|</span><span class="k">as</span><span class="p">]</span>
   <span class="p">[</span><span class="n">delare</span><span class="p">]</span>
@@ -464,8 +462,7 @@
   <span class="k">call</span> <span class="n">procedure_name</span><span class="p">([</span><span class="n">param1</span><span class="p">[,</span><span class="n">param2</span><span class="p">]]);</span> <span class="c1">--其他程序可以调用</span>
   <span class="c1">--删除存储过程</span>
   <span class="k">drop</span> <span class="k">procedure</span> <span class="n">procedure_name</span><span class="p">;</span>
-</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></td></tr></tbody></table></div>    </div>
 
     <blockquote>
       <p>在存储过程中可以进行commit和rollback，但是一般不再之中进行commit和rollback。</p>
@@ -484,7 +481,7 @@
   		- 需要对数据进行处理，并有结果返回，这个结果用于其他sql语句中。</p>
 
     <p>函数的创建、使用和删除</p>
-    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建函数</span>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建函数</span>
   <span class="k">create</span> <span class="n">functio</span> <span class="n">function_name</span><span class="p">([</span><span class="n">param1</span> <span class="n">paramtype</span><span class="p">,[</span><span class="n">param2</span> <span class="n">paramtpe</span><span class="p">]])</span>
   <span class="k">return</span> <span class="n">paramtype</span>
   <span class="k">is</span><span class="p">[</span><span class="o">|</span><span class="k">as</span><span class="p">]</span>
@@ -497,8 +494,7 @@
   <span class="k">select</span>  <span class="n">function_name</span><span class="p">([</span><span class="n">param1</span><span class="p">[,</span><span class="n">param2</span><span class="p">]])</span> <span class="k">from</span> <span class="k">table_name</span><span class="p">;</span> <span class="c1">--其他程序可以调用</span>
   <span class="c1">--删除函数</span>
   <span class="k">drop</span> <span class="k">function</span> <span class="n">function_name</span><span class="p">;</span>
-</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></td></tr></tbody></table></div>    </div>
   </li>
   <li>
     <p><strong>游标（cursor）</strong></p>
@@ -511,7 +507,7 @@
     <p>游标的使用：
   1.声明	2.打开	3.循环	4.关闭</p>
 
-    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建函数</span>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建函数</span>
   <span class="k">create</span> <span class="k">procedure</span> <span class="n">function_name</span>
   <span class="k">is</span><span class="p">[</span><span class="o">|</span><span class="k">as</span><span class="p">]</span>
   <span class="n">v_record</span> <span class="n">emp</span><span class="o">%</span><span class="n">rowtype</span><span class="p">;</span>
@@ -530,8 +526,7 @@
       <span class="k">close</span> <span class="n">c_query</span><span class="p">;</span>	<span class="c1">--关闭游标</span>
   <span class="k">end</span><span class="p">;</span>
   <span class="o">/</span>
-</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></td></tr></tbody></table></div>    </div>
   </li>
   <li>
     <p><strong>序列（sequence）</strong></p>
@@ -541,7 +536,7 @@
 <p>使用场景：可以实现类似mysql的auto_increment</p>
 
 <p>序列的创建</p>
-<div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><pre class="highlight"><code><span class="k">Create</span> <span class="err">创建</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><pre class="highlight"><code><span class="k">Create</span> <span class="err">创建</span>
 <span class="n">Sequence</span> <span class="err">序列</span> <span class="n">seqEmop</span> <span class="err">序列名称</span>
 <span class="k">Increment</span> <span class="k">by</span> <span class="err">步长</span>
 <span class="n">Stat</span> <span class="k">with</span> <span class="mi">1</span> <span class="err">开始值</span>
@@ -552,8 +547,7 @@
 <span class="k">Cache</span> <span class="err">缓存</span>   <span class="k">Cache</span><span class="o">&lt;</span><span class="k">maxvalue</span><span class="o">-</span><span class="k">minvalue</span><span class="o">/</span><span class="k">increment</span> <span class="k">by</span><span class="o">//</span><span class="err">一般不采用缓存</span>
 <span class="n">Nextvalue</span> <span class="err">下一个</span>
 <span class="n">Currval</span> <span class="err">当前值</span>
-</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></td></tr></tbody></table></div></div>
 <blockquote>
   <p>序列一般不能清零，只能重新删除后新建。</p>
 </blockquote>
@@ -567,7 +561,7 @@
 <p>场景：用来记录用户操作数据的日志表。也可以和序列组合使用实现自动递增。</p>
 
 <p>使用</p>
-<div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code><span class="k">create</span> <span class="n">sequence</span> <span class="n">seq_userInfo_usid</span> <span class="k">start</span> <span class="k">with</span> <span class="mi">1001</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code><span class="k">create</span> <span class="n">sequence</span> <span class="n">seq_userInfo_usid</span> <span class="k">start</span> <span class="k">with</span> <span class="mi">1001</span><span class="p">;</span>
 
 <span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="n">triggle</span> <span class="n">tri_userInfo_usid</span> <span class="c1">--创建或替换触发器tri_userInfo_usid</span>
 <span class="k">before</span> <span class="k">insert</span> <span class="k">on</span> <span class="n">userInfo</span>	<span class="c1">--在向userInfo表中添加 记录之前的触发</span>
@@ -575,8 +569,7 @@
 <span class="k">begin</span>	<span class="c1">--触发之后执行下面的语句 </span>
 <span class="k">select</span> <span class="n">seq_userInfo_usid</span><span class="p">.</span><span class="n">nextval</span> <span class="k">into</span> <span class="p">:</span><span class="k">new</span><span class="p">.</span><span class="n">usid</span> <span class="k">from</span> <span class="n">dual</span><span class="p">;</span>	<span class="c1">--:new新值 :old老值</span>
 <span class="k">end</span><span class="p">;</span>
-</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></td></tr></tbody></table></div></div>
 
 <ul>
   <li>
@@ -594,13 +587,12 @@
   索引分为唯一索引，集簇索引，非集簇索引。</p>
 
     <p>索引的创建和删除</p>
-    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建索引</span>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建索引</span>
   <span class="k">create</span> <span class="p">[</span><span class="k">unique</span><span class="p">]</span> <span class="k">index</span> <span class="n">index_name</span> <span class="k">on</span> <span class="k">table_name</span><span class="p">(</span><span class="n">colum_name</span><span class="p">[,</span><span class="n">cloumn_name2</span><span class="p">]);</span>
     
   <span class="c1">--删除索引</span>
   <span class="k">drop</span> <span class="k">index</span> <span class="k">table_name</span><span class="p">.</span><span class="n">index_name</span><span class="p">;</span>
-</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></td></tr></tbody></table></div>    </div>
 
     <blockquote>
       <p>创建索引开销比较大，所以尽量不要多建索引
@@ -628,13 +620,12 @@
           - 数据比较重要且需要转换</p>
 
     <p>视图的创建和删除</p>
-    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建视图</span>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建视图</span>
   <span class="k">create</span> <span class="k">view</span> <span class="n">view_name</span> <span class="k">as</span> <span class="p">(</span><span class="k">select</span> <span class="err">结果</span><span class="p">);</span>
     
   <span class="c1">--删除视图</span>
   <span class="k">drop</span> <span class="k">view</span> <span class="n">view_name</span><span class="p">;</span>
-</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></td></tr></tbody></table></div>    </div>
 
     <blockquote>
       <p>在视图中可以对数据进行直接插入，但是要在特定条件下，比如单表的视图，而且插入的数据受到实体表的约束影响。
@@ -657,7 +648,7 @@
           - 不适合数据库之间的移植（geshujuku）</p>
 
     <p>存储过程的创建、使用和删除</p>
-    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建存储过程</span>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建存储过程</span>
   <span class="k">create</span> <span class="k">procedure</span> <span class="n">procedure_name</span><span class="p">([</span><span class="n">param1</span> <span class="k">in</span> <span class="n">paramtype</span><span class="p">,[</span><span class="n">param2</span> <span class="k">out</span> <span class="n">paramtpe</span><span class="p">]])</span>
   <span class="k">is</span><span class="p">[</span><span class="o">|</span><span class="k">as</span><span class="p">]</span>
   <span class="p">[</span><span class="n">delare</span><span class="p">]</span>
@@ -670,8 +661,7 @@
   <span class="k">call</span> <span class="n">procedure_name</span><span class="p">([</span><span class="n">param1</span><span class="p">[,</span><span class="n">param2</span><span class="p">]]);</span> <span class="c1">--其他程序可以调用</span>
   <span class="c1">--删除存储过程</span>
   <span class="k">drop</span> <span class="k">procedure</span> <span class="n">procedure_name</span><span class="p">;</span>
-</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></td></tr></tbody></table></div>    </div>
 
     <blockquote>
       <p>在存储过程中可以进行commit和rollback，但是一般不再之中进行commit和rollback。</p>
@@ -690,7 +680,7 @@
   		- 需要对数据进行处理，并有结果返回，这个结果用于其他sql语句中。</p>
 
     <p>函数的创建、使用和删除</p>
-    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建函数</span>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建函数</span>
   <span class="k">create</span> <span class="n">functio</span> <span class="n">function_name</span><span class="p">([</span><span class="n">param1</span> <span class="n">paramtype</span><span class="p">,[</span><span class="n">param2</span> <span class="n">paramtpe</span><span class="p">]])</span>
   <span class="k">return</span> <span class="n">paramtype</span>
   <span class="k">is</span><span class="p">[</span><span class="o">|</span><span class="k">as</span><span class="p">]</span>
@@ -703,8 +693,7 @@
   <span class="k">select</span>  <span class="n">function_name</span><span class="p">([</span><span class="n">param1</span><span class="p">[,</span><span class="n">param2</span><span class="p">]])</span> <span class="k">from</span> <span class="k">table_name</span><span class="p">;</span> <span class="c1">--其他程序可以调用</span>
   <span class="c1">--删除函数</span>
   <span class="k">drop</span> <span class="k">function</span> <span class="n">function_name</span><span class="p">;</span>
-</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></td></tr></tbody></table></div>    </div>
   </li>
   <li>
     <p><strong>游标（cursor）</strong></p>
@@ -717,7 +706,7 @@
     <p>游标的使用：
   1.声明	2.打开	3.循环	4.关闭</p>
 
-    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建函数</span>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><pre class="highlight"><code>  <span class="c1">--创建函数</span>
   <span class="k">create</span> <span class="k">procedure</span> <span class="n">function_name</span>
   <span class="k">is</span><span class="p">[</span><span class="o">|</span><span class="k">as</span><span class="p">]</span>
   <span class="n">v_record</span> <span class="n">emp</span><span class="o">%</span><span class="n">rowtype</span><span class="p">;</span>
@@ -736,8 +725,7 @@
       <span class="k">close</span> <span class="n">c_query</span><span class="p">;</span>	<span class="c1">--关闭游标</span>
   <span class="k">end</span><span class="p">;</span>
   <span class="o">/</span>
-</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
-    </div>
+</code></pre></td></tr></tbody></table></td></tr></tbody></table></div>    </div>
   </li>
   <li>
     <p><strong>序列（sequence）</strong></p>
@@ -747,7 +735,7 @@
 <p>使用场景：可以实现类似mysql的auto_increment</p>
 
 <p>序列的创建</p>
-<div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><pre class="highlight"><code><span class="k">Create</span> <span class="err">创建</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11</pre></td><td class="code"><pre class="highlight"><code><span class="k">Create</span> <span class="err">创建</span>
 <span class="n">Sequence</span> <span class="err">序列</span> <span class="n">seqEmop</span> <span class="err">序列名称</span>
 <span class="k">Increment</span> <span class="k">by</span> <span class="err">步长</span>
 <span class="n">Stat</span> <span class="k">with</span> <span class="mi">1</span> <span class="err">开始值</span>
@@ -758,8 +746,7 @@
 <span class="k">Cache</span> <span class="err">缓存</span>   <span class="k">Cache</span><span class="o">&lt;</span><span class="k">maxvalue</span><span class="o">-</span><span class="k">minvalue</span><span class="o">/</span><span class="k">increment</span> <span class="k">by</span><span class="o">//</span><span class="err">一般不采用缓存</span>
 <span class="n">Nextvalue</span> <span class="err">下一个</span>
 <span class="n">Currval</span> <span class="err">当前值</span>
-</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></td></tr></tbody></table></div></div>
 <blockquote>
   <p>序列一般不能清零，只能重新删除后新建。</p>
 </blockquote>
@@ -773,7 +760,7 @@
 <p>场景：用来记录用户操作数据的日志表。也可以和序列组合使用实现自动递增。</p>
 
 <p>使用</p>
-<div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code><span class="k">create</span> <span class="n">sequence</span> <span class="n">seq_userInfo_usid</span> <span class="k">start</span> <span class="k">with</span> <span class="mi">1001</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code><span class="k">create</span> <span class="n">sequence</span> <span class="n">seq_userInfo_usid</span> <span class="k">start</span> <span class="k">with</span> <span class="mi">1001</span><span class="p">;</span>
 
 <span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="n">triggle</span> <span class="n">tri_userInfo_usid</span> <span class="c1">--创建或替换触发器tri_userInfo_usid</span>
 <span class="k">before</span> <span class="k">insert</span> <span class="k">on</span> <span class="n">userInfo</span>	<span class="c1">--在向userInfo表中添加 记录之前的触发</span>
@@ -781,8 +768,7 @@
 <span class="k">begin</span>	<span class="c1">--触发之后执行下面的语句 </span>
 <span class="k">select</span> <span class="n">seq_userInfo_usid</span><span class="p">.</span><span class="n">nextval</span> <span class="k">into</span> <span class="p">:</span><span class="k">new</span><span class="p">.</span><span class="n">usid</span> <span class="k">from</span> <span class="n">dual</span><span class="p">;</span>	<span class="c1">--:new新值 :old老值</span>
 <span class="k">end</span><span class="p">;</span>
-</code></pre></td></tr></tbody></table></div></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></td></tr></tbody></table></div></div>
 
 
       
@@ -910,7 +896,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -1027,7 +1013,7 @@
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1194,6 +1180,8 @@
     
 
   
+
+
 
 
 

@@ -195,7 +195,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">start now.</p>
+        <p class="site-subtitle">what`s past is prologue</p>
       
   </div>
 
@@ -285,7 +285,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Padcn">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
+      <meta itemprop="image" content="/assets/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -388,12 +388,10 @@ http://blog.csdn.net/u010521546/article/details/45623469 解决ssh连接一段�
 
 <p>直接使用ssh root@实例公网ip  之后输入该实例root用户密码完成连接（公网ip在实例详情中可以看到）。</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>ssh root@公网ip
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <div class="language-bash highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code>查看ssh进程
 ps aux |grep ssh
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>格式化和挂载数据盘 ：https://help.aliyun.com/document_detail/25426.html?spm=5176.doc52806.6.601.XrXtrB</p>
 
 <p>未挂载时df -h应该之只能看到到系统盘</p>
@@ -408,13 +406,12 @@ Device     Boot Start      End  Sectors Size Id Type
 mkfs.ext3 /dev/vdb1
 
 写入新分区信息
-<span class="nb">echo</span> /dev/vdb1/ /mnt ext3 default 0 0 &gt;&gt; /etc/fstab
+<span class="nb">echo</span> /dev/vdb1/ /mnt ext3 default 0 0 <span class="o">&gt;&gt;</span> /etc/fstab
 挂在新分区
 mount /dev/vdb1 /ment
-这个时候如果挂载成功就可以用df -h查看了分区情况了
+这个时候如果挂载成功就可以用df <span class="nt">-h</span>查看了分区情况了
 
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h1 id="进行配置jdk和tomcat">进行配置jdk和tomcat</h1>
 <blockquote>
@@ -430,11 +427,10 @@ http://mirrors.hust.edu.cn/apache/tomcat/tomcat-8/v8.5.15/bin/apache-tomcat-8.5.
 <div class="language-bash highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>wget https://mirrors.aliyun.com/apache/tomcat/tomcat-8/v8.5.13/bin/apache-tomcat-8.5.13.tar.gz
 
 wget http://mirrors.linuxeye.com/jdk/jdk-8u121-linux-x64.tar.gz
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <h2 id="安装jdk">安装jdk</h2>
 <div class="language-bash highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14</pre></td><td class="code"><pre class="highlight"><code>mkdir /usr/java
-tar xzf jdk-8u121-linux-x64.tar.gz  -C /usr/java
+<span class="nb">tar </span>xzf jdk-8u121-linux-x64.tar.gz  <span class="nt">-C</span> /usr/java
 vim /etc/profile 
 编辑/etc/profile增加以下，配置环境变量
 <span class="c">#set java environment</span>
@@ -445,27 +441,24 @@ vim /etc/profile
 加载环境变量
 <span class="nb">source</span> /etc/profile
 查看jdk版本
-java -version
+java <span class="nt">-version</span>
 看到版本就配置成功了。
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 
 <h2 id="安装配置tomcat">安装配置tomcat</h2>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6</pre></td><td class="code"><pre class="highlight"><code>解压
-tar xzf apache-tomcat-8.5.15.tar.gz
+<span class="nb">tar </span>xzf apache-tomcat-8.5.15.tar.gz
 将解压后文件夹移动到/usr/local 并且文件夹名改为tomcat
 mv apache-tomcat-8.5.15 /usr/local/tomcat
 分配权限
-chown -R www.www /usr/local/tomcat
-</code></pre></td></tr></tbody></table></div>
-</div>
+chown <span class="nt">-R</span> www.www /usr/local/tomcat
+</code></pre></td></tr></tbody></table></div></div>
 <p>备份配置文件
 mv server.xml server.xml_bk
 新建server.xml写入以下</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>vim server.xml
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>@server.xml</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40</pre></td><td class="code"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
  <span class="nt">&lt;Server</span> <span class="na">port=</span><span class="s">"8006"</span> <span class="na">shutdown=</span><span class="s">"SHUTDOWN"</span><span class="nt">&gt;</span>
@@ -507,8 +500,7 @@ mv server.xml server.xml_bk
      <span class="nt">&lt;/Engine&gt;</span>
    <span class="nt">&lt;/Service&gt;</span>
  <span class="nt">&lt;/Server&gt;</span>
-</code></pre></td></tr></tbody></table></div>
-</div>
+</code></pre></td></tr></tbody></table></div></div>
 <p>tomcat相关配置就不解读了，appBase是我们要部署的应用存放目录</p>
 
 <h1 id="遇到问题">遇到问题</h1>
@@ -641,7 +633,7 @@ mv server.xml server.xml_bk
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
+               src="/assets/images/avatar.png"
                alt="Padcn" />
           <p class="site-author-name" itemprop="name">Padcn</p>
            
@@ -758,7 +750,7 @@ mv server.xml server.xml_bk
   
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -925,6 +917,8 @@ mv server.xml server.xml_bk
     
 
   
+
+
 
 
 
